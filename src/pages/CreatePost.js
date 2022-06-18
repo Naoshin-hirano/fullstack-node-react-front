@@ -2,28 +2,30 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-// fieldの初期値
-const initialValues = {
+function CreatePost() {
+  // fieldの初期値
+  const initialValues = {
     title: "",
     postText: "",
     username: "",
   };
 
-// バリデーション管理
-const validationSchema = Yup.object().shape({
+  // バリデーション管理
+  const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a Title!"),
     postText: Yup.string().required(),
     username: Yup.string().min(3).max(15).required(),
-});
+  });
 
-const onSubmit = (data) => {
+  const onSubmit = (data) => {
     axios.post("http://localhost:3001/posts", data).then((response) => {
         console.log("IT WORKED");
+        history.push("/");
     });
-};
-
-function CreatePost() {
+  };    
+  let history = useHistory();
   return (
     <div className="createPostPage">
       <Formik
