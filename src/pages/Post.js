@@ -22,7 +22,10 @@ function Post() {
           if (response.data.error) {
               console.log(response.data.error);
           } else {
-            const commentToAdd = { commentBody: comment };
+            const commentToAdd = {
+                commentBody: comment,
+                username: response.data.username
+            };
             setListOfComment([...listOfComments, commentToAdd]);
             setComment("");
           }
@@ -64,7 +67,12 @@ function Post() {
             </div>
             <div className="listOfComments">
                 {listOfComments.map((comment, key) => {
-                    return <div className="comment" key={key}>{comment.commentBody}</div>
+                    return (
+                    <div className="comment" key={key}>
+                        {comment.commentBody}
+                        <label>Username: {comment.username}</label>
+                    </div>
+                   );
                 })}
             </div>
       </div>
