@@ -12,11 +12,20 @@ function Post() {
       axios.post("http://localhost:3001/comments", {
           PostId: id,
           commentBody: comment
+      },
+      {
+        headers: {
+            "accessToken": sessionStorage.getItem("accessToken")
+        }
       })
       .then((response) => {
-          const commentToAdd = { commentBody: comment };
-          setListOfComment([...listOfComments, commentToAdd]);
-          setComment("");
+          if (response.data.error) {
+              console.log(response.data.error);
+          } else {
+            const commentToAdd = { commentBody: comment };
+            setListOfComment([...listOfComments, commentToAdd]);
+            setComment("");
+          }
       });
   };
   
