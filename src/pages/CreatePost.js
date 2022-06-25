@@ -9,19 +9,20 @@ function CreatePost() {
   // fieldの初期値
   const initialValues = {
     title: "",
-    postText: "",
-    username: "",
+    postText: ""
   };
 
   // バリデーション管理
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a Title!"),
     postText: Yup.string().required(),
-    username: Yup.string().min(3).max(15).required(),
   });
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3001/posts", data).then((response) => {
+    axios.post("http://localhost:3001/posts", data, {
+        headers: { "accessToken": localStorage.getItem("accessToken")}
+    })
+    .then((response) => {
         console.log("IT WORKED");
         history.push("/");
     });
@@ -58,14 +59,6 @@ function CreatePost() {
             id="inputCreatePost"
             name="postText"
             placeholder="(Ex. Post...)"
-          />
-          <label>Username: </label>
-          <ErrorMessage name="username" component="span" />
-          <Field
-            autoComplete="off"
-            id="inputCreatePost"
-            name="username"
-            placeholder="(Ex. John123...)"
           />
 
           <button type="submit"> Create Post</button>
