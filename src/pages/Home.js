@@ -1,15 +1,13 @@
-import React, {useEffect, useState, useContext} from "react";
-import { useHistory } from "react-router-dom";
+import React, {useEffect, useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import '../App.css';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import { AuthContext } from "../helpers/AuthContext";
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState([]);
     // 自分がLikeしたPost一覧
     const [likedPosts, setLikedPosts] = useState([]);
-    const { authState } = useContext(AuthContext);
     
     let history = useHistory();
 
@@ -70,7 +68,9 @@ function Home() {
                   <div className="title">{value.title}</div>
                   <div className="body" onClick={() => {history.push(`/post/${value.id}`)}}>{value.postText}</div>
                   <div className="footer">
-                  <div className="username">{value.username}</div>
+                  <div className="username">
+                      <Link to={`/profile/${value.UserId}`}>{value.username}</Link>
+                  </div>
                     <div className="buttons">
                         <ThumbUpAltIcon
                         onClick={() => {
