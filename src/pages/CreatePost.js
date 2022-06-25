@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../helpers/AuthContext";
 
 function CreatePost() {
   // fieldの初期値
@@ -26,6 +27,14 @@ function CreatePost() {
     });
   };    
   let history = useHistory();
+  const { authState } = useContext(AuthContext);
+
+  useEffect(() => {
+      if (!authState.status) {
+          history.push("/login");
+      }
+  }, []);
+  
   return (
     <div className="createPostPage">
       <Formik

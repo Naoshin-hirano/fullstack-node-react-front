@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import '../App.css';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import { AuthContext } from "../helpers/AuthContext";
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState([]);
     // 自分がLikeしたPost一覧
     const [likedPosts, setLikedPosts] = useState([]);
+    const { authState } = useContext(AuthContext);
     
     let history = useHistory();
 
@@ -46,15 +48,19 @@ function Home() {
     };
 
     useEffect(() => {
-        axios.get("http://localhost:3001/posts", 
-        { headers: { "accessToken": localStorage.getItem("accessToken")}})
-        .then(response => {
-            setListOfPosts(response.data.listOfPosts);
-            // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
-            setLikedPosts(response.data.likedPosts.map((like) => {
-                return like.PostId
-            }));
-        });
+        if (!authState.status) {
+            history.push("/login");
+        } else {
+            axios.get("http://localhost:3001/posts", 
+            { headers: { "accessToken": localStorage.getItem("accessToken")}})
+            .then(response => {
+                setListOfPosts(response.data.listOfPosts);
+                // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
+                setLikedPosts(response.data.likedPosts.map((like) => {
+                    return like.PostId
+                }));
+            });
+        };
     }, []);
     return (
     <div>
