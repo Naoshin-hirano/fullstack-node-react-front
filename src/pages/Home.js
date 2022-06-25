@@ -48,7 +48,7 @@ function Home() {
     };
 
     useEffect(() => {
-        if (!authState.status) {
+        if (!localStorage.getItem("accessToken")) {
             history.push("/login");
         } else {
             axios.get("http://localhost:3001/posts", 

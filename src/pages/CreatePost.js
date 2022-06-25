@@ -31,7 +31,7 @@ function CreatePost() {
   const { authState } = useContext(AuthContext);
 
   useEffect(() => {
-      if (!authState.status) {
+      if (!localStorage.getItem("accessToken")) {
           history.push("/login");
       }
   }, []);
