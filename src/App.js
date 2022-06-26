@@ -49,7 +49,7 @@ function App() {
             });
           }
       });
-  },[]);
+  },[authState]);
   return (
     <div className="App">
         <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -68,7 +68,7 @@ function App() {
                     )}
                     <div className="loggedInContainer">
                         <h1>{authState.username} </h1>
-                        {authState.status && <button onClick={logout}> Logout</button>}
+                        {authState.status && <Link to="/login"><button onClick={logout}>  Logout</button></Link>}
                     </div>
                 </div>
                 <Switch>

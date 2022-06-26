@@ -20,7 +20,7 @@ function Profile() {
       .then((response) => {
           setListOfPosts(response.data);
       });
-  }, []);
+  }, [id]);
   return (
     <div className="profilePageContainer">
       <div className="basicInfo">
@@ -42,7 +42,7 @@ function Profile() {
                   </div>
                   </div>
                 </div>
-            );
+            )
         })};
       </div>
     </div>
