@@ -10,7 +10,7 @@ function Login() {
   const { setAuthState } = useContext(AuthContext);
 
   const login = () => {
-    axios.post("https://fullstack-api-node.herokuapp.com/login", {
+    axios.post("https://fullstack-api-node.herokuapp.com/auth/login", {
         username: username,
         password: password
     })

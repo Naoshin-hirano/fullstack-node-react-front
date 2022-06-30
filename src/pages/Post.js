@@ -50,7 +50,7 @@ function Post() {
   };
 
   const deletePost = () => {
-      axios.delete(`https://fullstack-api-node.herokuapp.com/${id}`, {
+      axios.delete(`https://fullstack-api-node.herokuapp.com/posts/${id}`, {
           headers: {
               "accessToken": localStorage.getItem("accessToken")
           }
