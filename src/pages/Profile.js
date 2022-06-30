@@ -11,12 +11,12 @@ function Profile() {
   const { authState } = useContext(AuthContext);
 
   useEffect(() => {
-      axios.get(`http://localhost:3001/auth/basicInfo/${id}`)
+      axios.get(`https://fullstack-api-node.herokuapp.com/auth/basicInfo/${id}`)
       .then((response) => {
           setUsername(response.data.username);
       });
 
-      axios.get(`http://localhost:3001/posts/byuserId/${id}`)
+      axios.get(`https://fullstack-api-node.herokuapp.com/posts/byuserId/${id}`)
       .then((response) => {
           setListOfPosts(response.data);
       });

@@ -19,7 +19,7 @@ function CreatePost() {
   });
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3001/posts", data, {
+    axios.post("https://fullstack-api-node.herokuapp.com/posts", data, {
         headers: { "accessToken": localStorage.getItem("accessToken")}
     })
     .then((response) => {

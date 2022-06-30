@@ -13,7 +13,7 @@ function Post() {
   let history = useHistory();
 
   const addComment = () => {
-      axios.post("http://localhost:3001/comments", {
+      axios.post("https://fullstack-api-node.herokuapp.com/comments", {
           PostId: id,
           commentBody: comment
       },
@@ -37,7 +37,7 @@ function Post() {
   };
 
   const deleteComment = (commentId) => {
-      axios.delete(`http://localhost:3001/comments/${commentId}`, {
+      axios.delete(`https://fullstack-api-node.herokuapp.com/comments/${commentId}`, {
           headers: {
             "accessToken": localStorage.getItem("accessToken")
           }
@@ -50,7 +50,7 @@ function Post() {
   };
 
   const deletePost = () => {
-      axios.delete(`http://localhost:3001/posts/${id}`, {
+      axios.delete(`https://fullstack-api-node.herokuapp.com/${id}`, {
           headers: {
               "accessToken": localStorage.getItem("accessToken")
           }
@@ -63,7 +63,7 @@ function Post() {
   const editPost = (editType) => {
       if (editType === "title") {
           let newTitle = prompt("タイトルを入力してください");
-          axios.put("http://localhost:3001/posts/title", {
+          axios.put("https://fullstack-api-node.herokuapp.com/posts/title", {
               newTitle: newTitle,
               id: id
           },{
@@ -74,7 +74,7 @@ function Post() {
           setPostObject({ ...postObject, title: newTitle });
       } else {
           let newPostText = prompt("テキストを入力してください");
-          axios.put("http://localhost:3001/posts/postText", {
+          axios.put("https://fullstack-api-node.herokuapp.com/posts/postText", {
               newPostText: newPostText,
               id: id
           },{
@@ -87,12 +87,12 @@ function Post() {
   };
   
   useEffect(() => {
-      axios.get(`http://localhost:3001/posts/byId/${id}`)
+      axios.get(`https://fullstack-api-node.herokuapp.com/posts/byId/${id}`)
       .then((response) => {
           setPostObject(response.data);
       });
 
-      axios.get(`http://localhost:3001/comments/${id}`)
+      axios.get(`https://fullstack-api-node.herokuapp.com/comments/${id}`)
       .then((response) => {
           setListOfComment(response.data);
       });

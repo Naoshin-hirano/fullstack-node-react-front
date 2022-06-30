@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
       // tokenを解析してログイン中なのか判断
-      axios.get("http://localhost:3001/auth/auth", {
+      axios.get("https://fullstack-api-node.herokuapp.com/auth/auth", {
         headers: {
             "accessToken": localStorage.getItem("accessToken")
         }
