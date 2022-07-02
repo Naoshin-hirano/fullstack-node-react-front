@@ -13,7 +13,7 @@ function Home() {
 
     const likeAPost = (postId) => {
         // bodyはオブジェクトなのでPostIdもオブジェクトにする
-        axios.post("https://fullstack-api-node.herokuapp.com/likes",
+        axios.post("http://localhost:3001/likes",
             { PostId: postId },
             { headers: { "accessToken": localStorage.getItem("accessToken")}}
         ).then((response) => {
@@ -49,7 +49,7 @@ function Home() {
         if (!localStorage.getItem("accessToken")) {
             history.push("/login");
         } else {
-            axios.get("https://fullstack-api-node.herokuapp.com/posts", 
+            axios.get("http://localhost:3001/posts", 
             { headers: { "accessToken": localStorage.getItem("accessToken")}})
             .then(response => {
                 setListOfPosts(response.data.listOfPosts);

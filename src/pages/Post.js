@@ -13,7 +13,7 @@ function Post() {
   let history = useHistory();
 
   const addComment = () => {
-      axios.post("https://fullstack-api-node.herokuapp.com/comments", {
+      axios.post("http://localhost:3001/comments", {
           PostId: id,
           commentBody: comment
       },
@@ -37,7 +37,7 @@ function Post() {
   };
 
   const deleteComment = (commentId) => {
-      axios.delete(`https://fullstack-api-node.herokuapp.com/comments/${commentId}`, {
+      axios.delete(`http://localhost:3001/comments/${commentId}`, {
           headers: {
             "accessToken": localStorage.getItem("accessToken")
           }
@@ -50,7 +50,7 @@ function Post() {
   };
 
   const deletePost = () => {
-      axios.delete(`https://fullstack-api-node.herokuapp.com/posts/${id}`, {
+      axios.delete(`http://localhost:3001/posts/${id}`, {
           headers: {
               "accessToken": localStorage.getItem("accessToken")
           }
@@ -63,7 +63,7 @@ function Post() {
   const editPost = (editType) => {
       if (editType === "title") {
           let newTitle = prompt("タイトルを入力してください");
-          axios.put("https://fullstack-api-node.herokuapp.com/posts/title", {
+          axios.put("http://localhost:3001/posts/title", {
               newTitle: newTitle,
               id: id
           },{
@@ -74,7 +74,7 @@ function Post() {
           setPostObject({ ...postObject, title: newTitle });
       } else {
           let newPostText = prompt("テキストを入力してください");
-          axios.put("https://fullstack-api-node.herokuapp.com/posts/postText", {
+          axios.put("http://localhost:3001/posts/postText", {
               newPostText: newPostText,
               id: id
           },{
@@ -87,12 +87,12 @@ function Post() {
   };
   
   useEffect(() => {
-      axios.get(`https://fullstack-api-node.herokuapp.com/posts/byId/${id}`)
+      axios.get(`http://localhost:3001/posts/byId/${id}`)
       .then((response) => {
           setPostObject(response.data);
       });
 
-      axios.get(`https://fullstack-api-node.herokuapp.com/comments/${id}`)
+      axios.get(`http://localhost:3001/comments/${id}`)
       .then((response) => {
           setListOfComment(response.data);
       });
