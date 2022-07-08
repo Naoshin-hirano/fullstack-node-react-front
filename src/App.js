@@ -49,7 +49,7 @@ function App() {
             });
           }
       });
-  },[authState]);
+  },[]);
   return (
     <div className="App">
         <AuthContext.Provider value={{ authState, setAuthState }}>
