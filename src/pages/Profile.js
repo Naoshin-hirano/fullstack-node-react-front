@@ -13,7 +13,7 @@ function Profile() {
   let { id } = useParams();
   let history = useHistory();
   const { authState } = useContext(AuthContext);
-
+  
   const onFollow = () => {
     axios.post("http://localhost:3001/relationships", {
         "followedId": id
@@ -21,10 +21,10 @@ function Profile() {
     { headers: { "accessToken": localStorage.getItem("accessToken")}}
     ).then((response) => {
         if (response.data.following) {
-            setFollower([...follower, id]);
+            setFollower([...follower, authState.id]);
         } else {
             setFollower(follower.filter((uid) => {
-                return uid != id
+                return uid != authState.id
             }));
         }
     });
