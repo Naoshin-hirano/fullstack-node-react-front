@@ -45,24 +45,44 @@ body {
 }
 
 .post .footer {
-  flex: 20%;
+  flex: 42%;
   border-top: 1px solid lightgray;
-  display: flex;
-  align-items: center;
   padding-left: 15px;
   background-color: dodgerblue;
   color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.post .footer .footerContent {
+    display: flex;
+    margin-top: 10px;
+    align-items: baseline;
+}
+.footer .postInfo {
+    display: flex;
+    margin-top:10px;
+}
 .footer .username {
   flex: 50%;
 }
 .footer .buttons {
-  flex: 50%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+}
+.footer .tags {
+  display: flex; 
+  font-size: 15px;
+  color: white;
+  flex-wrap: wrap;
+  gap: 0px 10px;
+  margin-top: 5px;
+}
+.tagCheck {
+  display: flex;
+  font-size: 15px;
+  flex-wrap: wrap;
+  gap: 0px 15px;
+  margin-top: 10px;
 }
 .likeBttn {
   color: rgba(250, 250, 250, 0.8);
@@ -240,6 +260,14 @@ button {
 #individual .title,
 #individual .footer {
   font-size: 30px;
+}
+
+#individual .tags {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 19px;
+    color: white;
+    gap: 0px 15px;
 }
 
 #individual .body {

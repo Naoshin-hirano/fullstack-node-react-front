@@ -1,21 +1,24 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../helpers/AuthContext";
 
 function CreatePost() {
+  const [tags, setTags] = useState([]);
   // fieldの初期値
   const initialValues = {
     title: "",
-    postText: ""
+    postText: "",
+    tagName: "",
+    checked: [],
   };
 
   // バリデーション管理
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a Title!"),
     postText: Yup.string().required(),
+    tagName: Yup.string().required("You must input a TagName!")
   });
 
   const onSubmit = (data) => {
@@ -23,17 +26,24 @@ function CreatePost() {
         headers: { "accessToken": localStorage.getItem("accessToken")}
     })
     .then((response) => {
-        console.log("IT WORKED");
-        history.push("/");
+        if (response.data.error) {
+            console.log(response.data.error);
+        } else {
+            console.log("IT WORKED");
+            history.push("/");
+        }
     });
   };    
   let history = useHistory();
-  const { authState } = useContext(AuthContext);
 
   useEffect(() => {
       if (!localStorage.getItem("accessToken")) {
           history.push("/login");
       }
+      axios.get("http://localhost:3001/tags")
+      .then((response) => {
+        setTags(response.data);
+      });
   }, []);
   
   return (
@@ -60,7 +70,26 @@ function CreatePost() {
             name="postText"
             placeholder="(Ex. Post...)"
           />
-
+          <label>NewTag: </label>
+          <ErrorMessage name="tagName" component="span" />
+          <Field
+            autoComplete="off"
+            id="inputCreatePost"
+            name="tagName"
+            placeholder="(Ex. Tag...)"
+          />
+          <div className="tagCheck">
+          {tags?.map((tag, key) => {
+            return (
+                <div key={key}>
+                    <label>
+                        <Field type="checkbox" name="checked" value={tag.tag_name} id={tag.id}/>
+                        {tag.tag_name}
+                    </label>
+                </div>
+            )
+          })}
+          </div>
           <button type="submit"> Create Post</button>
         </Form>
       </Formik>

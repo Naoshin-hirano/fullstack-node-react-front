@@ -53,15 +53,15 @@ function Profile() {
           <h1> Username: {username}</h1>
           <p>フォロワー:  {follower.length}</p>
           <p>フォロー中: {following.length}</p>
-          {authState.username === username && (
-              <button onClick={() => {history.push("/changepassword")}}>Update Password</button>)
+          {authState.username === username ? (
+              <button onClick={() => {history.push("/changepassword")}}>Update Password</button>) : (
+                follower.includes(authState.id) ? (
+                    <button onClick={onFollow}>フォロー解除する</button>
+                 ) : (
+                   <button onClick={onFollow}>フォローする</button>
+                 )
+              )
           }
-          {/* フォローボタンが即時反映しないエラー */}
-          {follower.includes(authState.id) ? (
-             <button onClick={onFollow}>フォロー解除する</button>
-          ) : (
-            <button onClick={onFollow}>フォローする</button>
-          )}
       </div>
       <div className="listOfPosts">
       {listOfPosts.map((value, key) => {
@@ -70,14 +70,23 @@ function Profile() {
                   <div className="title">{value.title}</div>
                   <div className="body" onClick={() => {history.push(`/post/${value.id}`)}}>{value.postText}</div>
                   <div className="footer">
-                  <div className="username">{value.username}</div>
-                  <div className="buttons">
-                      <label> {value.Likes.length}</label>
-                  </div>
+                        <div className="postInfo">
+                            <div className="username">{value.username}</div>
+                            <div className="buttons">
+                                <label> {value.Likes.length}</label>
+                            </div>
+                        </div>
+                        <div className="tags">
+                        {value.Tags.map((tag, key) => {
+                            return (
+                                <div key={key}>#{tag.tag_name}</div>
+                            )
+                        })}
+                        </div>
                   </div>
                 </div>
             )
-        })};
+        })}
       </div>
     </div>
   )

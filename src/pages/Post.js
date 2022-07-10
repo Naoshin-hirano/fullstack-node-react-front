@@ -6,6 +6,7 @@ import { AuthContext } from "../helpers/AuthContext";
 function Post() {
   let { id } = useParams();
   const [postObject, setPostObject] = useState("");
+  const [tagsList, setTagsList] = useState([]);
   const [listOfComments, setListOfComment] = useState([]);
   const [comment, setComment] = useState("");
   const { authState } = useContext(AuthContext);
@@ -90,6 +91,7 @@ function Post() {
       axios.get(`http://localhost:3001/posts/byId/${id}`)
       .then((response) => {
           setPostObject(response.data);
+          setTagsList(response.data.Tags);
       });
 
       axios.get(`http://localhost:3001/comments/${id}`)
@@ -118,9 +120,18 @@ function Post() {
             }}
           >{postObject.postText}</div>
           <div className="footer">
+              <div className="footerContent">
               {postObject.username}
               {authState.username === postObject.username &&
                <button onClick={deletePost}>Delete Post</button>}
+              </div>
+               <div className="tags">
+               {tagsList.length > 0 && (
+                tagsList.map((tag, key) => {
+                    return <div key={key}>#{tag.tag_name}</div>
+                  })
+                )}
+               </div>
           </div>
         </div>
       </div>
