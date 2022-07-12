@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from './pages/Home';
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
+import TagPosts from "./pages/TagPosts";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
@@ -75,6 +76,7 @@ function App() {
                     <Route path="/" exact component={Home} />
                     <Route path="/createpost" exact component={CreatePost} />
                     <Route path="/post/:id" exact component={Post} />
+                    <Route path="/post/hashtag/:id" exact component={TagPosts} />
                     <Route path="/registration" exact component={Registration} />
                     <Route path="/login" exact component={Login} />
                     <Route path="/profile/:id" exact component={Profile} />

@@ -87,7 +87,9 @@ function Home() {
                         <div className="tags">
                         {value.Tags.map((tag, key) => {
                             return (
-                                <div key={key}>#{tag.tag_name}</div>
+                                <Link key={key} to={`/post/hashtag/${tag.tag_name}`}>
+                                  <div>#{tag.tag_name}</div>
+                                </Link>
                             )
                         })}
                         </div>
