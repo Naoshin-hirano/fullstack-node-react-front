@@ -21,7 +21,8 @@ body {
   margin-top: 50px;
   border: 1px solid lightgray;
   font-family: Arial, Helvetica, sans-serif;
-
+  z-index: 1;
+  position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -318,3 +319,34 @@ button {
     background-color: #f0f2f5;
     width: 374px;
 }
+
+.search input {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    width: 300px;
+  }
+  .suggestions {
+    border: 1px solid #999;
+    border-top-width: 0;
+    list-style: none;
+    margin-top: 0;
+    height: auto;
+    padding-left: 0;
+    width: 400px;
+    z-index: 2;
+    position: absolute;
+    background-color: white;
+  }
+  .suggestions li {
+    padding: 0.5rem;
+  }
+  .suggestion-active,
+  .suggestions li:hover {
+    background-color: #008f68;
+    color: #fae042;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .suggestions li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
+  }

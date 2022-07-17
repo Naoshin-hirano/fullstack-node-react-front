@@ -4,12 +4,19 @@ import axios from "axios";
 import '../App.css';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import SearchIcon from '@material-ui/icons/Search';
+import { SuggestionsListComponent } from '../Components/SuggestionsListComponent'
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState([]);
     // 自分がLikeしたPost一覧
     const [likedPosts, setLikedPosts] = useState([]);
     const [inputText, setInputText] = useState("");
+    // inputへ入力したワードにひっかったsuggestions
+    const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+    // inputへ入力したワードがsuggestionsにひっかかってるか
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    // 検索窓でのサジェスチョン一覧
+    const [suggestions, setSuggestions] = useState([]);
     let history = useHistory();
 
     const likeAPost = (postId) => {
@@ -47,7 +54,7 @@ function Home() {
     };
 
     // ワード検索でURLをクエリ用に更新→リロードされる→useEffect再実行される
-    const searchPosts = () => {
+    const searchByEnter = () => {
         // URLをkeywordに即して変更
         const params = {
             keyword: inputText
@@ -56,12 +63,48 @@ function Home() {
         window.location.href = "/?" + urlSearchParam
     };
 
+    const searchBySuggest = (e) => {
+        const params = {
+            keyword: e.target.innerText
+        }
+        const urlSearchParam = new URLSearchParams(params).toString();
+        window.location.href = "/?" + urlSearchParam
+    }
+
+    const onChange = (e) => {
+        const userInput = e.target.value;
+        // 全てのsuggestionsをinputに入力したワードにひっかかるsuggestionに絞り込む
+        const unLinked = suggestions.filter(
+            (suggestion) =>
+                // toLowerCase: 文字列を小文字へ
+                // suggestionsが1つ以上でるとき
+                suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        );
+        setInputText(userInput);
+        setFilteredSuggestions(unLinked);
+        setShowSuggestions(true);
+    };
+
+    // suggestionを直接クリック後
+    const onClick = (e) => {
+        searchBySuggest(e);
+        setFilteredSuggestions([]);
+        setShowSuggestions(false);
+    };
+
     useEffect(() => {
-        const queryParams = new URLSearchParams(window.location.search);
-        const keyword = queryParams.get("keyword")
         if (!localStorage.getItem("accessToken")) {
             history.push("/login");
         } else {
+            // 検索窓でのサジェスチョン一覧を取得
+            axios.get("http://localhost:3001/posts/suggests")
+                .then((response) => {
+                    setSuggestions(response.data);
+                });
+
+            // URLが検索窓で入力したワードのクエリになっているかの判断
+            const queryParams = new URLSearchParams(window.location.search);
+            const keyword = queryParams.get("keyword")
             if (keyword) {
                 // 検索ワードでの絞り込み投稿一覧
                 axios.get(`http://localhost:3001/posts/search/${keyword}`,
@@ -78,7 +121,8 @@ function Home() {
                 axios.get("http://localhost:3001/posts",
                     { headers: { "accessToken": localStorage.getItem("accessToken") } })
                     .then(response => {
-                        setListOfPosts(response.data.listOfPosts);
+                        const posts = response.data.listOfPosts;
+                        setListOfPosts(posts);
                         // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
                         setLikedPosts(response.data.likedPosts.map((like) => {
                             return like.PostId
@@ -96,16 +140,23 @@ function Home() {
                         type="text"
                         className="search__bar__input"
                         placeholder="Search"
+                        autoComplete="off"
                         name="search"
                         value={inputText}
                         onKeyPress={e => {
                             if (e.key == 'Enter') {
-                                searchPosts();
+                                searchByEnter();
                             }
                         }}
-                        onChange={(e) => { setInputText(e.target.value) }} />
+                        onChange={onChange} />
                 </div>
             </div>
+            {showSuggestions && inputText && (
+                <SuggestionsListComponent
+                    onClick={onClick}
+                    filteredSuggestions={filteredSuggestions}
+                />
+            )}
             {listOfPosts && (listOfPosts.map((value, key) => {
                 return (
                     <div key={key} className="post">
