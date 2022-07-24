@@ -161,7 +161,13 @@ function Home() {
                 return (
                     <div key={key} className="post">
                         <div className="title">{value.title}</div>
-                        <div className="body" onClick={() => { history.push(`/post/${value.id}`) }}>{value.postText}</div>
+                        <div className="body" onClick={() => { history.push(`/post/${value.id}`) }}>
+                            {value.postText}
+                            <img
+                                src={`http://localhost:3000/${value.imageName}`}
+                                alt="imageName"
+                                style={{ width: 211, height: 141 }} />
+                        </div>
                         <div className="footer">
                             <div className="postInfo">
                                 <div className="username">

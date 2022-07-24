@@ -14,7 +14,7 @@ body {
 
 .post {
   width: 400px;
-  height: 300px;
+  height: 322px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ body {
 }
 
 .post .body {
-  flex: 60%;
+  flex: 84%;
   display: grid;
   place-content: center;
 }
