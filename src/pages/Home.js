@@ -4,7 +4,8 @@ import axios from "axios";
 import '../App.css';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import SearchIcon from '@material-ui/icons/Search';
-import { SuggestionsListComponent } from '../Components/SuggestionsListComponent'
+import { SuggestionsListComponent } from '../Components/SuggestionsListComponent';
+import { Pagination } from '../Components/Pagination';
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState([]);
@@ -17,6 +18,11 @@ function Home() {
     const [showSuggestions, setShowSuggestions] = useState(false);
     // 検索窓でのサジェスチョン一覧
     const [suggestions, setSuggestions] = useState([]);
+    // 現在リストが表示されているページ
+    const [currentPage, setCurrentPage] = useState(1);
+    // 1ページにいくつのリストを表示するか
+    const [postsPerPage] = useState(3);
+
     let history = useHistory();
 
     const likeAPost = (postId) => {
@@ -92,6 +98,16 @@ function Home() {
         setShowSuggestions(false);
     };
 
+    // 全てのリストから1ページに表示する数だけ切り取ったリストの取得
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = listOfPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+    // 表示するページを切り替え
+    const paginate = (pageNum) => {
+        setCurrentPage(pageNum)
+    };
+
     useEffect(() => {
         if (!localStorage.getItem("accessToken")) {
             history.push("/login");
@@ -157,7 +173,7 @@ function Home() {
                     filteredSuggestions={filteredSuggestions}
                 />
             )}
-            {listOfPosts && (listOfPosts.map((value, key) => {
+            {currentPosts && (currentPosts.map((value, key) => {
                 return (
                     <div key={key} className="post">
                         <div className="title">{value.title}</div>
@@ -198,6 +214,12 @@ function Home() {
                     </div>
                 )
             }))}
+            <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={listOfPosts.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
         </div>
     )
 }

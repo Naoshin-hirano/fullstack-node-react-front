@@ -302,6 +302,7 @@ button {
 .loginContainer input {
   border: 2px solid dodgerblue;
 }
+/* 検索バー */
 .search{
     display: flex;
     margin-top:36px;
@@ -342,11 +343,43 @@ button {
   }
   .suggestion-active,
   .suggestions li:hover {
-    background-color: #008f68;
-    color: #fae042;
+    background-color: #f50057;
+    color: white;
     cursor: pointer;
     font-weight: 700;
   }
   .suggestions li:not(:last-of-type) {
     border-bottom: 1px solid #999;
+  }
+/* ページネーション */
+.pagination {
+    margin: 50px 0px 80px 0px;
+    padding-left: 0;
+}
+  .pagination li{
+    display: inline-block;
+    height:40px;
+    line-height:40px;
+    width:40px;
+    text-align:center;
+    border:1px #333 solid;
+    color:black;
+    border-radius: 5px / 5px;
+    font-size: 20px;
+  }
+  .pagination .pre{
+    background-color:#ccc;
+    color:#333;
+  }
+  .pagination .next{
+    background-color:#ccc;
+    color:#333;
+  }
+  .pagination li:hover,
+  .pagination .currentPage
+   {
+    background-color: #f50057;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
   }
