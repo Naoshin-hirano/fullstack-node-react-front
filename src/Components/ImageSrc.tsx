@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { FILE_OBJ } from './types';
+
 // アップロードする画像を表示するコンポーネント
-export const ImageSrc = ({ file }: any) => {
-    const [imageSrc, setImageSrc] = useState<any>("");
+export const ImageSrc = ({ file }: FILE_OBJ) => {
+    const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | null>("");
+    const src = imageSrc as string | undefined;
 
     useEffect(() => {
         const reader = new FileReader();
@@ -19,7 +22,7 @@ export const ImageSrc = ({ file }: any) => {
 
     return (
         <img
-            src={imageSrc}
+            src={src}
             alt={file.name}
             height={200}
             width={200}

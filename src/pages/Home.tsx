@@ -13,7 +13,7 @@ function Home() {
     const [likedPosts, setLikedPosts] = useState<any>([]);
     const [inputText, setInputText] = useState<any>("");
     // inputへ入力したワードにひっかったsuggestions
-    const [filteredSuggestions, setFilteredSuggestions] = useState<any>([]);
+    const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
     // inputへ入力したワードがsuggestionsにひっかかってるか
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
     // 検索窓でのサジェスチョン一覧
@@ -92,7 +92,7 @@ function Home() {
     };
 
     // suggestionを直接クリック後
-    const onClick = (e: any) => {
+    const onClick = (e: HTMLInputElement): void => {
         searchBySuggest(e);
         setFilteredSuggestions([]);
         setShowSuggestions(false);
