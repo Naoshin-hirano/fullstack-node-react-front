@@ -4,13 +4,13 @@ import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
 
 function Post() {
-    let { id } = useParams();
-    const [postObject, setPostObject] = useState("");
-    const [tagsList, setTagsList] = useState([]);
-    const [listOfComments, setListOfComment] = useState([]);
-    const [comment, setComment] = useState("");
-    const [image, setImage] = useState("");
-    const { authState } = useContext(AuthContext);
+    let { id } = useParams<any>();
+    const [postObject, setPostObject] = useState<any>("");
+    const [tagsList, setTagsList] = useState<any>([]);
+    const [listOfComments, setListOfComment] = useState<any>([]);
+    const [comment, setComment] = useState<any>("");
+    const [image, setImage] = useState<any>("");
+    const { authState } = useContext<any>(AuthContext);
 
     let history = useHistory();
 
@@ -21,7 +21,7 @@ function Post() {
         },
             {
                 headers: {
-                    "accessToken": localStorage.getItem("accessToken")
+                    "accessToken": localStorage.getItem("accessToken") as string
                 }
             })
             .then((response) => {
@@ -38,14 +38,14 @@ function Post() {
             });
     };
 
-    const deleteComment = (commentId) => {
+    const deleteComment = (commentId: any) => {
         axios.delete(`http://localhost:3001/comments/${commentId}`, {
             headers: {
-                "accessToken": localStorage.getItem("accessToken")
+                "accessToken": localStorage.getItem("accessToken") as string
             }
         })
             .then(() => {
-                setListOfComment(listOfComments.filter((val) => {
+                setListOfComment(listOfComments.filter((val: any) => {
                     return val.id != commentId
                 }));
             });
@@ -54,7 +54,7 @@ function Post() {
     const deletePost = () => {
         axios.delete(`http://localhost:3001/posts/${id}`, {
             headers: {
-                "accessToken": localStorage.getItem("accessToken")
+                "accessToken": localStorage.getItem("accessToken") as string
             }
         })
             .then(() => {
@@ -62,7 +62,7 @@ function Post() {
             });
     };
 
-    const editPost = (editType) => {
+    const editPost = (editType: any) => {
         if (editType === "title") {
             let newTitle = prompt("タイトルを入力してください");
             axios.put("http://localhost:3001/posts/title", {
@@ -70,7 +70,7 @@ function Post() {
                 id: id
             }, {
                 headers: {
-                    "accessToken": localStorage.getItem("accessToken")
+                    "accessToken": localStorage.getItem("accessToken") as string
                 }
             })
             setPostObject({ ...postObject, title: newTitle });
@@ -81,7 +81,7 @@ function Post() {
                 id: id
             }, {
                 headers: {
-                    "accessToken": localStorage.getItem("accessToken")
+                    "accessToken": localStorage.getItem("accessToken") as string
                 }
             })
             setPostObject({ ...postObject, postText: newPostText });
@@ -133,7 +133,7 @@ function Post() {
                         </div>
                         <div className="tags">
                             {tagsList.length > 0 && (
-                                tagsList.map((tag, key) => {
+                                tagsList.map((tag: any, key: any) => {
                                     return <div key={key}>#{tag.tag_name}</div>
                                 })
                             )}
@@ -155,7 +155,7 @@ function Post() {
                     <button onClick={addComment}> Add Comment</button>
                 </div>
                 <div className="listOfComments">
-                    {listOfComments.map((comment, key) => {
+                    {listOfComments.map((comment: any, key: any) => {
                         return (
                             <div className="comment" key={key}>
                                 {comment.commentBody}

@@ -2,10 +2,10 @@
 export const SuggestionsListComponent = ({
     onClick,
     filteredSuggestions
-}) => {
+}: any) => {
     return filteredSuggestions.length ? (
         <ul className="suggestions">
-            {filteredSuggestions.map((suggestion, index) => {
+            {filteredSuggestions.map((suggestion: any, index: any) => {
                 return (
                     <li key={suggestion} onClick={onClick}>
                         {suggestion}

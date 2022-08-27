@@ -6,24 +6,24 @@ import { AuthContext } from "../helpers/AuthContext";
 function Profile() {
     // 自分が画面userをフォローしているかどうか
     // 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
-    const [username, setUsername] = useState("");
-    const [listOfPosts, setListOfPosts] = useState([]);
-    const [following, setFollowing] = useState([]);
-    const [follower, setFollower] = useState([]);
-    let { id } = useParams();
+    const [username, setUsername] = useState<any>("");
+    const [listOfPosts, setListOfPosts] = useState<any>([]);
+    const [following, setFollowing] = useState<any>([]);
+    const [follower, setFollower] = useState<any>([]);
+    let { id } = useParams<any>();
     let history = useHistory();
-    const { authState } = useContext(AuthContext);
+    const { authState } = useContext<any>(AuthContext);
 
     const onFollow = () => {
         axios.post("http://localhost:3001/relationships", {
             "followedId": id
         },
-            { headers: { "accessToken": localStorage.getItem("accessToken") } }
+            { headers: { "accessToken": localStorage.getItem("accessToken") as string } }
         ).then((response) => {
             if (response.data.following) {
                 setFollower([...follower, authState.id]);
             } else {
-                setFollower(follower.filter((uid) => {
+                setFollower(follower.filter((uid: any) => {
                     return uid != authState.id
                 }));
             }
@@ -33,10 +33,10 @@ function Profile() {
     useEffect(() => {
         axios.get(`http://localhost:3001/auth/basicInfo/${id}`)
             .then((response) => {
-                setFollowing(response.data.basicInfo.Relationships.map((relation => {
+                setFollowing(response.data.basicInfo.Relationships.map(((relation: any) => {
                     return relation.followed
                 })));
-                setFollower(response.data.following.map((user) => {
+                setFollower(response.data.following.map((user: any) => {
                     return user.id
                 }));
                 setUsername(response.data.basicInfo.username);
@@ -64,7 +64,7 @@ function Profile() {
                 }
             </div>
             <div className="listOfPosts">
-                {listOfPosts.map((value, key) => {
+                {listOfPosts.map((value: any, key: any) => {
                     return (
                         <div key={key} className="post">
                             <div className="title">{value.title}</div>
@@ -83,7 +83,7 @@ function Profile() {
                                     </div>
                                 </div>
                                 <div className="tags">
-                                    {value.Tags.map((tag, key) => {
+                                    {value.Tags.map((tag: any, key: any) => {
                                         return (
                                             <div key={key}>#{tag.tag_name}</div>
                                         )

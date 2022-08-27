@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // アップロードする画像を表示するコンポーネント
-export const ImageSrc = ({ file }) => {
-    const [imageSrc, setImageSrc] = useState("");
+export const ImageSrc = ({ file }: any) => {
+    const [imageSrc, setImageSrc] = useState<any>("");
 
     useEffect(() => {
         const reader = new FileReader();

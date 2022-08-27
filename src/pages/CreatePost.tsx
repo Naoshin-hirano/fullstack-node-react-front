@@ -23,7 +23,7 @@ function CreatePost() {
         tagName: Yup.string().required("You must input a TagName!")
     });
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: any) => {
         // formikのvaluesをアップロード画像が送信できるようにnew FormData()のデータにする
         // Tagsの配列をパタメータにすると中身が展開され送信されるので、配列をstringifyで文字列化して送信→Node側で文字列化解除する
         const formData = new FormData();
@@ -37,7 +37,7 @@ function CreatePost() {
 
         axios.post("http://localhost:3001/posts", formData, {
             headers: {
-                "accessToken": localStorage.getItem("accessToken")
+                "accessToken": localStorage.getItem("accessToken") as string
             }
         })
             .then((response) => {
@@ -98,7 +98,7 @@ function CreatePost() {
                                 placeholder="(Ex. Tag...)"
                             />
                             <div className="tagCheck">
-                                {tags?.map((tag, key) => {
+                                {tags?.map((tag: any, key: any) => {
                                     return (
                                         <div key={key}>
                                             <label>

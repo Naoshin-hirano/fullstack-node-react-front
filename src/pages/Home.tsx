@@ -8,32 +8,32 @@ import { SuggestionsListComponent } from '../Components/SuggestionsListComponent
 import { Pagination } from '../Components/Pagination';
 
 function Home() {
-    const [listOfPosts, setListOfPosts] = useState([]);
+    const [listOfPosts, setListOfPosts] = useState<any>([]);
     // 自分がLikeしたPost一覧
-    const [likedPosts, setLikedPosts] = useState([]);
-    const [inputText, setInputText] = useState("");
+    const [likedPosts, setLikedPosts] = useState<any>([]);
+    const [inputText, setInputText] = useState<any>("");
     // inputへ入力したワードにひっかったsuggestions
-    const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+    const [filteredSuggestions, setFilteredSuggestions] = useState<any>([]);
     // inputへ入力したワードがsuggestionsにひっかかってるか
-    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
     // 検索窓でのサジェスチョン一覧
-    const [suggestions, setSuggestions] = useState([]);
+    const [suggestions, setSuggestions] = useState<any>([]);
     // 現在リストが表示されているページ
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState<any>(1);
     // 1ページにいくつのリストを表示するか
-    const [postsPerPage] = useState(3);
+    const [postsPerPage] = useState<any>(3);
 
     let history = useHistory();
 
-    const likeAPost = (postId) => {
+    const likeAPost = (postId: any) => {
         // bodyはオブジェクトなのでPostIdもオブジェクトにする
         axios.post("http://localhost:3001/likes",
             { PostId: postId },
-            { headers: { "accessToken": localStorage.getItem("accessToken") } }
+            { headers: { "accessToken": localStorage.getItem("accessToken") as string } }
         ).then((response) => {
             // Likesカウンターリアルタイム切り替え
             setListOfPosts(
-                listOfPosts.map((post) => {
+                listOfPosts.map((post: any): any => {
                     if (post.id === postId) {
                         if (response.data.liked) {
                             // 配列Likesに数字(0)を１つ加えることでlengthの数を1増やす（数字ならなんでもOK）
@@ -50,7 +50,7 @@ function Home() {
             );
             // Likesアイコン表示のリアルタイム切り替え
             if (likedPosts.includes(postId)) {
-                setLikedPosts(likedPosts.filter((id) => {
+                setLikedPosts(likedPosts.filter((id: any) => {
                     return id != postId
                 }));
             } else {
@@ -69,7 +69,7 @@ function Home() {
         window.location.href = "/?" + urlSearchParam
     };
 
-    const searchBySuggest = (e) => {
+    const searchBySuggest = (e: any) => {
         const params = {
             keyword: e.target.innerText
         }
@@ -77,11 +77,11 @@ function Home() {
         window.location.href = "/?" + urlSearchParam
     }
 
-    const onChange = (e) => {
+    const onChange = (e: any) => {
         const userInput = e.target.value;
         // 全てのsuggestionsをinputに入力したワードにひっかかるsuggestionに絞り込む
         const unLinked = suggestions.filter(
-            (suggestion) =>
+            (suggestion: any) =>
                 // toLowerCase: 文字列を小文字へ
                 // suggestionsが1つ以上でるとき
                 suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
@@ -92,7 +92,7 @@ function Home() {
     };
 
     // suggestionを直接クリック後
-    const onClick = (e) => {
+    const onClick = (e: any) => {
         searchBySuggest(e);
         setFilteredSuggestions([]);
         setShowSuggestions(false);
@@ -104,7 +104,7 @@ function Home() {
     const currentPosts = listOfPosts.slice(indexOfFirstPost, indexOfLastPost);
 
     // 表示するページを切り替え
-    const paginate = (pageNum) => {
+    const paginate = (pageNum: any) => {
         setCurrentPage(pageNum)
     };
 
@@ -124,23 +124,23 @@ function Home() {
             if (keyword) {
                 // 検索ワードでの絞り込み投稿一覧
                 axios.get(`http://localhost:3001/posts/search/${keyword}`,
-                    { headers: { "accessToken": localStorage.getItem("accessToken") } })
+                    { headers: { "accessToken": localStorage.getItem("accessToken") as string } })
                     .then(response => {
                         setListOfPosts(response.data.searchPosts);
                         // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
-                        setLikedPosts(response.data.likedPosts.map((like) => {
+                        setLikedPosts(response.data.likedPosts.map((like: any) => {
                             return like.PostId
                         }));
                     });
             } else {
                 // 絞り込みなしでの投稿一覧
                 axios.get("http://localhost:3001/posts",
-                    { headers: { "accessToken": localStorage.getItem("accessToken") } })
+                    { headers: { "accessToken": localStorage.getItem("accessToken") as string } })
                     .then(response => {
                         const posts = response.data.listOfPosts;
                         setListOfPosts(posts);
                         // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
-                        setLikedPosts(response.data.likedPosts.map((like) => {
+                        setLikedPosts(response.data.likedPosts.map((like: any) => {
                             return like.PostId
                         }));
                     });
@@ -173,7 +173,7 @@ function Home() {
                     filteredSuggestions={filteredSuggestions}
                 />
             )}
-            {currentPosts && (currentPosts.map((value, key) => {
+            {currentPosts && (currentPosts.map((value: any, key: any) => {
                 return (
                     <div key={key} className="post">
                         <div className="title">{value.title}</div>
@@ -202,7 +202,7 @@ function Home() {
                                 </div>
                             </div>
                             <div className="tags">
-                                {value.Tags.map((tag, key) => {
+                                {value.Tags.map((tag: any, key: any) => {
                                     return (
                                         <Link key={key} to={`/post/hashtag/${tag.tag_name}`}>
                                             <div>#{tag.tag_name}</div>

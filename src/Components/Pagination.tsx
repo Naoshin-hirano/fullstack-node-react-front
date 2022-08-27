@@ -1,7 +1,7 @@
 import React from 'react';
 
 // ページネーションの表示コンポーネント
-export const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+export const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: any) => {
     // ページ数
     const pageNumbers = [];
 
@@ -10,7 +10,7 @@ export const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) 
     }
 
     // 0または最大値を超過したページにならないよう制御
-    const handlePaginate = (number) => {
+    const handlePaginate = (number: any) => {
         if (number <= 0 || number > pageNumbers.length) {
             return
         }
