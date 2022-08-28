@@ -7,7 +7,7 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
-    const { setAuthState } = useContext<any>(AuthContext);
+    const { setAuthState } = useContext(AuthContext);
 
     const login = () => {
         axios.post("http://localhost:3001/auth/login", {

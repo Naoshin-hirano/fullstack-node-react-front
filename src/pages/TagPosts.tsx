@@ -2,11 +2,47 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
+interface LIKE {
+    PostId: number;
+    UserId: number;
+    createdAt: string;
+    id: number;
+    updatedAt: string;
+}
+
+interface POST_TAG {
+    PostId: number;
+    TagId: number;
+    createAt: string;
+    updatedAt: string;
+}
+
+interface TAG {
+    PostTag: POST_TAG;
+    createdAt: string;
+    id: number;
+    tag_name: string;
+    updatedAt: string;
+}
+
+interface POST {
+    Likes: LIKE[];
+    Tags: TAG[];
+    UserId: number;
+    createdAt: string;
+    id: number;
+    imageName: string;
+    postText: string;
+    title: string;
+    updatedAt: string;
+    username: string;
+}
+
 function TagPosts() {
     // 自分が画面userをフォローしているかどうか
     // 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
     const [listOfPosts, setListOfPosts] = useState<any>([]);
-    let { id } = useParams<any>();
+    let { id } = useParams<{ id: string }>();
     let history = useHistory();
 
     useEffect(() => {
@@ -27,7 +63,7 @@ function TagPosts() {
             </div>
             <div className="listOfPosts">
                 {listOfPosts && (
-                    listOfPosts.map((value: any, key: any) => {
+                    listOfPosts.map((value: POST, key: number) => {
                         return (
                             <div key={key} className="post">
                                 <div className="title">{value.title}</div>
@@ -40,7 +76,7 @@ function TagPosts() {
                                         </div>
                                     </div>
                                     <div className="tags">
-                                        {value.Tags.map((tag: any, key: any) => {
+                                        {value.Tags.map((tag: TAG, key: number) => {
                                             return (
                                                 <div key={key}>#{tag.tag_name}</div>
                                             )

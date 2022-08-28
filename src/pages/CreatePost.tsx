@@ -5,6 +5,21 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { ImageSrc } from "../Components/ImageSrc";
 
+interface POST_TAG {
+    PostId: number;
+    TagId: number;
+    createAt: string;
+    updatedAt: string;
+}
+
+interface TAG {
+    PostTag: POST_TAG;
+    createdAt: string;
+    id: number;
+    tag_name: string;
+    updatedAt: string;
+}
+
 function CreatePost() {
     const [tags, setTags] = useState([]);
     // fieldの初期値
@@ -98,7 +113,7 @@ function CreatePost() {
                                 placeholder="(Ex. Tag...)"
                             />
                             <div className="tagCheck">
-                                {tags?.map((tag: any, key: any) => {
+                                {tags?.map((tag: TAG, key: number) => {
                                     return (
                                         <div key={key}>
                                             <label>

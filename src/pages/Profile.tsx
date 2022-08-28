@@ -3,16 +3,68 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
 
+interface LIKE {
+    PostId: number;
+    UserId: number;
+    createdAt: string;
+    id: number;
+    updatedAt: string;
+}
+
+interface POST_TAG {
+    PostId: number;
+    TagId: number;
+    createAt: string;
+    updatedAt: string;
+}
+
+interface TAG {
+    PostTag: POST_TAG;
+    createdAt: string;
+    id: number;
+    tag_name: string;
+    updatedAt: string;
+}
+
+interface POST {
+    Likes: LIKE[];
+    Tags: TAG[];
+    UserId: number;
+    createdAt: string;
+    id: number;
+    imageName: string;
+    postText: string;
+    title: string;
+    updatedAt: string;
+    username: string;
+}
+
+interface RELATIONSHIP {
+    createdAt: string;
+    followed: number;
+    following: number;
+    id: number;
+    updatedAt: string;
+}
+
+interface USER {
+    id: string;
+    username: string;
+    password: string;
+    createAt: string;
+    updatedAt: string;
+}
+
 function Profile() {
     // 自分が画面userをフォローしているかどうか
     // 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
-    const [username, setUsername] = useState<any>("");
-    const [listOfPosts, setListOfPosts] = useState<any>([]);
-    const [following, setFollowing] = useState<any>([]);
-    const [follower, setFollower] = useState<any>([]);
-    let { id } = useParams<any>();
+    const [username, setUsername] = useState<string>("");
+    const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
+    const [following, setFollowing] = useState<number[]>([]);
+    const [follower, setFollower] = useState<number[]>([]);
+    let { id } = useParams<{ id: string }>();
     let history = useHistory();
-    const { authState } = useContext<any>(AuthContext);
+    const { authState } = useContext(AuthContext);
 
     const onFollow = () => {
         axios.post("http://localhost:3001/relationships", {
@@ -23,7 +75,7 @@ function Profile() {
             if (response.data.following) {
                 setFollower([...follower, authState.id]);
             } else {
-                setFollower(follower.filter((uid: any) => {
+                setFollower(follower.filter((uid: number) => {
                     return uid != authState.id
                 }));
             }
@@ -33,10 +85,10 @@ function Profile() {
     useEffect(() => {
         axios.get(`http://localhost:3001/auth/basicInfo/${id}`)
             .then((response) => {
-                setFollowing(response.data.basicInfo.Relationships.map(((relation: any) => {
+                setFollowing(response.data.basicInfo.Relationships.map(((relation: RELATIONSHIP) => {
                     return relation.followed
                 })));
-                setFollower(response.data.following.map((user: any) => {
+                setFollower(response.data.following.map((user: USER) => {
                     return user.id
                 }));
                 setUsername(response.data.basicInfo.username);
@@ -55,16 +107,16 @@ function Profile() {
                 <p>フォロー中: {following.length}</p>
                 {authState.username === username ? (
                     <button onClick={() => { history.push("/changepassword") }}>Update Password</button>) : (
-                        follower.includes(authState.id) ? (
-                            <button onClick={onFollow}>フォロー解除する</button>
-                        ) : (
-                                <button onClick={onFollow}>フォローする</button>
-                            )
+                    follower.includes(authState.id) ? (
+                        <button onClick={onFollow}>フォロー解除する</button>
+                    ) : (
+                        <button onClick={onFollow}>フォローする</button>
                     )
+                )
                 }
             </div>
             <div className="listOfPosts">
-                {listOfPosts.map((value: any, key: any) => {
+                {listOfPosts.map((value: POST, key: number) => {
                     return (
                         <div key={key} className="post">
                             <div className="title">{value.title}</div>
@@ -83,7 +135,7 @@ function Profile() {
                                     </div>
                                 </div>
                                 <div className="tags">
-                                    {value.Tags.map((tag: any, key: any) => {
+                                    {value.Tags.map((tag: TAG, key: number) => {
                                         return (
                                             <div key={key}>#{tag.tag_name}</div>
                                         )

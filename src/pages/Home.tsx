@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { SuggestionsListComponent } from '../Components/SuggestionsListComponent';
 import { Pagination } from '../Components/Pagination';
 
-export interface LIKE {
+interface LIKE {
     PostId: number;
     UserId: number;
     createdAt: string;
@@ -15,14 +15,14 @@ export interface LIKE {
     updatedAt: string;
 }
 
-export interface POST_TAG {
+interface POST_TAG {
     PostId: number;
     TagId: number;
     createAt: string;
     updatedAt: string;
 }
 
-export interface TAG {
+interface TAG {
     PostTag: POST_TAG;
     createdAt: string;
     id: number;
@@ -30,7 +30,7 @@ export interface TAG {
     updatedAt: string;
 }
 
-export interface POST {
+interface POST {
     Likes: LIKE[];
     Tags: TAG[];
     UserId: number;

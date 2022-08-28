@@ -3,6 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
+interface SUBMIT_USER {
+    username: string;
+    password: string;
+}
+
 function Registration() {
     const initialValues = {
         username: "",
@@ -14,7 +19,7 @@ function Registration() {
         password: Yup.string().min(4).max(20).required(),
     });
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: SUBMIT_USER) => {
         axios.post("http://localhost:3001/auth", data).then(() => {
             console.log(data);
         });

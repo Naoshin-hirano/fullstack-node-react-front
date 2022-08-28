@@ -3,14 +3,35 @@ import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
 
+interface POST_TAG {
+    PostId: number;
+    TagId: number;
+    createAt: string;
+    updatedAt: string;
+}
+
+interface TAG {
+    PostTag: POST_TAG;
+    createdAt: string;
+    id: number;
+    tag_name: string;
+    updatedAt: string;
+}
+
+interface COMMENT {
+    id: string;
+    commentBody: string;
+    username: string;
+}
+
 function Post() {
-    let { id } = useParams<any>();
-    const [postObject, setPostObject] = useState<any>("");
-    const [tagsList, setTagsList] = useState<any>([]);
+    let { id } = useParams<{ id: string }>();
+    const [postObject, setPostObject] = useState<any>();
+    const [tagsList, setTagsList] = useState<TAG[]>([]);
     const [listOfComments, setListOfComment] = useState<any>([]);
-    const [comment, setComment] = useState<any>("");
-    const [image, setImage] = useState<any>("");
-    const { authState } = useContext<any>(AuthContext);
+    const [comment, setComment] = useState<string>("");
+    const [image, setImage] = useState<string>("");
+    const { authState } = useContext(AuthContext);
 
     let history = useHistory();
 
@@ -32,20 +53,20 @@ function Post() {
                         commentBody: comment,
                         username: response.data.username
                     };
-                    setListOfComment([...listOfComments, commentToAdd]);
+                    setListOfComment([...listOfComments, commentToAdd, id]);
                     setComment("");
                 }
             });
     };
 
-    const deleteComment = (commentId: any) => {
+    const deleteComment = (commentId: string) => {
         axios.delete(`http://localhost:3001/comments/${commentId}`, {
             headers: {
                 "accessToken": localStorage.getItem("accessToken") as string
             }
         })
             .then(() => {
-                setListOfComment(listOfComments.filter((val: any) => {
+                setListOfComment(listOfComments.filter((val: COMMENT) => {
                     return val.id != commentId
                 }));
             });
@@ -62,7 +83,7 @@ function Post() {
             });
     };
 
-    const editPost = (editType: any) => {
+    const editPost = (editType: string) => {
         if (editType === "title") {
             let newTitle = prompt("タイトルを入力してください");
             axios.put("http://localhost:3001/posts/title", {
@@ -103,44 +124,45 @@ function Post() {
     }, []);
     return (
         <div className="postPage">
-            <div className="leftSide">
-                <div className="post" id="individual">
-                    <div
-                        className="title"
-                        onClick={() => {
-                            if (authState.username === postObject.username) {
-                                editPost("title")
-                            }
-                        }}
-                    > {postObject.title} </div>
-                    <div
-                        className="body"
-                        onClick={() => {
-                            if (authState.username === postObject.username) {
-                                editPost("body")
-                            }
-                        }}
-                    >{postObject.postText}
-                        <img
-                            src={`http://localhost:3000/${image}`} alt=""
-                            style={{ width: 336, height: 224, marginTop: 10 }} />
-                    </div>
-                    <div className="footer">
-                        <div className="footerContent">
-                            {postObject.username}
-                            {authState.username === postObject.username &&
-                                <button onClick={deletePost}>Delete Post</button>}
+            {postObject &&
+                <div className="leftSide">
+                    <div className="post" id="individual">
+                        <div
+                            className="title"
+                            onClick={() => {
+                                if (authState.username === postObject.username) {
+                                    editPost("title")
+                                }
+                            }}
+                        > {postObject.title} </div>
+                        <div
+                            className="body"
+                            onClick={() => {
+                                if (authState.username === postObject.username) {
+                                    editPost("body")
+                                }
+                            }}
+                        >{postObject.postText}
+                            <img
+                                src={`http://localhost:3000/${image}`} alt=""
+                                style={{ width: 336, height: 224, marginTop: 10 }} />
                         </div>
-                        <div className="tags">
-                            {tagsList.length > 0 && (
-                                tagsList.map((tag: any, key: any) => {
-                                    return <div key={key}>#{tag.tag_name}</div>
-                                })
-                            )}
+                        <div className="footer">
+                            <div className="footerContent">
+                                {postObject.username}
+                                {authState.username === postObject.username &&
+                                    <button onClick={deletePost}>Delete Post</button>}
+                            </div>
+                            <div className="tags">
+                                {tagsList.length > 0 && (
+                                    tagsList.map((tag: TAG, key: number) => {
+                                        return <div key={key}>#{tag.tag_name}</div>
+                                    })
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>}
             <div className="rightSide">
                 <div className="addCommentContainer">
                     <input
@@ -155,7 +177,7 @@ function Post() {
                     <button onClick={addComment}> Add Comment</button>
                 </div>
                 <div className="listOfComments">
-                    {listOfComments.map((comment: any, key: any) => {
+                    {listOfComments.map((comment: COMMENT, key: number) => {
                         return (
                             <div className="comment" key={key}>
                                 {comment.commentBody}
