@@ -14,14 +14,15 @@ body {
 
 .post {
   width: 400px;
-  height: 300px;
+  height: 322px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   margin-top: 50px;
   border: 1px solid lightgray;
   font-family: Arial, Helvetica, sans-serif;
-
+  z-index: 1;
+  position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -39,30 +40,50 @@ body {
 }
 
 .post .body {
-  flex: 60%;
+  flex: 84%;
   display: grid;
   place-content: center;
 }
 
 .post .footer {
-  flex: 20%;
+  flex: 42%;
   border-top: 1px solid lightgray;
-  display: flex;
-  align-items: center;
   padding-left: 15px;
   background-color: dodgerblue;
   color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.post .footer .footerContent {
+    display: flex;
+    margin-top: 10px;
+    align-items: baseline;
+}
+.footer .postInfo {
+    display: flex;
+    margin-top:10px;
+}
 .footer .username {
   flex: 50%;
 }
 .footer .buttons {
-  flex: 50%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+}
+.footer .tags {
+  display: flex; 
+  font-size: 15px;
+  color: white;
+  flex-wrap: wrap;
+  gap: 0px 10px;
+  margin-top: 5px;
+}
+.tagCheck {
+  display: flex;
+  font-size: 15px;
+  flex-wrap: wrap;
+  gap: 0px 15px;
+  margin-top: 10px;
 }
 .likeBttn {
   color: rgba(250, 250, 250, 0.8);
@@ -242,6 +263,14 @@ button {
   font-size: 30px;
 }
 
+#individual .tags {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 19px;
+    color: white;
+    gap: 0px 15px;
+}
+
 #individual .body {
   font-size: 25px;
 }
@@ -273,3 +302,84 @@ button {
 .loginContainer input {
   border: 2px solid dodgerblue;
 }
+/* 検索バー */
+.search{
+    display: flex;
+    margin-top:36px;
+}
+.search__bar{
+    display: flex;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 999px;
+    background-color: #f0f2f5;
+    width: 374px;
+}
+.search__bar > input {
+    border: none !important;
+    background-color: #f0f2f5;
+    width: 374px;
+}
+
+.search input {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    width: 300px;
+  }
+  .suggestions {
+    border: 1px solid #999;
+    border-top-width: 0;
+    list-style: none;
+    margin-top: 0;
+    height: auto;
+    padding-left: 0;
+    width: 400px;
+    z-index: 2;
+    position: absolute;
+    background-color: white;
+  }
+  .suggestions li {
+    padding: 0.5rem;
+  }
+  .suggestion-active,
+  .suggestions li:hover {
+    background-color: #f50057;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .suggestions li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
+  }
+/* ページネーション */
+.pagination {
+    margin: 50px 0px 80px 0px;
+    padding-left: 0;
+}
+  .pagination li{
+    display: inline-block;
+    height:40px;
+    line-height:40px;
+    width:40px;
+    text-align:center;
+    border:1px #333 solid;
+    color:black;
+    border-radius: 5px / 5px;
+    font-size: 20px;
+  }
+  .pagination .pre{
+    background-color:#ccc;
+    color:#333;
+  }
+  .pagination .next{
+    background-color:#ccc;
+    color:#333;
+  }
+  .pagination li:hover,
+  .pagination .currentPage
+   {
+    background-color: #f50057;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+  }
