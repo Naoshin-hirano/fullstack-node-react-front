@@ -7,25 +7,61 @@ import SearchIcon from '@material-ui/icons/Search';
 import { SuggestionsListComponent } from '../Components/SuggestionsListComponent';
 import { Pagination } from '../Components/Pagination';
 
+export interface LIKE {
+    PostId: number;
+    UserId: number;
+    createdAt: string;
+    id: number;
+    updatedAt: string;
+}
+
+export interface POST_TAG {
+    PostId: number;
+    TagId: number;
+    createAt: string;
+    updatedAt: string;
+}
+
+export interface TAG {
+    PostTag: POST_TAG;
+    createdAt: string;
+    id: number;
+    tag_name: string;
+    updatedAt: string;
+}
+
+export interface POST {
+    Likes: LIKE[];
+    Tags: TAG[];
+    UserId: number;
+    createdAt: string;
+    id: number;
+    imageName: string;
+    postText: string;
+    title: string;
+    updatedAt: string;
+    username: string;
+}
+
 function Home() {
-    const [listOfPosts, setListOfPosts] = useState<any>([]);
+    const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
     // 自分がLikeしたPost一覧
-    const [likedPosts, setLikedPosts] = useState<any>([]);
-    const [inputText, setInputText] = useState<any>("");
+    const [likedPosts, setLikedPosts] = useState<number[]>([]);
+    const [inputText, setInputText] = useState<string>("");
     // inputへ入力したワードにひっかったsuggestions
     const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
     // inputへ入力したワードがsuggestionsにひっかかってるか
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
     // 検索窓でのサジェスチョン一覧
-    const [suggestions, setSuggestions] = useState<any>([]);
+    const [suggestions, setSuggestions] = useState<string[]>([]);
     // 現在リストが表示されているページ
-    const [currentPage, setCurrentPage] = useState<any>(1);
+    const [currentPage, setCurrentPage] = useState<number>(1);
     // 1ページにいくつのリストを表示するか
-    const [postsPerPage] = useState<any>(3);
+    const [postsPerPage] = useState<number>(3);
 
     let history = useHistory();
 
-    const likeAPost = (postId: any) => {
+    const likeAPost = (postId: number) => {
         // bodyはオブジェクトなのでPostIdもオブジェクトにする
         axios.post("http://localhost:3001/likes",
             { PostId: postId },
@@ -33,7 +69,7 @@ function Home() {
         ).then((response) => {
             // Likesカウンターリアルタイム切り替え
             setListOfPosts(
-                listOfPosts.map((post: any): any => {
+                listOfPosts.map((post: POST): any => {
                     if (post.id === postId) {
                         if (response.data.liked) {
                             // 配列Likesに数字(0)を１つ加えることでlengthの数を1増やす（数字ならなんでもOK）
@@ -50,7 +86,7 @@ function Home() {
             );
             // Likesアイコン表示のリアルタイム切り替え
             if (likedPosts.includes(postId)) {
-                setLikedPosts(likedPosts.filter((id: any) => {
+                setLikedPosts(likedPosts.filter((id: number) => {
                     return id != postId
                 }));
             } else {
@@ -69,19 +105,20 @@ function Home() {
         window.location.href = "/?" + urlSearchParam
     };
 
-    const searchBySuggest = (e: any) => {
+    const searchBySuggest = (e: React.MouseEvent<HTMLInputElement>) => {
+        const input = e.target as HTMLElement;
         const params = {
-            keyword: e.target.innerText
+            keyword: input.innerText
         }
         const urlSearchParam = new URLSearchParams(params).toString();
         window.location.href = "/?" + urlSearchParam
     }
 
-    const onChange = (e: any) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const userInput = e.target.value;
         // 全てのsuggestionsをinputに入力したワードにひっかかるsuggestionに絞り込む
         const unLinked = suggestions.filter(
-            (suggestion: any) =>
+            (suggestion: string) =>
                 // toLowerCase: 文字列を小文字へ
                 // suggestionsが1つ以上でるとき
                 suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
@@ -92,7 +129,7 @@ function Home() {
     };
 
     // suggestionを直接クリック後
-    const onClick = (e: HTMLInputElement): void => {
+    const onClick = (e: React.MouseEvent<HTMLInputElement>): void => {
         searchBySuggest(e);
         setFilteredSuggestions([]);
         setShowSuggestions(false);
@@ -104,7 +141,7 @@ function Home() {
     const currentPosts = listOfPosts.slice(indexOfFirstPost, indexOfLastPost);
 
     // 表示するページを切り替え
-    const paginate = (pageNum: any) => {
+    const paginate = (pageNum: number) => {
         setCurrentPage(pageNum)
     };
 
@@ -128,7 +165,7 @@ function Home() {
                     .then(response => {
                         setListOfPosts(response.data.searchPosts);
                         // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
-                        setLikedPosts(response.data.likedPosts.map((like: any) => {
+                        setLikedPosts(response.data.likedPosts.map((like: LIKE) => {
                             return like.PostId
                         }));
                     });
@@ -140,7 +177,7 @@ function Home() {
                         const posts = response.data.listOfPosts;
                         setListOfPosts(posts);
                         // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
-                        setLikedPosts(response.data.likedPosts.map((like: any) => {
+                        setLikedPosts(response.data.likedPosts.map((like: LIKE) => {
                             return like.PostId
                         }));
                     });
@@ -173,7 +210,7 @@ function Home() {
                     filteredSuggestions={filteredSuggestions}
                 />
             )}
-            {currentPosts && (currentPosts.map((value: any, key: any) => {
+            {currentPosts && (currentPosts.map((value: POST, key: number) => {
                 return (
                     <div key={key} className="post">
                         <div className="title">{value.title}</div>
@@ -202,7 +239,7 @@ function Home() {
                                 </div>
                             </div>
                             <div className="tags">
-                                {value.Tags.map((tag: any, key: any) => {
+                                {value.Tags.map((tag: TAG, key: number) => {
                                     return (
                                         <Link key={key} to={`/post/hashtag/${tag.tag_name}`}>
                                             <div>#{tag.tag_name}</div>
