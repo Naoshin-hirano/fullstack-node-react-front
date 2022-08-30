@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
+import useSWR from "swr";
 
 interface POST_TAG {
     PostId: number;
@@ -28,10 +29,10 @@ function Post() {
     let { id } = useParams<{ id: string }>();
     const [postObject, setPostObject] = useState<any>();
     const [tagsList, setTagsList] = useState<TAG[]>([]);
-    const [listOfComments, setListOfComment] = useState<any>([]);
     const [comment, setComment] = useState<string>("");
     const [image, setImage] = useState<string>("");
     const { authState } = useContext(AuthContext);
+    const { data, error } = useSWR(`http://localhost:3001/comments/${id}`, { refreshInterval: 1000 });
 
     let history = useHistory();
 
@@ -48,14 +49,8 @@ function Post() {
             .then((response) => {
                 if (response.data.error) {
                     console.log(response.data.error);
-                } else {
-                    const commentToAdd = {
-                        commentBody: comment,
-                        username: response.data.username
-                    };
-                    setListOfComment([...listOfComments, commentToAdd, id]);
-                    setComment("");
                 }
+                setComment("");
             });
     };
 
@@ -65,11 +60,6 @@ function Post() {
                 "accessToken": localStorage.getItem("accessToken") as string
             }
         })
-            .then(() => {
-                setListOfComment(listOfComments.filter((val: COMMENT) => {
-                    return val.id != commentId
-                }));
-            });
     };
 
     const deletePost = () => {
@@ -115,11 +105,6 @@ function Post() {
                 setPostObject(response.data);
                 setTagsList(response.data.Tags);
                 setImage(response.data.imageName);
-            });
-
-        axios.get(`http://localhost:3001/comments/${id}`)
-            .then((response) => {
-                setListOfComment(response.data);
             });
     }, []);
     return (
@@ -177,7 +162,7 @@ function Post() {
                     <button onClick={addComment}> Add Comment</button>
                 </div>
                 <div className="listOfComments">
-                    {listOfComments.map((comment: COMMENT, key: number) => {
+                    {data && data.map((comment: COMMENT, key: number) => {
                         return (
                             <div className="comment" key={key}>
                                 {comment.commentBody}
