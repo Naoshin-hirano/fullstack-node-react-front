@@ -2,58 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
-
-interface LIKE {
-    PostId: number;
-    UserId: number;
-    createdAt: string;
-    id: number;
-    updatedAt: string;
-}
-
-interface POST_TAG {
-    PostId: number;
-    TagId: number;
-    createAt: string;
-    updatedAt: string;
-}
-
-interface TAG {
-    PostTag: POST_TAG;
-    createdAt: string;
-    id: number;
-    tag_name: string;
-    updatedAt: string;
-}
-
-interface POST {
-    Likes: LIKE[];
-    Tags: TAG[];
-    UserId: number;
-    createdAt: string;
-    id: number;
-    imageName: string;
-    postText: string;
-    title: string;
-    updatedAt: string;
-    username: string;
-}
-
-interface RELATIONSHIP {
-    createdAt: string;
-    followed: number;
-    following: number;
-    id: number;
-    updatedAt: string;
-}
-
-interface USER {
-    id: string;
-    username: string;
-    password: string;
-    createAt: string;
-    updatedAt: string;
-}
+import { TAG, POST, RELATIONSHIP, USER } from '../types';
 
 function Profile() {
     // 自分が画面userをフォローしているかどうか

@@ -1,42 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-
-interface LIKE {
-    PostId: number;
-    UserId: number;
-    createdAt: string;
-    id: number;
-    updatedAt: string;
-}
-
-interface POST_TAG {
-    PostId: number;
-    TagId: number;
-    createAt: string;
-    updatedAt: string;
-}
-
-interface TAG {
-    PostTag: POST_TAG;
-    createdAt: string;
-    id: number;
-    tag_name: string;
-    updatedAt: string;
-}
-
-interface POST {
-    Likes: LIKE[];
-    Tags: TAG[];
-    UserId: number;
-    createdAt: string;
-    id: number;
-    imageName: string;
-    postText: string;
-    title: string;
-    updatedAt: string;
-    username: string;
-}
+import { TAG, POST } from '../types';
 
 function TagPosts() {
     // 自分が画面userをフォローしているかどうか

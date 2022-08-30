@@ -6,42 +6,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import SearchIcon from '@material-ui/icons/Search';
 import { SuggestionsListComponent } from '../Components/SuggestionsListComponent';
 import { Pagination } from '../Components/Pagination';
-
-interface LIKE {
-    PostId: number;
-    UserId: number;
-    createdAt: string;
-    id: number;
-    updatedAt: string;
-}
-
-interface POST_TAG {
-    PostId: number;
-    TagId: number;
-    createAt: string;
-    updatedAt: string;
-}
-
-interface TAG {
-    PostTag: POST_TAG;
-    createdAt: string;
-    id: number;
-    tag_name: string;
-    updatedAt: string;
-}
-
-interface POST {
-    Likes: LIKE[];
-    Tags: TAG[];
-    UserId: number;
-    createdAt: string;
-    id: number;
-    imageName: string;
-    postText: string;
-    title: string;
-    updatedAt: string;
-    username: string;
-}
+import { LIKE, POST, TAG } from '../types';
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
