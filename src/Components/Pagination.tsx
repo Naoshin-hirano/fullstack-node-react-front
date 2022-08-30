@@ -1,7 +1,18 @@
-import { PAGENATION_PROPS } from './types';
+// ページネーションコンポーネントに渡すProps
+interface PAGENATION_PROPS {
+    postsPerPage: number;
+    totalPosts: number;
+    paginate: (number: number) => void;
+    currentPage: number;
+}
 
 // ページネーションの表示コンポーネント
-export const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: PAGENATION_PROPS) => {
+export const Pagination = ({
+    postsPerPage,
+    totalPosts,
+    paginate,
+    currentPage
+}: PAGENATION_PROPS) => {
     // ページ数
     const pageNumbers = [];
 

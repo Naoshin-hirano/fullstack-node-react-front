@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
-import { FILE_OBJ } from './types';
+
+// アップロード画像ファイル
+interface File extends Blob {
+    readonly lastModified: number;
+    readonly name: string;
+}
+
+// アップロード画像ファイルのオブジェクト
+interface FILE_OBJ {
+    file: File | null
+}
 
 // アップロードする画像を表示するコンポーネント
 export const ImageSrc = ({ file }: FILE_OBJ) => {

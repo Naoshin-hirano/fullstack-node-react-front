@@ -1,4 +1,7 @@
-import { SUGGESTION_LIST_PROPS } from './types';
+interface SUGGESTION_LIST_PROPS {
+    onClick: (e: any) => void;
+    filteredSuggestions: string[];
+}
 
 // サジェスチョンリスト表示用のコンポーネント
 export const SuggestionsListComponent = ({
