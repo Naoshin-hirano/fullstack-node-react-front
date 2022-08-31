@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import '../App.css';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import SearchIcon from '@material-ui/icons/Search';
 import { SuggestionsListComponent } from '../Components/SuggestionsListComponent';
 import { Pagination } from '../Components/Pagination';
-import { LIKE, POST, TAG } from '../types';
+import { Search } from '../Components/Search';
+import { CurrentPosts } from '../Components/CurrentPosts';
+import { LIKE, POST } from '../types';
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
@@ -151,71 +151,21 @@ function Home() {
     }, []);
     return (
         <div>
-            <div className="search">
-                <div className='search__bar'>
-                    <SearchIcon />
-                    <input
-                        type="text"
-                        className="search__bar__input"
-                        placeholder="Search"
-                        autoComplete="off"
-                        name="search"
-                        value={inputText}
-                        onKeyPress={e => {
-                            if (e.key == 'Enter') {
-                                searchByEnter();
-                            }
-                        }}
-                        onChange={onChange} />
-                </div>
-            </div>
+            <Search
+                onChange={onChange}
+                inputText={inputText}
+                searchByEnter={searchByEnter} />
             {showSuggestions && inputText && (
                 <SuggestionsListComponent
                     onClick={onClick}
                     filteredSuggestions={filteredSuggestions}
                 />
             )}
-            {currentPosts && (currentPosts.map((value: POST, key: number) => {
-                return (
-                    <div key={key} className="post">
-                        <div className="title">{value.title}</div>
-                        <div className="body" onClick={() => { history.push(`/post/${value.id}`) }}>
-                            {value.postText}
-                            <img
-                                src={`http://localhost:3000/${value.imageName}`}
-                                alt="imageName"
-                                style={{ width: 211, height: 141 }} />
-                        </div>
-                        <div className="footer">
-                            <div className="postInfo">
-                                <div className="username">
-                                    <Link to={`/profile/${value.UserId}`}>{value.username}</Link>
-                                </div>
-                                <div className="buttons">
-                                    <ThumbUpAltIcon
-                                        onClick={() => {
-                                            likeAPost(value.id);
-                                        }}
-                                        className={
-                                            likedPosts.includes(value.id) ? "unlikeBttn" : "likeBttn"
-                                        }
-                                    />
-                                    <label> {value.Likes.length}</label>
-                                </div>
-                            </div>
-                            <div className="tags">
-                                {value.Tags.map((tag: TAG, key: number) => {
-                                    return (
-                                        <Link key={key} to={`/post/hashtag/${tag.tag_name}`}>
-                                            <div>#{tag.tag_name}</div>
-                                        </Link>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                )
-            }))}
+            <CurrentPosts
+                currentPosts={currentPosts}
+                likeAPost={likeAPost}
+                likedPosts={likedPosts}
+            />
             <Pagination
                 postsPerPage={postsPerPage}
                 totalPosts={listOfPosts.length}
