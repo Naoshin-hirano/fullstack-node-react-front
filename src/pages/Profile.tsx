@@ -8,6 +8,7 @@ function Profile() {
   // 自分が画面userをフォローしているかどうか
   // 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
   const [username, setUsername] = useState<string>("");
+  const [userImage, setUserImage] = useState<string>("");
   const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
   const [following, setFollowing] = useState<number[]>([]);
   const [follower, setFollower] = useState<number[]>([]);
@@ -54,6 +55,7 @@ function Profile() {
         })
       );
       setUsername(response.data.basicInfo.username);
+      setUserImage(response.data.basicInfo.imageName);
     });
 
     axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((response) => {
@@ -64,12 +66,23 @@ function Profile() {
     <div className="profilePageContainer">
       <div className="basicInfo">
         <h1> Username: {username}</h1>
-        <img
-          src={`http://localhost:3000/${authState.imageName}`}
-          alt="profileImage"
-          style={{ width: 211 }}
-          className="profileImage"
-        />
+        {userImage ? (
+          <img
+            src={`http://localhost:3000/${userImage}`}
+            alt="profileImage"
+            style={{ width: 211 }}
+            className="profileImage"
+          />
+        ) : (
+          <img
+            src={
+              "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
+            }
+            alt="profileImage"
+            style={{ width: 211 }}
+            className="profileImage"
+          />
+        )}
         <p>フォロワー: {follower.length}</p>
         <p>フォロー中: {following.length}</p>
         {authState.username === username ? (

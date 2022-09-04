@@ -73,15 +73,27 @@ const App: FC = () => {
               </>
             )}
             <div className="loggedInContainer">
-              <img
-                src={`http://localhost:3000/${authState.imageName}`}
-                alt="Avatar"
-                className="avatar"
-              />
               {authState.status && (
-                <Link to="/login">
-                  <button onClick={logout}> Logout</button>
-                </Link>
+                <>
+                  {authState.imageName ? (
+                    <img
+                      src={`http://localhost:3000/${authState.imageName}`}
+                      alt="Avatar"
+                      className="avatar"
+                    />
+                  ) : (
+                    <img
+                      src={
+                        "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
+                      }
+                      alt="Avatar"
+                      className="avatar"
+                    />
+                  )}
+                  <Link to="/login">
+                    <button onClick={logout}> Logout</button>
+                  </Link>
+                </>
               )}
             </div>
           </div>
