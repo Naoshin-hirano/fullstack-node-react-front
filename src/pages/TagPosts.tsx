@@ -40,6 +40,11 @@ function TagPosts() {
                                     }}
                                 >
                                     {value.postText}
+                                    <img
+                                        src={`http://localhost:3000/${value.imageName}`}
+                                        alt="imageName"
+                                        style={{ width: 211, height: 141 }}
+                                    />
                                 </div>
                                 <div className="footer">
                                     <div className="postInfo">
