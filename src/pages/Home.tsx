@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import '../App.css';
-import { SuggestionsListComponent } from '../Components/SuggestionsListComponent';
-import { Pagination } from '../Components/Pagination';
-import { Search } from '../Components/Search';
-import { CurrentPosts } from '../Components/CurrentPosts';
-import { LIKE, POST } from '../types';
+import "../App.css";
+import { SuggestionsListComponent } from "../Components/SuggestionsListComponent";
+import { Pagination } from "../Components/Pagination";
+import { Search } from "../Components/Search";
+import { CurrentPosts } from "../Components/CurrentPosts";
+import { LIKE, POST } from "../types";
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
@@ -14,7 +14,9 @@ function Home() {
     const [likedPosts, setLikedPosts] = useState<number[]>([]);
     const [inputText, setInputText] = useState<string>("");
     // inputへ入力したワードにひっかったsuggestions
-    const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
+    const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>(
+        []
+    );
     // inputへ入力したワードがsuggestionsにひっかかってるか
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
     // 検索窓でのサジェスチョン一覧
@@ -28,56 +30,67 @@ function Home() {
 
     const likeAPost = (postId: number) => {
         // bodyはオブジェクトなのでPostIdもオブジェクトにする
-        axios.post("http://localhost:3001/likes",
-            { PostId: postId },
-            { headers: { "accessToken": localStorage.getItem("accessToken") as string } }
-        ).then((response) => {
-            // Likesカウンターリアルタイム切り替え
-            setListOfPosts(
-                listOfPosts.map((post: POST): any => {
-                    if (post.id === postId) {
-                        if (response.data.liked) {
-                            // 配列Likesに数字(0)を１つ加えることでlengthの数を1増やす（数字ならなんでもOK）
-                            return { ...post, Likes: [...post.Likes, 0] };
+        axios
+            .post(
+                "http://localhost:3001/likes",
+                { PostId: postId },
+                {
+                    headers: {
+                        accessToken: localStorage.getItem(
+                            "accessToken"
+                        ) as string,
+                    },
+                }
+            )
+            .then((response) => {
+                // Likesカウンターリアルタイム切り替え
+                setListOfPosts(
+                    listOfPosts.map((post: POST): any => {
+                        if (post.id === postId) {
+                            if (response.data.liked) {
+                                // 配列Likesに数字(0)を１つ加えることでlengthの数を1増やす（数字ならなんでもOK）
+                                return { ...post, Likes: [...post.Likes, 0] };
+                            } else {
+                                const likesArray = post.Likes;
+                                likesArray.pop();
+                                return { ...post, Likes: likesArray };
+                            }
                         } else {
-                            const likesArray = post.Likes;
-                            likesArray.pop();
-                            return { ...post, Likes: likesArray };
+                            return post;
                         }
-                    } else {
-                        return post;
-                    }
-                })
-            );
-            // Likesアイコン表示のリアルタイム切り替え
-            if (likedPosts.includes(postId)) {
-                setLikedPosts(likedPosts.filter((id: number) => {
-                    return id != postId
-                }));
-            } else {
-                setLikedPosts([...likedPosts, postId]);
-            }
-        });
+                    })
+                );
+                // Likesアイコン表示のリアルタイム切り替え
+                if (likedPosts.includes(postId)) {
+                    setLikedPosts(
+                        likedPosts.filter((id: number) => {
+                            return id != postId;
+                        })
+                    );
+                } else {
+                    setLikedPosts([...likedPosts, postId]);
+                }
+            });
     };
 
     // ワード検索でURLをクエリ用に更新→リロードされる→useEffect再実行される
     const searchByEnter = () => {
         // URLをkeywordに即して変更
         const params = {
-            keyword: inputText
-        }
+            keyword: inputText,
+        };
         const urlSearchParam = new URLSearchParams(params).toString();
-        window.location.href = "/?" + urlSearchParam
+        window.location.href = "/?" + urlSearchParam;
     };
 
     const searchBySuggest = (e: React.MouseEvent<HTMLInputElement>) => {
         const input = e.target as HTMLElement;
         const params = {
-            keyword: input.innerText
-        }
+            keyword: input.innerText,
+        };
         const urlSearchParam = new URLSearchParams(params).toString();
-        window.location.href = "/?" + urlSearchParam
-    }
+        window.location.href = "/?" + urlSearchParam;
+    };
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const userInput = e.target.value;
@@ -107,7 +120,7 @@ function Home() {
 
     // 表示するページを切り替え
     const paginate = (pageNum: number) => {
-        setCurrentPage(pageNum)
+        setCurrentPage(pageNum);
     };
 
     useEffect(() => {
@@ -115,46 +128,64 @@ function Home() {
             history.push("/login");
         } else {
             // 検索窓でのサジェスチョン一覧を取得
-            axios.get("http://localhost:3001/posts/suggests")
+            axios
+                .get("http://localhost:3001/posts/suggests")
                 .then((response) => {
                     setSuggestions(response.data);
                 });
 
             // URLが検索窓で入力したワードのクエリになっているかの判断
             const queryParams = new URLSearchParams(window.location.search);
-            const keyword = queryParams.get("keyword")
+            const keyword = queryParams.get("keyword");
             if (keyword) {
                 // 検索ワードでの絞り込み投稿一覧
-                axios.get(`http://localhost:3001/posts/search/${keyword}`,
-                    { headers: { "accessToken": localStorage.getItem("accessToken") as string } })
-                    .then(response => {
+                axios
+                    .get(`http://localhost:3001/posts/search/${keyword}`, {
+                        headers: {
+                            accessToken: localStorage.getItem(
+                                "accessToken"
+                            ) as string,
+                        },
+                    })
+                    .then((response) => {
                         setListOfPosts(response.data.searchPosts);
                         // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
-                        setLikedPosts(response.data.likedPosts.map((like: LIKE) => {
-                            return like.PostId
-                        }));
+                        setLikedPosts(
+                            response.data.likedPosts.map((like: LIKE) => {
+                                return like.PostId;
+                            })
+                        );
                     });
             } else {
                 // 絞り込みなしでの投稿一覧
-                axios.get("http://localhost:3001/posts",
-                    { headers: { "accessToken": localStorage.getItem("accessToken") as string } })
-                    .then(response => {
+                axios
+                    .get("http://localhost:3001/posts", {
+                        headers: {
+                            accessToken: localStorage.getItem(
+                                "accessToken"
+                            ) as string,
+                        },
+                    })
+                    .then((response) => {
                         const posts = response.data.listOfPosts;
                         setListOfPosts(posts);
                         // 単なるLiked投稿でなく、投稿の中のPostIdのみをmapで配列に入れる
-                        setLikedPosts(response.data.likedPosts.map((like: LIKE) => {
-                            return like.PostId
-                        }));
+                        setLikedPosts(
+                            response.data.likedPosts.map((like: LIKE) => {
+                                return like.PostId;
+                            })
+                        );
                     });
             }
-        };
+        }
     }, []);
     return (
         <div>
             <Search
                 onChange={onChange}
                 inputText={inputText}
-                searchByEnter={searchByEnter} />
+                searchByEnter={searchByEnter}
+            />
             {showSuggestions && inputText && (
                 <SuggestionsListComponent
                     onClick={onClick}
@@ -173,7 +204,7 @@ function Home() {
                 currentPage={currentPage}
             />
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;

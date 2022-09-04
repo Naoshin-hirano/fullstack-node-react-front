@@ -1,4 +1,4 @@
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 
 interface SEARCH_PROPS {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -6,10 +6,14 @@ interface SEARCH_PROPS {
     searchByEnter: () => void;
 }
 
-export const Search = ({ onChange, inputText, searchByEnter }: SEARCH_PROPS) => {
+export const Search = ({
+    onChange,
+    inputText,
+    searchByEnter,
+}: SEARCH_PROPS) => {
     return (
         <div className="search">
-            <div className='search__bar'>
+            <div className="search__bar">
                 <SearchIcon />
                 <input
                     type="text"
@@ -18,13 +22,14 @@ export const Search = ({ onChange, inputText, searchByEnter }: SEARCH_PROPS) => 
                     autoComplete="off"
                     name="search"
                     value={inputText}
-                    onKeyPress={e => {
-                        if (e.key == 'Enter') {
+                    onKeyPress={(e) => {
+                        if (e.key == "Enter") {
                             searchByEnter();
                         }
                     }}
-                    onChange={onChange} />
+                    onChange={onChange}
+                />
             </div>
         </div>
-    )
-}
+    );
+};

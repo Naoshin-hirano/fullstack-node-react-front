@@ -15,103 +15,122 @@ import Profile from "./pages/Profile";
 import ChangeProfile from "./pages/ChangeProfile";
 
 const App: FC = () => {
-  const [authState, setAuthState] = useState({
-    username: "",
-    id: 0,
-    status: false,
-    imageName: "",
-  });
-
-  const logout = () => {
-    localStorage.removeItem("accessToken");
-    setAuthState({
-      username: "",
-      id: 0,
-      status: false,
-      imageName: "",
+    const [authState, setAuthState] = useState({
+        username: "",
+        id: 0,
+        status: false,
+        imageName: "",
     });
-  };
 
-  useEffect(() => {
-    // tokenを解析してログイン中なのか判断
-    axios
-      .get("http://localhost:3001/auth/auth", {
-        headers: {
-          accessToken: localStorage.getItem("accessToken") as string,
-        },
-      })
-      .then((response) => {
-        if (response.data.error) {
-          setAuthState({
-            ...authState,
+    const logout = () => {
+        localStorage.removeItem("accessToken");
+        setAuthState({
+            username: "",
+            id: 0,
             status: false,
-          });
-        } else {
-          setAuthState({
-            username: response.data.username,
-            id: response.data.id,
-            status: true,
-            imageName: response.data.imageName,
-          });
-        }
-      });
-  }, []);
-  return (
-    <div className="App">
-      <AuthContext.Provider value={{ authState, setAuthState }}>
-        <Router>
-          <div className="navbar">
-            {!authState.status ? (
-              <>
-                <Link to="/registration"> Registration</Link>
-                <Link to="/login"> Login</Link>
-              </>
-            ) : (
-              <>
-                <Link to="/"> Home Page</Link>
-                <Link to="/createpost"> Create A Post</Link>
-              </>
-            )}
-            <div className="loggedInContainer">
-              {authState.status && (
-                <>
-                  {authState.imageName ? (
-                    <img
-                      src={`http://localhost:3000/${authState.imageName}`}
-                      alt="Avatar"
-                      className="avatar"
-                    />
-                  ) : (
-                    <img
-                      src={
-                        "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
-                      }
-                      alt="Avatar"
-                      className="avatar"
-                    />
-                  )}
-                  <Link to="/login">
-                    <button onClick={logout}> Logout</button>
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/createpost" exact component={CreatePost} />
-            <Route path="/post/:id" exact component={Post} />
-            <Route path="/post/hashtag/:id" exact component={TagPosts} />
-            <Route path="/registration" exact component={Registration} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/profile/:id" exact component={Profile} />
-            <Route path="/changeprofile" exact component={ChangeProfile} />
-            <Route path="*" exact component={PageNotFound} />
-          </Switch>
-        </Router>
-      </AuthContext.Provider>
-    </div>
-  );
+            imageName: "",
+        });
+    };
+
+    useEffect(() => {
+        // tokenを解析してログイン中なのか判断
+        axios
+            .get("http://localhost:3001/auth/auth", {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken") as string,
+                },
+            })
+            .then((response) => {
+                if (response.data.error) {
+                    setAuthState({
+                        ...authState,
+                        status: false,
+                    });
+                } else {
+                    setAuthState({
+                        username: response.data.username,
+                        id: response.data.id,
+                        status: true,
+                        imageName: response.data.imageName,
+                    });
+                }
+            });
+    }, []);
+    return (
+        <div className="App">
+            <AuthContext.Provider value={{ authState, setAuthState }}>
+                <Router>
+                    <div className="navbar">
+                        {!authState.status ? (
+                            <>
+                                <Link to="/registration"> Registration</Link>
+                                <Link to="/login"> Login</Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/"> Home Page</Link>
+                                <Link to="/createpost"> Create A Post</Link>
+                            </>
+                        )}
+                        <div className="loggedInContainer">
+                            {authState.status && (
+                                <>
+                                    {authState.imageName ? (
+                                        <img
+                                            src={`http://localhost:3000/${authState.imageName}`}
+                                            alt="Avatar"
+                                            className="avatar"
+                                        />
+                                    ) : (
+                                        <img
+                                            src={
+                                                "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
+                                            }
+                                            alt="Avatar"
+                                            className="avatar"
+                                        />
+                                    )}
+                                    <Link to="/login">
+                                        <button onClick={logout}>
+                                            {" "}
+                                            Logout
+                                        </button>
+                                    </Link>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route
+                            path="/createpost"
+                            exact
+                            component={CreatePost}
+                        />
+                        <Route path="/post/:id" exact component={Post} />
+                        <Route
+                            path="/post/hashtag/:id"
+                            exact
+                            component={TagPosts}
+                        />
+                        <Route
+                            path="/registration"
+                            exact
+                            component={Registration}
+                        />
+                        <Route path="/login" exact component={Login} />
+                        <Route path="/profile/:id" exact component={Profile} />
+                        <Route
+                            path="/changeprofile"
+                            exact
+                            component={ChangeProfile}
+                        />
+                        <Route path="*" exact component={PageNotFound} />
+                    </Switch>
+                </Router>
+            </AuthContext.Provider>
+        </div>
+    );
 };
 
 export default App;

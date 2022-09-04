@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 
 function PageNotFound() {
@@ -9,7 +9,7 @@ function PageNotFound() {
                 Go to the Home Page : <Link to="/"> Home Page</Link>
             </h3>
         </div>
-    )
+    );
 }
 
-export default PageNotFound
+export default PageNotFound;

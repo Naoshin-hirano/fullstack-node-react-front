@@ -6,7 +6,7 @@ interface SUGGESTION_LIST_PROPS {
 // サジェスチョンリスト表示用のコンポーネント
 export const SuggestionsListComponent = ({
     onClick,
-    filteredSuggestions
+    filteredSuggestions,
 }: SUGGESTION_LIST_PROPS) => {
     return filteredSuggestions.length ? (
         <ul className="suggestions">

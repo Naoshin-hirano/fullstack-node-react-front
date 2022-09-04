@@ -11,7 +11,7 @@ export const Pagination = ({
     postsPerPage,
     totalPosts,
     paginate,
-    currentPage
+    currentPage,
 }: PAGENATION_PROPS) => {
     // ページ数
     const pageNumbers = [];
@@ -23,22 +23,36 @@ export const Pagination = ({
     // 0または最大値を超過したページにならないよう制御
     const handlePaginate = (number: number) => {
         if (number <= 0 || number > pageNumbers.length) {
-            return
+            return;
         }
         paginate(number);
-    }
+    };
 
     return (
         <nav>
             <ul className="pagination">
-                <li onClick={() => handlePaginate(currentPage - 1)} className="pre">前へ</li>
+                <li
+                    onClick={() => handlePaginate(currentPage - 1)}
+                    className="pre"
+                >
+                    前へ
+                </li>
                 {pageNumbers.map((number) => (
-                    <li onClick={() => paginate(number)} className={currentPage === number ? "currentPage" : ""} key={number}>
+                    <li
+                        onClick={() => paginate(number)}
+                        className={currentPage === number ? "currentPage" : ""}
+                        key={number}
+                    >
                         {number}
                     </li>
                 ))}
-                <li onClick={() => handlePaginate(currentPage + 1)} className="next">次へ</li>
+                <li
+                    onClick={() => handlePaginate(currentPage + 1)}
+                    className="next"
+                >
+                    次へ
+                </li>
             </ul>
         </nav>
-    )
-}
+    );
+};

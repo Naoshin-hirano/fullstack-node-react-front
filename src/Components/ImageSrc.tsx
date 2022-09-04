@@ -8,7 +8,7 @@ interface File extends Blob {
 
 // アップロード画像ファイルのオブジェクト
 interface FILE_OBJ {
-    file: File | null
+    file: File | null;
 }
 
 // アップロードする画像を表示するコンポーネント
@@ -22,20 +22,13 @@ export const ImageSrc = ({ file }: FILE_OBJ) => {
             reader.readAsDataURL(file);
             reader.onload = () => {
                 setImageSrc(reader.result);
-            }
+            };
         }
     }, [file]);
 
     if (!file) {
-        return null
+        return null;
     }
 
-    return (
-        <img
-            src={src}
-            alt={file.name}
-            height={200}
-            width={200}
-        />
-    );
+    return <img src={src} alt={file.name} height={200} width={200} />;
 };
