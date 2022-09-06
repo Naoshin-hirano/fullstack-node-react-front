@@ -74,8 +74,7 @@ export const PostDetail = ({ id, authState }: POST_DETAIL_PROPS) => {
                                 }
                             }}
                         >
-                            {" "}
-                            {data.title}{" "}
+                            {data.title}
                         </div>
                         <div
                             className="body"

@@ -13,6 +13,8 @@ import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
 import Profile from "./pages/Profile";
 import ChangeProfile from "./pages/ChangeProfile";
+import HomeIcon from "@material-ui/icons/Home";
+import PostAddIcon from "@material-ui/icons/PostAdd";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -55,7 +57,7 @@ const App: FC = () => {
                     });
                 }
             });
-    }, []);
+    }, [authState]);
     return (
         <div className="App">
             <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -63,13 +65,17 @@ const App: FC = () => {
                     <div className="navbar">
                         {!authState.status ? (
                             <>
-                                <Link to="/registration"> Registration</Link>
-                                <Link to="/login"> Login</Link>
+                                <Link to="/registration"> 新規登録</Link>
+                                <Link to="/login"> ログイン</Link>
                             </>
                         ) : (
                             <>
-                                <Link to="/"> Home Page</Link>
-                                <Link to="/createpost"> Create A Post</Link>
+                                <Link to="/">
+                                    <HomeIcon />
+                                </Link>
+                                <Link to="/createpost">
+                                    <PostAddIcon />
+                                </Link>
                             </>
                         )}
                         <div className="loggedInContainer">
@@ -92,8 +98,7 @@ const App: FC = () => {
                                     )}
                                     <Link to="/login">
                                         <button onClick={logout}>
-                                            {" "}
-                                            Logout
+                                            ログアウト
                                         </button>
                                     </Link>
                                 </>

@@ -1,5 +1,6 @@
 import { useHistory, Link } from "react-router-dom";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { POST, TAG } from "../types";
 
 export const CurrentPosts = ({ currentPosts, likeAPost, likedPosts }: any) => {
@@ -32,16 +33,21 @@ export const CurrentPosts = ({ currentPosts, likeAPost, likedPosts }: any) => {
                                         </Link>
                                     </div>
                                     <div className="buttons">
-                                        <ThumbUpAltIcon
-                                            onClick={() => {
-                                                likeAPost(value.id);
-                                            }}
-                                            className={
-                                                likedPosts.includes(value.id)
-                                                    ? "unlikeBttn"
-                                                    : "likeBttn"
-                                            }
-                                        />
+                                        {likedPosts.includes(value.id) ? (
+                                            <FavoriteIcon
+                                                className="favoriteIcon"
+                                                onClick={() => {
+                                                    likeAPost(value.id);
+                                                }}
+                                            />
+                                        ) : (
+                                            <FavoriteBorderIcon
+                                                className="favoriteBorder"
+                                                onClick={() => {
+                                                    likeAPost(value.id);
+                                                }}
+                                            />
+                                        )}
                                         <label> {value.Likes.length}</label>
                                     </div>
                                 </div>
@@ -52,7 +58,9 @@ export const CurrentPosts = ({ currentPosts, likeAPost, likedPosts }: any) => {
                                                 key={key}
                                                 to={`/post/hashtag/${tag.tag_name}`}
                                             >
-                                                <div>#{tag.tag_name}</div>
+                                                <div className="postTags">
+                                                    #{tag.tag_name}
+                                                </div>
                                             </Link>
                                         );
                                     })}

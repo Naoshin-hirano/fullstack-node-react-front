@@ -47,7 +47,7 @@ function Login() {
                 }}
             />
 
-            <button onClick={login}> Login</button>
+            <button onClick={login}> ログイン</button>
         </div>
     );
 }
