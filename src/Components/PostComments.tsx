@@ -73,7 +73,6 @@ export const PostComments = ({ id, authState }: POST_COMMENTS_PROPS) => {
                                             deleteComment(comment.id);
                                         }}
                                     >
-                                        {" "}
                                         X
                                     </button>
                                 )}

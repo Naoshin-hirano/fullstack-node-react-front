@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import ChangeProfile from "./pages/ChangeProfile";
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
+import { DirectMessage } from "./pages/DirectMessage";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -57,7 +58,7 @@ const App: FC = () => {
                     });
                 }
             });
-    }, [authState]);
+    }, []);
     return (
         <div className="App">
             <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -129,6 +130,11 @@ const App: FC = () => {
                             path="/changeprofile"
                             exact
                             component={ChangeProfile}
+                        />
+                        <Route
+                            path="/directmessage/:id"
+                            exact
+                            component={DirectMessage}
                         />
                         <Route path="*" exact component={PageNotFound} />
                     </Switch>

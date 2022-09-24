@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
 import { TAG, POST, RELATIONSHIP, USER } from "../types";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
 
 function Profile() {
     // 自分が画面userをフォローしているかどうか
@@ -37,7 +38,7 @@ function Profile() {
                 } else {
                     setFollower(
                         follower.filter((uid: number) => {
-                            return uid != authState.id;
+                            return uid !== authState.id;
                         })
                     );
                 }
@@ -73,7 +74,15 @@ function Profile() {
     return (
         <div className="profilePageContainer">
             <div className="basicInfo">
-                <h1> Username: {username}</h1>
+                <h1>
+                    {username}
+                    <MailOutlineIcon
+                        style={{ marginLeft: "25px", fontSize: "30px" }}
+                        onClick={() => {
+                            history.push(`/directmessage/${id}`);
+                        }}
+                    />
+                </h1>
                 {userImage ? (
                     <img
                         src={`http://localhost:3000/${userImage}`}
