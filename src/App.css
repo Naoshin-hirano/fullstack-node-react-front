@@ -413,14 +413,15 @@ button {
     justify-content: space-around;
 }
 
-img {
+.msgs img {
     border-radius: 50%;
     height: 45px;
+    width: 45px;
     margin-top: -20px;
     border: 2px solid black;
 }
 
-p {
+.msgs p {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 500;
@@ -461,7 +462,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 60%;
     bottom: 0;
     z-index: 1;
     border-top: 1px solid lightgray;
@@ -477,6 +478,7 @@ p {
     flex-direction: column;
 }
 
+/* ダイレクトメッセージ  レスポンシブ*/
 @media (max-width: 775px) {
     p {
         font-size: 20px;
