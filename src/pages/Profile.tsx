@@ -76,12 +76,14 @@ function Profile() {
             <div className="basicInfo">
                 <h1>
                     {username}
-                    <MailOutlineIcon
-                        style={{ marginLeft: "25px", fontSize: "30px" }}
-                        onClick={() => {
-                            history.push(`/directmessage/${id}`);
-                        }}
-                    />
+                    {String(authState.id) !== id && (
+                        <MailOutlineIcon
+                            style={{ marginLeft: "25px", fontSize: "30px" }}
+                            onClick={() => {
+                                history.push(`/directmessage/${id}`);
+                            }}
+                        />
+                    )}
                 </h1>
                 {userImage ? (
                     <img

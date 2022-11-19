@@ -4,7 +4,7 @@ import { AuthContext } from "../../helpers/AuthContext";
 import { SendMessage } from "./SendMessage";
 
 export const Chats = ({ id }: { id: string }) => {
-    const scroll = useRef<any>();
+    const scroll = useRef<any>(null);
     // ログインユーザーの情報
     const { authState } = useContext(AuthContext);
     // チャットルームのユーザー情報フェッチ
@@ -25,7 +25,6 @@ export const Chats = ({ id }: { id: string }) => {
     // 初期画面またはDM更新時に最下部にスクロール
     const scrollToBottomOfList = useCallback(() => {
         scroll!.current!.scrollIntoView({
-            behavior: "smooth",
             block: "end",
         });
     }, [scroll]);

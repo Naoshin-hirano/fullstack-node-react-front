@@ -7,7 +7,7 @@ import { ImageSrc } from "../Components/ImageSrc";
 function ChangeProfile() {
     const [oldpassword, setOldpassword] = useState("");
     const [newpassword, setNewpassword] = useState("");
-    const [image, setImage] = useState<any>();
+    const [image, setImage] = useState<null | File>(null);
     const { authState, setAuthState } = useContext(AuthContext);
     let history = useHistory();
 
@@ -45,7 +45,7 @@ function ChangeProfile() {
             return;
         }
         const formData = new FormData();
-        formData.append("file", image);
+        formData.append("file", image as string | Blob);
         axios
             .put("http://localhost:3001/auth/changeavatar", formData, {
                 headers: {
