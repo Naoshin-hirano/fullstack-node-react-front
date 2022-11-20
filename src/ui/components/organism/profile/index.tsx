@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../helpers/AuthContext";
-import { TAG, POST, RELATIONSHIP, USER } from "../types";
+import { AuthContext } from "../../../../helpers/AuthContext";
+import { TAG, POST, RELATIONSHIP, USER } from "../../../../types";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 
 function Profile() {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useSWR from "swr";
 import axios from "axios";
-import { COMMENT, AUTH_STATE } from "../types";
+import { COMMENT, AUTH_STATE } from "../../../../types";
 
 interface POST_COMMENTS_PROPS {
     id: string;

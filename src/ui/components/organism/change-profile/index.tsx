@@ -1,15 +1,21 @@
-import React, { useState, useContext } from "react";
-import { AuthContext } from "../helpers/AuthContext";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { ImageSrc } from "../Components/ImageSrc";
+import { ImageSrc } from "../common/ImageSrc";
 
-function ChangeProfile() {
-    const [oldpassword, setOldpassword] = useState("");
-    const [newpassword, setNewpassword] = useState("");
-    const [image, setImage] = useState<null | File>(null);
-    const { authState, setAuthState } = useContext(AuthContext);
+export const ChangeProfile = (props: any) => {
+    const {
+        oldpassword,
+        setOldpassword,
+        newpassword,
+        setNewpassword,
+        image,
+        setImage,
+        authState,
+        setAuthState,
+    } = props;
     let history = useHistory();
+    console.log("props", props);
 
     const changePassword = () => {
         axios
@@ -100,6 +106,4 @@ function ChangeProfile() {
             <ImageSrc file={image} />
         </div>
     );
-}
-
-export default ChangeProfile;
+};

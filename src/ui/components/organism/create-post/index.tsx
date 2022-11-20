@@ -3,8 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { ImageSrc } from "../Components/ImageSrc";
-import { TAG } from "../types";
+import { ImageSrc } from "../common/ImageSrc";
+import { TAG } from "../../../../types";
 
 function CreatePost() {
     const [tags, setTags] = useState([]);

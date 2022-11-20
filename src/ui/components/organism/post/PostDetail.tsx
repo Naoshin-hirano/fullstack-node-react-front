@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { TAG, AUTH_STATE } from "../types";
+import { TAG, AUTH_STATE } from "../../../../types";
 
 interface POST_DETAIL_PROPS {
     id: string;

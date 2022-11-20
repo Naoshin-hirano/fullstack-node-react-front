@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Chats } from "../Components/direct-message/Chats";
+import { Chats } from "./Chats";
 
 export const DirectMessage = () => {
     let { id } = useParams<{ id: string }>();

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../helpers/AuthContext";
-import { PostComments } from "../Components/PostComments";
-import { PostDetail } from "../Components/PostDetail";
+import { AuthContext } from "../../../../helpers/AuthContext";
+import { PostComments } from "./PostComments";
+import { PostDetail } from "./PostDetail";
 
 function Post() {
     let { id } = useParams<{ id: string }>();

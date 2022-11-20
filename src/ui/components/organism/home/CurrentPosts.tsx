@@ -1,7 +1,7 @@
 import { useHistory, Link } from "react-router-dom";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { POST, TAG } from "../types";
+import { POST, TAG } from "../../../../types";
 
 export const CurrentPosts = ({ currentPosts, likeAPost, likedPosts }: any) => {
     let history = useHistory();

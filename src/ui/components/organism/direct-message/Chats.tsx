@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useRef } from "react";
 import useSWR from "swr";
-import { AuthContext } from "../../helpers/AuthContext";
+import { AuthContext } from "../../../../helpers/AuthContext";
 import { SendMessage } from "./SendMessage";
 
 export const Chats = ({ id }: { id: string }) => {

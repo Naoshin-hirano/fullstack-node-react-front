@@ -2,20 +2,21 @@ import React, { FC } from "react";
 import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import CreatePost from "./pages/CreatePost";
-import Post from "./pages/Post";
-import TagPosts from "./pages/TagPosts";
-import Registration from "./pages/Registration";
-import Login from "./pages/Login";
-import PageNotFound from "./pages/PageNotFound";
+import Home from "./ui/components/organism/home";
+import CreatePost from "./ui/components/organism/create-post";
+import Post from "./ui/components/organism/post";
+import { TagPosts } from "./ui/components/organism/tag-posts";
+import Registration from "./ui/components/organism/registration";
+import { Login } from "./ui/components/organism/login";
+import PageNotFound from "./ui/pages/PageNotFound";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
-import Profile from "./pages/Profile";
-import ChangeProfile from "./pages/ChangeProfile";
+import Profile from "./ui/components/organism/profile";
+
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
-import { DirectMessage } from "./pages/DirectMessage";
+import { DirectMessage } from "./ui/components/organism/direct-message";
+import { ChangeProfile } from "./ui/components/organism/change-profile";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -114,11 +115,7 @@ const App: FC = () => {
                             component={CreatePost}
                         />
                         <Route path="/post/:id" exact component={Post} />
-                        <Route
-                            path="/post/hashtag/:id"
-                            exact
-                            component={TagPosts}
-                        />
+                        <Route path="/post/hashtag/:id" component={TagPosts} />
                         <Route
                             path="/registration"
                             exact

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import "../App.css";
-import { SuggestionsListComponent } from "../Components/SuggestionsListComponent";
-import { Pagination } from "../Components/Pagination";
-import { Search } from "../Components/Search";
-import { CurrentPosts } from "../Components/CurrentPosts";
-import { LIKE, POST } from "../types";
+import { SuggestionsListComponent } from "./SuggestionsListComponent";
+import { Pagination } from "./Pagination";
+import { Search } from "./Search";
+import { CurrentPosts } from "./CurrentPosts";
+import { LIKE, POST } from "../../../../types";
 
 function Home() {
     const [listOfPosts, setListOfPosts] = useState<POST[]>([]);

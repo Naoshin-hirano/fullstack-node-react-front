@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-import { TAG, POST } from "../types";
+import { TAG, POST } from "../../../../types";
 
-function TagPosts() {
+export const TagPosts = (props: any) => {
     // 自分が画面userをフォローしているかどうか
     // 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
+    // const { topTitle, topMenu } = props;
     const [listOfPosts, setListOfPosts] = useState<any>([]);
+    // const setListOfPosts = _setListOfPosts as Function;
+    console.log("props", props);
     let { id } = useParams<{ id: string }>();
     let history = useHistory();
-
     useEffect(() => {
+        // usecase...
         axios
             .get(`http://localhost:3001/posts/byhashtag/${id}`, {
                 headers: {
@@ -25,7 +28,7 @@ function TagPosts() {
         <div className="profilePageContainer">
             <div className="basicInfo">
                 <h1>#{id}</h1>
-                <h2>投稿：{listOfPosts.length}件</h2>
+                <h2>投稿：{listOfPosts?.length}件</h2>
             </div>
             <div className="listOfPosts">
                 {listOfPosts &&
@@ -73,6 +76,4 @@ function TagPosts() {
             </div>
         </div>
     );
-}
-
-export default TagPosts;
+};

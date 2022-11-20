@@ -23,7 +23,7 @@ export const Search = ({
                     name="search"
                     value={inputText}
                     onKeyPress={(e) => {
-                        if (e.key == "Enter") {
+                        if (e.key === "Enter") {
                             searchByEnter();
                         }
                     }}
