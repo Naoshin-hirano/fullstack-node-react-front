@@ -1,14 +1,13 @@
-import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import * as Usecase from "../../../../core/usecase/registration";
 
 interface SUBMIT_USER {
     username: string;
     password: string;
 }
 
-function Registration() {
+export const Registration = () => {
     const initialValues = {
         username: "",
         password: "",
@@ -20,9 +19,7 @@ function Registration() {
     });
 
     const onSubmit = (data: SUBMIT_USER) => {
-        axios.post("http://localhost:3001/auth", data).then(() => {
-            console.log(data);
-        });
+        Usecase.postRegistrationInfo(data);
     };
 
     return (
@@ -57,6 +54,4 @@ function Registration() {
             </Formik>
         </div>
     );
-}
-
-export default Registration;
+};

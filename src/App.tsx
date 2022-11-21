@@ -4,7 +4,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./ui/components/organism/home";
 import Post from "./ui/components/organism/post";
-import Registration from "./ui/components/organism/registration";
 import PageNotFound from "./ui/pages/PageNotFound";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
@@ -16,6 +15,7 @@ import { LoginPage } from "./ui/pages/login";
 import { ChangeProfilePage } from "./ui/pages/change-profile";
 import { CreatePostPage } from "./ui/pages/create-post";
 import { ProfilePage } from "./ui/pages/profile";
+import { RegistrationPage } from "./ui/pages/registration";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -122,7 +122,7 @@ const App: FC = () => {
                         <Route
                             path="/registration"
                             exact
-                            component={Registration}
+                            component={RegistrationPage}
                         />
                         <Route path="/login" exact component={LoginPage} />
                         <Route
