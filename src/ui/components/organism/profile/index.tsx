@@ -1,76 +1,24 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import axios from "axios";
-import { AuthContext } from "../../../../helpers/AuthContext";
-import { TAG, POST, RELATIONSHIP, USER } from "../../../../types";
+import { useHistory } from "react-router-dom";
+import { TAG, POST } from "../../../../types";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import * as Usecase from "../../../../core/usecase/profile";
 
-function Profile() {
-    // 自分が画面userをフォローしているかどうか
-    // 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
-    const [username, setUsername] = useState<string>("");
-    const [userImage, setUserImage] = useState<string>("");
-    const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
-    const [following, setFollowing] = useState<number[]>([]);
-    const [follower, setFollower] = useState<number[]>([]);
-    let { id } = useParams<{ id: string }>();
+export const Profile = (props: any) => {
     let history = useHistory();
-    const { authState } = useContext(AuthContext);
+    const {
+        authState,
+        username,
+        userImage,
+        listOfPosts,
+        following,
+        follower,
+        setFollower,
+        id,
+    } = props;
 
     const onFollow = () => {
-        axios
-            .post(
-                "http://localhost:3001/relationships",
-                {
-                    followedId: id,
-                },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem(
-                            "accessToken"
-                        ) as string,
-                    },
-                }
-            )
-            .then((response) => {
-                if (response.data.following) {
-                    setFollower([...follower, authState.id]);
-                } else {
-                    setFollower(
-                        follower.filter((uid: number) => {
-                            return uid !== authState.id;
-                        })
-                    );
-                }
-            });
+        Usecase.postFollowAndUnfollowInfo(id, follower, setFollower, authState);
     };
-
-    useEffect(() => {
-        axios
-            .get(`http://localhost:3001/auth/basicInfo/${id}`)
-            .then((response) => {
-                setFollowing(
-                    response.data.basicInfo.Relationships.map(
-                        (relation: RELATIONSHIP) => {
-                            return relation.followed;
-                        }
-                    )
-                );
-                setFollower(
-                    response.data.following.map((user: USER) => {
-                        return user.id;
-                    })
-                );
-                setUsername(response.data.basicInfo.username);
-                setUserImage(response.data.basicInfo.imageName);
-            });
-
-        axios
-            .get(`http://localhost:3001/posts/byuserId/${id}`)
-            .then((response) => {
-                setListOfPosts(response.data);
-            });
-    }, [id]);
     return (
         <div className="profilePageContainer">
             <div className="basicInfo">
@@ -159,6 +107,4 @@ function Profile() {
             </div>
         </div>
     );
-}
-
-export default Profile;
+};
