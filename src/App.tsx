@@ -5,18 +5,18 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./ui/components/organism/home";
 import CreatePost from "./ui/components/organism/create-post";
 import Post from "./ui/components/organism/post";
-import { TagPosts } from "./ui/components/organism/tag-posts";
 import Registration from "./ui/components/organism/registration";
-import { Login } from "./ui/components/organism/login";
 import PageNotFound from "./ui/pages/PageNotFound";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
 import Profile from "./ui/components/organism/profile";
-
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import { DirectMessage } from "./ui/components/organism/direct-message";
 import { ChangeProfile } from "./ui/components/organism/change-profile";
+import { TagPostsPage } from "./ui/pages/tag-posts";
+import { LoginPage } from "./ui/pages/login";
+import { ChangeProfilePage } from "./ui/pages/change-profile";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -115,18 +115,22 @@ const App: FC = () => {
                             component={CreatePost}
                         />
                         <Route path="/post/:id" exact component={Post} />
-                        <Route path="/post/hashtag/:id" component={TagPosts} />
+                        <Route
+                            path="/post/hashtag/:id"
+                            exact
+                            component={TagPostsPage}
+                        />
                         <Route
                             path="/registration"
                             exact
                             component={Registration}
                         />
-                        <Route path="/login" exact component={Login} />
+                        <Route path="/login" exact component={LoginPage} />
                         <Route path="/profile/:id" exact component={Profile} />
                         <Route
                             path="/changeprofile"
                             exact
-                            component={ChangeProfile}
+                            component={ChangeProfilePage}
                         />
                         <Route
                             path="/directmessage/:id"

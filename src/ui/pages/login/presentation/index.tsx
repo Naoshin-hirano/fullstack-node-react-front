@@ -1,14 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../../helpers/AuthContext";
 
 export const useCreateProps = () => {
+    const { setAuthState } = useContext(AuthContext);
     return {
-        mainProps,
+        setAuthState,
     };
-};
-
-const { setAuthState } = useContext(AuthContext);
-
-const mainProps: any = {
-    setAuthState,
 };

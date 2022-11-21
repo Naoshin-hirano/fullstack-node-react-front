@@ -1,29 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { TAG, POST } from "../../../../types";
 
 export const TagPosts = (props: any) => {
-    // 自分が画面userをフォローしているかどうか
-    // 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
-    // const { topTitle, topMenu } = props;
-    const [listOfPosts, setListOfPosts] = useState<any>([]);
-    // const setListOfPosts = _setListOfPosts as Function;
-    console.log("props", props);
-    let { id } = useParams<{ id: string }>();
+    const { listOfPosts, id } = props;
     let history = useHistory();
-    useEffect(() => {
-        // usecase...
-        axios
-            .get(`http://localhost:3001/posts/byhashtag/${id}`, {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken") as string,
-                },
-            })
-            .then((response) => {
-                setListOfPosts(response.data.tagPosts);
-            });
-    }, [id]);
+
     return (
         <div className="profilePageContainer">
             <div className="basicInfo">

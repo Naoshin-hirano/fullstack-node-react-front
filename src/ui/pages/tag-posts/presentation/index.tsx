@@ -1,40 +1,17 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import * as Usecase from "../../../../core/usecase/tag-posts";
+
 export const useCreateProps = () => {
+    const [listOfPosts, setListOfPosts] = useState<any>([]);
+    let { id } = useParams<{ id: string }>();
+
+    useEffect(() => {
+        Usecase.getTagPost(id, setListOfPosts);
+    }, [id]);
+
     return {
-        topTitle,
-        topMenu,
+        listOfPosts,
+        id,
     };
 };
-
-// export interface TemplateProps {
-//     // listOfPosts: any;
-//     // setListOfPosts: any;
-//     test: any;
-// }
-
-type TopTitle = {
-    title: string;
-};
-type TopMenu = {
-    buttonLabels: {
-        menu1: string;
-        menu2: string;
-        menu3: string;
-    };
-};
-// 自分が画面userをフォローしているかどうか
-// 画面のuserがフォローしている人数　＋　画面のuserのフォロワー
-// const [listOfPosts, setListOfPosts] = useState<any>([]);
-const topTitle: TopTitle = {
-    title: "トップタイトル",
-};
-const topMenu: TopMenu = {
-    buttonLabels: {
-        menu1: "トップメニュー1",
-        menu2: "トップメニュー2",
-        menu3: "トップメニュー3",
-    },
-};
-
-// const mainProps: TemplateProps = {
-//     test,
-// };

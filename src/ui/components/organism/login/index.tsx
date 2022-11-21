@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as Usecase from "../../../../core/usecase/login";
-import { AuthContext } from "../../../../helpers/AuthContext";
 
-export const Login = () => {
-    const { setAuthState } = useContext(AuthContext);
+export const Login = (props: any) => {
+    const { setAuthState } = props;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();

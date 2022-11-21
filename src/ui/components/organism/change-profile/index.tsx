@@ -1,44 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { ImageSrc } from "../common/ImageSrc";
+import * as Usecase from "../../../../core/usecase/change-profile";
 
 export const ChangeProfile = (props: any) => {
-    const {
-        oldpassword,
-        setOldpassword,
-        newpassword,
-        setNewpassword,
-        image,
-        setImage,
-        authState,
-        setAuthState,
-    } = props;
+    const [oldpassword, setOldpassword] = useState("");
+    const [newpassword, setNewpassword] = useState("");
+    const [image, setImage] = useState<null | File>(null);
+    const { authState, setAuthState } = props;
     let history = useHistory();
-    console.log("props", props);
 
     const changePassword = () => {
-        axios
-            .put(
-                "http://localhost:3001/auth/changepassword",
-                {
-                    oldPassword: oldpassword,
-                    newPassword: newpassword,
-                },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem(
-                            "accessToken"
-                        ) as string,
-                    },
-                }
-            )
-            .then((response) => {
-                if (response.data.error) {
-                    alert(response.data.error);
-                }
-                console.log("アイコンの更新が完了しました");
-            });
+        Usecase.putChangePasswordInfo(oldpassword, newpassword);
     };
 
     const handleOnAddImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,24 +23,8 @@ export const ChangeProfile = (props: any) => {
         if (!window.confirm("あなたのアイコンをこの画像に変更しますか？")) {
             return;
         }
-        const formData = new FormData();
-        formData.append("file", image as string | Blob);
-        axios
-            .put("http://localhost:3001/auth/changeavatar", formData, {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken") as string,
-                },
-            })
-            .then((response) => {
-                if (response.data.error) {
-                    return alert(response.data.error);
-                }
-                setAuthState({
-                    ...authState,
-                    imageName: response.data.imageName,
-                });
-                history.push(`/profile/${authState.id}`);
-            });
+        Usecase.putChangeAvatarInfo(image, authState, setAuthState);
+        history.push(`/profile/${authState.id}`);
     };
 
     return (
