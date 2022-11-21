@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./ui/components/organism/home";
-import CreatePost from "./ui/components/organism/create-post";
 import Post from "./ui/components/organism/post";
 import Registration from "./ui/components/organism/registration";
 import PageNotFound from "./ui/pages/PageNotFound";
@@ -13,10 +12,10 @@ import Profile from "./ui/components/organism/profile";
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import { DirectMessage } from "./ui/components/organism/direct-message";
-import { ChangeProfile } from "./ui/components/organism/change-profile";
 import { TagPostsPage } from "./ui/pages/tag-posts";
 import { LoginPage } from "./ui/pages/login";
 import { ChangeProfilePage } from "./ui/pages/change-profile";
+import { CreatePostPage } from "./ui/pages/create-post";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -112,7 +111,7 @@ const App: FC = () => {
                         <Route
                             path="/createpost"
                             exact
-                            component={CreatePost}
+                            component={CreatePostPage}
                         />
                         <Route path="/post/:id" exact component={Post} />
                         <Route

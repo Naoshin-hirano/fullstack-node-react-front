@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
 import { ImageSrc } from "../common/ImageSrc";
 import { TAG } from "../../../../types";
+import * as Usecase from "../../../../core/usecase/create-post";
+import { useHistory } from "react-router-dom";
 
-function CreatePost() {
-    const [tags, setTags] = useState([]);
+export const CreatePost = (props: any) => {
+    let history = useHistory();
+    const { tags } = props;
     // fieldの初期値
     const initialValues = {
         title: "",
@@ -24,43 +24,12 @@ function CreatePost() {
         tagName: Yup.string().required("You must input a TagName!"),
     });
 
-    const onSubmit = (data: any) => {
-        // formikのvaluesをアップロード画像が送信できるようにnew FormData()のデータにする
-        // Tagsの配列をパタメータにすると中身が展開され送信されるので、配列をstringifyで文字列化して送信→Node側で文字列化解除する
-        const formData = new FormData();
-        Object.keys(data).forEach((key) => {
-            if (Array.isArray(data[key])) {
-                formData.append(key, JSON.stringify(data[key]));
-            } else {
-                formData.append(key, data[key]);
-            }
-        });
-
-        axios
-            .post("http://localhost:3001/posts", formData, {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken") as string,
-                },
-            })
-            .then((response) => {
-                if (response.data.error) {
-                    console.log(response.data.error);
-                } else {
-                    console.log("IT WORKED");
-                    history.push("/");
-                }
-            });
-    };
-    let history = useHistory();
-
-    useEffect(() => {
-        if (!localStorage.getItem("accessToken")) {
-            history.push("/login");
+    const onSubmit = async (data: any) => {
+        const result = await Usecase.postCreatePostInfo(data);
+        if (result) {
+            history.push("/");
         }
-        axios.get("http://localhost:3001/tags").then((response) => {
-            setTags(response.data);
-        });
-    }, []);
+    };
 
     return (
         <div className="createPostPage">
@@ -138,6 +107,4 @@ function CreatePost() {
             </Formik>
         </div>
     );
-}
-
-export default CreatePost;
+};
