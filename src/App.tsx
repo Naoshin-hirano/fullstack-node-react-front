@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
@@ -7,7 +7,6 @@ import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
-import { DirectMessage } from "./ui/components/organism/direct-message";
 import { TagPostsPage } from "./ui/pages/tag-posts";
 import { LoginPage } from "./ui/pages/login";
 import { ChangeProfilePage } from "./ui/pages/change-profile";
@@ -16,6 +15,7 @@ import { ProfilePage } from "./ui/pages/profile";
 import { RegistrationPage } from "./ui/pages/registration";
 import { PostPage } from "./ui/pages/post";
 import { HomePage } from "./ui/pages/home";
+import { DirectMessagePage } from "./ui/pages/direct-message";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -138,7 +138,7 @@ const App: FC = () => {
                         <Route
                             path="/directmessage/:id"
                             exact
-                            component={DirectMessage}
+                            component={DirectMessagePage}
                         />
                         <Route path="*" exact component={PageNotFound} />
                     </Switch>

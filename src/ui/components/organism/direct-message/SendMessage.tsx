@@ -1,31 +1,11 @@
-import axios from "axios";
-import React, { useState } from "react";
 import SendIcon from "@material-ui/icons/Send";
 import { Input } from "@material-ui/core";
 
-export const SendMessage = () => {
-    const [messageText, setMessageText] = useState("");
-
-    const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        axios
-            .post(
-                "http://localhost:3001/directmessages",
-                { text: messageText },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem(
-                            "accessToken"
-                        ) as string,
-                    },
-                }
-            )
-            .then((response) => {
-                console.log(response.data);
-            });
-        setMessageText("");
-    };
-
+export const SendMessage = ({
+    sendMessage,
+    messageText,
+    setMessageText,
+}: any) => {
     return (
         <div>
             <form onSubmit={sendMessage}>
