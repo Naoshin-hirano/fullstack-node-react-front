@@ -1,12 +1,9 @@
 import { FC } from "react";
 import { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PageNotFound from "./ui/pages/PageNotFound";
 import { AuthContext } from "./helpers/AuthContext";
-import axios from "axios";
-import HomeIcon from "@material-ui/icons/Home";
-import PostAddIcon from "@material-ui/icons/PostAdd";
 import { TagPostsPage } from "./ui/pages/tag-posts";
 import { LoginPage } from "./ui/pages/login";
 import { ChangeProfilePage } from "./ui/pages/change-profile";
@@ -16,6 +13,8 @@ import { RegistrationPage } from "./ui/pages/registration";
 import { PostPage } from "./ui/pages/post";
 import { HomePage } from "./ui/pages/home";
 import { DirectMessagePage } from "./ui/pages/direct-message";
+import { GlobalHeader } from "./ui/pages/common/GlobalHeader";
+import * as Usecase from "./core/usecase/common/global-header";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -37,75 +36,13 @@ const App: FC = () => {
 
     useEffect(() => {
         // tokenを解析してログイン中なのか判断
-        axios
-            .get("http://localhost:3001/auth/auth", {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken") as string,
-                },
-            })
-            .then((response) => {
-                if (response.data.error) {
-                    setAuthState({
-                        ...authState,
-                        status: false,
-                    });
-                } else {
-                    setAuthState({
-                        username: response.data.username,
-                        id: response.data.id,
-                        status: true,
-                        imageName: response.data.imageName,
-                    });
-                }
-            });
+        Usecase.getConfirmLoggedInInfo(authState, setAuthState);
     }, []);
     return (
         <div className="App">
             <AuthContext.Provider value={{ authState, setAuthState }}>
                 <Router>
-                    <div className="navbar">
-                        {!authState.status ? (
-                            <>
-                                <Link to="/registration"> 新規登録</Link>
-                                <Link to="/login"> ログイン</Link>
-                            </>
-                        ) : (
-                            <>
-                                <Link to="/">
-                                    <HomeIcon />
-                                </Link>
-                                <Link to="/createpost">
-                                    <PostAddIcon />
-                                </Link>
-                            </>
-                        )}
-                        <div className="loggedInContainer">
-                            {authState.status && (
-                                <>
-                                    {authState.imageName ? (
-                                        <img
-                                            src={`http://localhost:3000/${authState.imageName}`}
-                                            alt="Avatar"
-                                            className="avatar"
-                                        />
-                                    ) : (
-                                        <img
-                                            src={
-                                                "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
-                                            }
-                                            alt="Avatar"
-                                            className="avatar"
-                                        />
-                                    )}
-                                    <Link to="/login">
-                                        <button onClick={logout}>
-                                            ログアウト
-                                        </button>
-                                    </Link>
-                                </>
-                            )}
-                        </div>
-                    </div>
+                    <GlobalHeader authState={authState} logout={logout} />
                     <Switch>
                         <Route path="/" exact component={HomePage} />
                         <Route
