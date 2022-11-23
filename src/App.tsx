@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Home from "./ui/components/organism/home";
 import PageNotFound from "./ui/pages/PageNotFound";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
@@ -16,6 +15,7 @@ import { CreatePostPage } from "./ui/pages/create-post";
 import { ProfilePage } from "./ui/pages/profile";
 import { RegistrationPage } from "./ui/pages/registration";
 import { PostPage } from "./ui/pages/post";
+import { HomePage } from "./ui/pages/home";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -107,7 +107,7 @@ const App: FC = () => {
                         </div>
                     </div>
                     <Switch>
-                        <Route path="/" exact component={Home} />
+                        <Route path="/" exact component={HomePage} />
                         <Route
                             path="/createpost"
                             exact
