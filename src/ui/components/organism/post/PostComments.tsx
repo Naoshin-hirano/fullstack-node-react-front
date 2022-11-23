@@ -1,6 +1,3 @@
-import React, { useState } from "react";
-import useSWR from "swr";
-import axios from "axios";
 import { COMMENT, AUTH_STATE } from "../../../../types";
 
 interface POST_COMMENTS_PROPS {
@@ -25,14 +22,14 @@ export const PostComments = ({
             <div className="addCommentContainer">
                 <input
                     type="text"
-                    placeholder="Comment..."
+                    placeholder="コメント..."
                     autoComplete="off"
                     value={comment}
                     onChange={(e) => {
                         setComment(e.target.value);
                     }}
                 />
-                <button onClick={addComment}> Add Comment</button>
+                <button onClick={addComment}> コメントを追加する</button>
             </div>
             <div className="listOfComments">
                 {comments &&
@@ -40,7 +37,7 @@ export const PostComments = ({
                         return (
                             <div className="comment" key={index}>
                                 {comment.commentBody}
-                                <label>Username: {comment.username}</label>
+                                <label>ユーザー名: {comment.username}</label>
                                 {authState.username === comment.username && (
                                     <button
                                         onClick={() => {

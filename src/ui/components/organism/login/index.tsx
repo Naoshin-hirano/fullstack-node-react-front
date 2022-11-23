@@ -17,6 +17,7 @@ export const Login = (props: any) => {
             <input
                 type="text"
                 value={username}
+                placeholder="ユーザー名"
                 onChange={(e) => {
                     setUsername(e.target.value);
                 }}
@@ -24,6 +25,7 @@ export const Login = (props: any) => {
             <input
                 type="password"
                 value={password}
+                placeholder="パスワード"
                 onChange={(e) => {
                     setPassword(e.target.value);
                 }}

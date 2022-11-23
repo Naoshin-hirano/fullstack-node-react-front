@@ -18,7 +18,7 @@ export const Search = ({
                 <input
                     type="text"
                     className="search__bar__input"
-                    placeholder="Search"
+                    placeholder="検索"
                     autoComplete="off"
                     name="search"
                     value={inputText}

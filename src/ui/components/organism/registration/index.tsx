@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import * as Usecase from "../../../../core/usecase/registration";
 
@@ -8,6 +9,7 @@ interface SUBMIT_USER {
 }
 
 export const Registration = () => {
+    let history = useHistory();
     const initialValues = {
         username: "",
         password: "",
@@ -18,8 +20,9 @@ export const Registration = () => {
         password: Yup.string().min(4).max(20).required(),
     });
 
-    const onSubmit = (data: SUBMIT_USER) => {
-        Usecase.postRegistrationInfo(data);
+    const onSubmit = async (data: SUBMIT_USER) => {
+        await Usecase.postRegistrationInfo(data);
+        history.push("/login");
     };
 
     return (
@@ -30,7 +33,7 @@ export const Registration = () => {
                 validationSchema={validationSchema}
             >
                 <Form className="formContainer">
-                    <label>Username: </label>
+                    <label>ユーザー名: </label>
                     <ErrorMessage name="username" component="span" />
                     <Field
                         autoComplete="off"
@@ -39,7 +42,7 @@ export const Registration = () => {
                         placeholder="(Ex. John123...)"
                     />
 
-                    <label>Password: </label>
+                    <label>パスワード: </label>
                     <ErrorMessage name="password" component="span" />
                     <Field
                         autoComplete="off"
@@ -49,7 +52,7 @@ export const Registration = () => {
                         placeholder="Your Password..."
                     />
 
-                    <button type="submit"> Register</button>
+                    <button type="submit"> 上記内容で登録</button>
                 </Form>
             </Formik>
         </div>

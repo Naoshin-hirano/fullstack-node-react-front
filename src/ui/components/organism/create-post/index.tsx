@@ -19,9 +19,9 @@ export const CreatePost = (props: any) => {
 
     // バリデーション管理
     const validationSchema = Yup.object().shape({
-        title: Yup.string().required("You must input a Title!"),
-        postText: Yup.string().required(),
-        tagName: Yup.string().required("You must input a TagName!"),
+        title: Yup.string().required("タイトルを入力してください!"),
+        postText: Yup.string().required("投稿メッセージを入力してください!"),
+        tagName: Yup.string().required("新しいタグ名を入力してください!"),
     });
 
     const onSubmit = async (data: any) => {
@@ -43,29 +43,29 @@ export const CreatePost = (props: any) => {
                 {({ setFieldValue, values }) => {
                     return (
                         <Form className="formContainer">
-                            <label>Title: </label>
+                            <label>タイトル: </label>
                             <ErrorMessage name="title" component="span" />
                             <Field
                                 autoComplete="off"
                                 id="inputCreatePost"
                                 name="title"
-                                placeholder="(Ex. Title...)"
+                                placeholder="(Ex. タイトル...)"
                             />
-                            <label>Post: </label>
+                            <label>投稿メッセージ: </label>
                             <ErrorMessage name="postText" component="span" />
                             <Field
                                 autoComplete="off"
                                 id="inputCreatePost"
                                 name="postText"
-                                placeholder="(Ex. Post...)"
+                                placeholder="(Ex. メッセージ...)"
                             />
-                            <label>NewTag: </label>
+                            <label>新しく作成するタグ名: </label>
                             <ErrorMessage name="tagName" component="span" />
                             <Field
                                 autoComplete="off"
                                 id="inputCreatePost"
                                 name="tagName"
-                                placeholder="(Ex. Tag...)"
+                                placeholder="(Ex. タグ...)"
                             />
                             <div className="tagCheck">
                                 {tags?.map((tag: TAG, key: number) => {
@@ -100,7 +100,7 @@ export const CreatePost = (props: any) => {
                                 />
                                 <ImageSrc file={values.file} />
                             </div>
-                            <button type="submit"> Create Post</button>
+                            <button type="submit"> 上記の内容で投稿</button>
                         </Form>
                     );
                 }}
