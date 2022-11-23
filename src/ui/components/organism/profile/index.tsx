@@ -90,7 +90,9 @@ export const Profile = (props: any) => {
                                         {value.username}
                                     </div>
                                     <div className="buttons">
-                                        <label> {value.Likes.length}</label>
+                                        <label>
+                                            {value.Likes.length} いいね
+                                        </label>
                                     </div>
                                 </div>
                                 <div className="tags">
