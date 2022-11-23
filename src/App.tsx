@@ -1,21 +1,21 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import CreatePost from "./pages/CreatePost";
-import Post from "./pages/Post";
-import TagPosts from "./pages/TagPosts";
-import Registration from "./pages/Registration";
-import Login from "./pages/Login";
-import PageNotFound from "./pages/PageNotFound";
+import PageNotFound from "./ui/pages/PageNotFound";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
-import Profile from "./pages/Profile";
-import ChangeProfile from "./pages/ChangeProfile";
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
-import { DirectMessage } from "./pages/DirectMessage";
+import { TagPostsPage } from "./ui/pages/tag-posts";
+import { LoginPage } from "./ui/pages/login";
+import { ChangeProfilePage } from "./ui/pages/change-profile";
+import { CreatePostPage } from "./ui/pages/create-post";
+import { ProfilePage } from "./ui/pages/profile";
+import { RegistrationPage } from "./ui/pages/registration";
+import { PostPage } from "./ui/pages/post";
+import { HomePage } from "./ui/pages/home";
+import { DirectMessagePage } from "./ui/pages/direct-message";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -107,34 +107,38 @@ const App: FC = () => {
                         </div>
                     </div>
                     <Switch>
-                        <Route path="/" exact component={Home} />
+                        <Route path="/" exact component={HomePage} />
                         <Route
                             path="/createpost"
                             exact
-                            component={CreatePost}
+                            component={CreatePostPage}
                         />
-                        <Route path="/post/:id" exact component={Post} />
+                        <Route path="/post/:id" exact component={PostPage} />
                         <Route
                             path="/post/hashtag/:id"
                             exact
-                            component={TagPosts}
+                            component={TagPostsPage}
                         />
                         <Route
                             path="/registration"
                             exact
-                            component={Registration}
+                            component={RegistrationPage}
                         />
-                        <Route path="/login" exact component={Login} />
-                        <Route path="/profile/:id" exact component={Profile} />
+                        <Route path="/login" exact component={LoginPage} />
+                        <Route
+                            path="/profile/:id"
+                            exact
+                            component={ProfilePage}
+                        />
                         <Route
                             path="/changeprofile"
                             exact
-                            component={ChangeProfile}
+                            component={ChangeProfilePage}
                         />
                         <Route
                             path="/directmessage/:id"
                             exact
-                            component={DirectMessage}
+                            component={DirectMessagePage}
                         />
                         <Route path="*" exact component={PageNotFound} />
                     </Switch>
