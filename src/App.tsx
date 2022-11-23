@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./ui/components/organism/home";
-import Post from "./ui/components/organism/post";
 import PageNotFound from "./ui/pages/PageNotFound";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
@@ -16,6 +15,7 @@ import { ChangeProfilePage } from "./ui/pages/change-profile";
 import { CreatePostPage } from "./ui/pages/create-post";
 import { ProfilePage } from "./ui/pages/profile";
 import { RegistrationPage } from "./ui/pages/registration";
+import { PostPage } from "./ui/pages/post";
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
@@ -113,7 +113,7 @@ const App: FC = () => {
                             exact
                             component={CreatePostPage}
                         />
-                        <Route path="/post/:id" exact component={Post} />
+                        <Route path="/post/:id" exact component={PostPage} />
                         <Route
                             path="/post/hashtag/:id"
                             exact

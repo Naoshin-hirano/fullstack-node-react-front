@@ -1,92 +1,44 @@
-import useSWR from "swr";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
 import { TAG, AUTH_STATE } from "../../../../types";
 
 interface POST_DETAIL_PROPS {
-    id: string;
+    post: any;
     authState: AUTH_STATE;
+    deletePost: any;
+    editPost: any;
 }
 
-export const PostDetail = ({ id, authState }: POST_DETAIL_PROPS) => {
-    const { data, error } = useSWR(`http://localhost:3001/posts/byId/${id}`, {
-        refreshInterval: 1000,
-    });
-    let history = useHistory();
-
-    const deletePost = () => {
-        axios
-            .delete(`http://localhost:3001/posts/${id}`, {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken") as string,
-                },
-            })
-            .then(() => {
-                history.push("/");
-            });
-    };
-
-    const editPost = (editType: string) => {
-        if (editType === "title") {
-            let newTitle = prompt("タイトルを入力してください");
-            axios.put(
-                "http://localhost:3001/posts/title",
-                {
-                    newTitle: newTitle,
-                    id: id,
-                },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem(
-                            "accessToken"
-                        ) as string,
-                    },
-                }
-            );
-        } else {
-            let newPostText = prompt("テキストを入力してください");
-            axios.put(
-                "http://localhost:3001/posts/postText",
-                {
-                    newPostText: newPostText,
-                    id: id,
-                },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem(
-                            "accessToken"
-                        ) as string,
-                    },
-                }
-            );
-        }
-    };
+export const PostDetail = ({
+    post,
+    authState,
+    deletePost,
+    editPost,
+}: POST_DETAIL_PROPS) => {
     return (
         <div>
-            {data ? (
+            {post && (
                 <div className="leftSide">
                     <div className="post" id="individual">
                         <div
                             className="title"
                             onClick={() => {
-                                if (authState.username === data.username) {
+                                if (authState.username === post.username) {
                                     editPost("title");
                                 }
                             }}
                         >
-                            {data.title}
+                            {post.title}
                         </div>
                         <div
                             className="body"
                             onClick={() => {
-                                if (authState.username === data.username) {
+                                if (authState.username === post.username) {
                                     editPost("body");
                                 }
                             }}
                         >
-                            {data.postText}
+                            {post.postText}
                             <img
-                                src={`http://localhost:3000/${data.imageName}`}
+                                src={`http://localhost:3000/${post.imageName}`}
                                 alt=""
                                 style={{
                                     width: 336,
@@ -97,16 +49,16 @@ export const PostDetail = ({ id, authState }: POST_DETAIL_PROPS) => {
                         </div>
                         <div className="footer">
                             <div className="footerContent">
-                                {data.username}
-                                {authState.username === data.username && (
+                                {post.username}
+                                {authState.username === post.username && (
                                     <button onClick={deletePost}>
                                         Delete Post
                                     </button>
                                 )}
                             </div>
                             <div className="tags">
-                                {data.Tags.length > 0 &&
-                                    data.Tags.map((tag: TAG, key: number) => {
+                                {post.Tags.length > 0 &&
+                                    post.Tags.map((tag: TAG, key: number) => {
                                         return (
                                             <div key={key}>#{tag.tag_name}</div>
                                         );
@@ -115,8 +67,6 @@ export const PostDetail = ({ id, authState }: POST_DETAIL_PROPS) => {
                         </div>
                     </div>
                 </div>
-            ) : (
-                <h1>{error}</h1>
             )}
         </div>
     );

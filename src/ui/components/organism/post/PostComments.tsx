@@ -4,48 +4,22 @@ import axios from "axios";
 import { COMMENT, AUTH_STATE } from "../../../../types";
 
 interface POST_COMMENTS_PROPS {
-    id: string;
+    comment: string;
+    setComment: any;
     authState: AUTH_STATE;
+    comments: any;
+    addComment: any;
+    deleteComment: any;
 }
 
-export const PostComments = ({ id, authState }: POST_COMMENTS_PROPS) => {
-    const { data, error } = useSWR(`http://localhost:3001/comments/${id}`, {
-        refreshInterval: 1000,
-    });
-    const [comment, setComment] = useState<string>("");
-
-    const addComment = () => {
-        axios
-            .post(
-                "http://localhost:3001/comments",
-                {
-                    PostId: id,
-                    commentBody: comment,
-                },
-                {
-                    headers: {
-                        accessToken: localStorage.getItem(
-                            "accessToken"
-                        ) as string,
-                    },
-                }
-            )
-            .then((response) => {
-                if (response.data.error) {
-                    console.log(response.data.error);
-                }
-                setComment("");
-            });
-    };
-
-    const deleteComment = (commentId: string) => {
-        axios.delete(`http://localhost:3001/comments/${commentId}`, {
-            headers: {
-                accessToken: localStorage.getItem("accessToken") as string,
-            },
-        });
-    };
-
+export const PostComments = ({
+    comment,
+    setComment,
+    authState,
+    comments,
+    addComment,
+    deleteComment,
+}: POST_COMMENTS_PROPS) => {
     return (
         <div className="rightSide">
             <div className="addCommentContainer">
@@ -61,16 +35,16 @@ export const PostComments = ({ id, authState }: POST_COMMENTS_PROPS) => {
                 <button onClick={addComment}> Add Comment</button>
             </div>
             <div className="listOfComments">
-                {data ? (
-                    data.map((comment: COMMENT, key: number) => {
+                {comments &&
+                    comments.map((comment: COMMENT, index: number) => {
                         return (
-                            <div className="comment" key={key}>
+                            <div className="comment" key={index}>
                                 {comment.commentBody}
                                 <label>Username: {comment.username}</label>
                                 {authState.username === comment.username && (
                                     <button
                                         onClick={() => {
-                                            deleteComment(comment.id);
+                                            deleteComment(comment.id, index);
                                         }}
                                     >
                                         X
@@ -78,10 +52,7 @@ export const PostComments = ({ id, authState }: POST_COMMENTS_PROPS) => {
                                 )}
                             </div>
                         );
-                    })
-                ) : (
-                    <h1>{error}</h1>
-                )}
+                    })}
             </div>
         </div>
     );
