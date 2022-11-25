@@ -1,9 +1,8 @@
-import { AuthState } from "../../../../App";
-import { DM_OBJ } from "../../template/direct-message";
+import { AUTH_STATE, DM_OBJ } from "../../../../types";
 
 interface MESSAGE_LIST_PROPS {
     directMessages: DM_OBJ[];
-    authState: AuthState;
+    authState: AUTH_STATE;
     dmUser: any;
     dmUserError: any;
     messagesError: any;

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const postAddComment = async (id: string, comment: string) => {
+    console.log("comment", comment);
     const response = await axios.post(
         "http://localhost:3001/comments",
         {

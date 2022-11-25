@@ -16,14 +16,8 @@ import { DirectMessagePage } from "./ui/pages/direct-message";
 import { GlobalHeader } from "./ui/pages/common/GlobalHeader";
 import * as Usecase from "./core/usecase/common/global-header";
 
-export interface AuthState {
-    username: string;
-    id: number;
-    status: boolean;
-    imageName: string;
-}
-
 const App: FC = () => {
+    console.log("appレンダー");
     const [authState, setAuthState] = useState({
         username: "",
         id: 0,
@@ -44,6 +38,7 @@ const App: FC = () => {
     useEffect(() => {
         // tokenを解析してログイン中なのか判断
         Usecase.getConfirmLoggedInInfo(authState, setAuthState);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <div className="App">

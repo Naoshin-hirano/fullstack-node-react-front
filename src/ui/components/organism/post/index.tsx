@@ -4,25 +4,16 @@ import { PostComments } from "./PostComments";
 import { PostDetail } from "./PostDetail";
 import * as Usecase from "../../../../core/usecase/post";
 import { mainProps } from "../../template/post";
-import { COMMENT } from "../../../../types";
 
 export const Post = (props: mainProps) => {
-    const [comment, setComment] = useState<COMMENT>({
-        id: "",
-        commentBody: "",
-        username: "",
-    });
+    const [comment, setComment] = useState<string>("");
     let history = useHistory();
     const { id, authState, comments, post, setComments } = props;
 
     const addComment = async () => {
         const result = await Usecase.postAddCommentInfo(id, comment);
         setComments([...comments, result.data]);
-        setComment({
-            id: "",
-            commentBody: "",
-            username: "",
-        });
+        setComment("");
     };
 
     const deleteComment = async (commentId: string, index: number) => {

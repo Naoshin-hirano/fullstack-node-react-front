@@ -8,10 +8,10 @@ import {
 
 export const postLikeInfo = async (
     postId: number,
-    listOfPosts: any,
-    setListOfPosts: any,
-    likedPosts: any,
-    setLikedPosts: any
+    listOfPosts: POST[],
+    setListOfPosts: React.Dispatch<React.SetStateAction<POST[]>>,
+    likedPosts: number[],
+    setLikedPosts: React.Dispatch<React.SetStateAction<number[]>>
 ) => {
     const result = await postLike(postId);
     // Likesカウンターリアルタイム切り替え
@@ -43,15 +43,17 @@ export const postLikeInfo = async (
     }
 };
 
-export const getSuggestionInfo = async (setSuggestions: any) => {
+export const getSuggestionInfo = async (
+    setSuggestions: React.Dispatch<React.SetStateAction<string[]>>
+) => {
     const result = await getSuggestion();
     setSuggestions(result.data);
 };
 
 export const getSearchedPostsInfo = async (
-    keyword: any,
-    setListOfPosts: any,
-    setLikedPosts: any
+    keyword: string,
+    setListOfPosts: React.Dispatch<React.SetStateAction<POST[]>>,
+    setLikedPosts: React.Dispatch<React.SetStateAction<number[]>>
 ) => {
     const result = await getSearchedPosts(keyword);
     setListOfPosts(result.data.searchPosts);
@@ -64,8 +66,8 @@ export const getSearchedPostsInfo = async (
 };
 
 export const getAllPostsInfo = async (
-    setListOfPosts: any,
-    setLikedPosts: any
+    setListOfPosts: React.Dispatch<React.SetStateAction<POST[]>>,
+    setLikedPosts: React.Dispatch<React.SetStateAction<number[]>>
 ) => {
     const result = await getAllPosts();
     const posts = result.data.listOfPosts;

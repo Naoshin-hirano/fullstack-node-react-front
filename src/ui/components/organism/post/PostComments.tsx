@@ -1,8 +1,9 @@
+import { Dispatch, SetStateAction } from "react";
 import { COMMENT, AUTH_STATE } from "../../../../types";
 
 interface POST_COMMENTS_PROPS {
-    comment: COMMENT;
-    setComment: any;
+    comment: string;
+    setComment: Dispatch<SetStateAction<string>>;
     authState: AUTH_STATE;
     comments: COMMENT[];
     addComment: () => void;

@@ -1,15 +1,9 @@
 import React from "react";
-import { AuthState } from "../../../../App";
+import { AUTH_STATE, DM_OBJ } from "../../../../types";
 import { DirectMessage } from "../../organism/direct-message";
 
-export interface DM_OBJ {
-    id: string;
-    text: string;
-    UserId: string;
-}
-
 export interface mainProps {
-    authState: AuthState;
+    authState: AUTH_STATE;
     dmUser: any;
     dmUserError: any;
     directMessages: DM_OBJ[];

@@ -1,11 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { AuthState } from "../../../../App";
-import { COMMENT, POST } from "../../../../types";
+import { AUTH_STATE, COMMENT, POST } from "../../../../types";
 import { Post } from "../../organism/post";
 
 export interface mainProps {
     id: string;
-    authState: AuthState;
+    authState: AUTH_STATE;
     comments: COMMENT[];
     post: POST | undefined;
     setComments: Dispatch<SetStateAction<COMMENT[]>>;

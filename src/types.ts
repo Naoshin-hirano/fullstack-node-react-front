@@ -44,6 +44,7 @@ export interface AUTH_STATE {
     username: string;
     id: number;
     status: boolean;
+    imageName: string;
 }
 
 export interface RELATIONSHIP {
@@ -60,4 +61,10 @@ export interface USER {
     password: string;
     createAt: string;
     updatedAt: string;
+}
+
+export interface DM_OBJ {
+    id: string;
+    text: string;
+    UserId: string;
 }

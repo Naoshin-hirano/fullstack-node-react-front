@@ -1,4 +1,5 @@
-import { RELATIONSHIP, USER } from "../../../types";
+import { Dispatch, SetStateAction } from "react";
+import { AUTH_STATE, POST, RELATIONSHIP, USER } from "../../../types";
 import {
     getUser,
     getUserPosts,
@@ -8,9 +9,9 @@ import {
 // フォローとフォロー解除
 export const postFollowAndUnfollowInfo = async (
     id: string,
-    follower: any,
-    setFollower: any,
-    authState: any
+    follower: number[],
+    setFollower: Dispatch<SetStateAction<number[]>>,
+    authState: AUTH_STATE
 ) => {
     const result = await postFollowAndUnfollow(id);
     if (result.data.following) {
@@ -27,10 +28,10 @@ export const postFollowAndUnfollowInfo = async (
 // ユーザー情報取得
 export const getUserInfo = async (
     id: string,
-    setFollowing: any,
-    setFollower: any,
-    setUsername: any,
-    setUserImage: any
+    setFollowing: Dispatch<SetStateAction<number[]>>,
+    setFollower: Dispatch<SetStateAction<number[]>>,
+    setUsername: Dispatch<SetStateAction<string>>,
+    setUserImage: Dispatch<SetStateAction<string>>
 ) => {
     const result = await getUser(id);
     setFollowing(
@@ -48,7 +49,10 @@ export const getUserInfo = async (
 };
 
 //　ユーザーによる投稿一覧取得
-export const getUserPostsInfo = async (id: string, setListOfPosts: any) => {
+export const getUserPostsInfo = async (
+    id: string,
+    setListOfPosts: Dispatch<SetStateAction<POST[]>>
+) => {
     const result = await getUserPosts(id);
     setListOfPosts(result.data);
 };

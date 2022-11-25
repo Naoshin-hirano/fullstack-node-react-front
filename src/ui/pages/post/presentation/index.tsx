@@ -19,7 +19,7 @@ export const useCreateProps = () => {
     useEffect(() => {
         Usecase.getCommentsInfo(id, setComments);
         Usecase.getPostInfo(id, setPost);
-    }, []);
+    }, [id]);
 
     return {
         id,

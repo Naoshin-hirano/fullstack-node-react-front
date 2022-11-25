@@ -21,7 +21,7 @@ export const getSuggestion = async () => {
 };
 
 // 検索候補で選んだ投稿を取得
-export const getSearchedPosts = async (keyword: any) => {
+export const getSearchedPosts = async (keyword: string) => {
     const response = await axios.get(
         `http://localhost:3001/posts/search/${keyword}`,
         {

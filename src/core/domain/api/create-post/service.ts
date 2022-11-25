@@ -1,15 +1,16 @@
 import axios from "axios";
+import { SUBMIT_DATA } from "../../../../ui/components/organism/create-post";
 
 // パスワードの変更
-export const postCreatePost = async (data: any) => {
+export const postCreatePost = async (data: SUBMIT_DATA) => {
     // formikのvaluesをアップロード画像が送信できるようにnew FormData()のデータにする
     // Tagsの配列をパタメータにすると中身が展開され送信されるので、配列をstringifyで文字列化して送信→Node側で文字列化解除する
     const formData = new FormData();
-    Object.keys(data).forEach((key) => {
+    (Object.keys(data) as (keyof SUBMIT_DATA)[]).forEach((key) => {
         if (Array.isArray(data[key])) {
             formData.append(key, JSON.stringify(data[key]));
         } else {
-            formData.append(key, data[key]);
+            formData.append(key, data[key] as any);
         }
     });
     const response = await axios.post("http://localhost:3001/posts", formData, {

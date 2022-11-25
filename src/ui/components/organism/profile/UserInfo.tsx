@@ -1,9 +1,9 @@
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { useHistory } from "react-router-dom";
-import { AuthState } from "../../../../App";
+import { AUTH_STATE } from "../../../../types";
 
 interface USER_INFO_PROPS {
-    authState: AuthState;
+    authState: AUTH_STATE;
     username: string;
     userImage: string;
     follower: number[];

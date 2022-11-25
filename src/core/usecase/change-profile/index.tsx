@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+import { AUTH_STATE } from "../../../types";
 import {
     putChangeAvatar,
     putChangePassword,
@@ -18,8 +20,8 @@ export const putChangePasswordInfo = async (
 // アバターの変更
 export const putChangeAvatarInfo = async (
     image: File | null,
-    authState: any,
-    setAuthState: any
+    authState: AUTH_STATE,
+    setAuthState: Dispatch<SetStateAction<AUTH_STATE>>
 ) => {
     const result = await putChangeAvatar(image);
     if (result?.data.error) {

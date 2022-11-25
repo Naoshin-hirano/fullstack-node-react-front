@@ -1,9 +1,10 @@
+import { AUTH_STATE } from "../../../types";
 import { postLoginInfo } from "../../domain/api/login/service";
 
 export const postLogin = async (
     username: string,
     password: string,
-    setAuthState: any
+    setAuthState: React.Dispatch<React.SetStateAction<AUTH_STATE>>
 ) => {
     const result = await postLoginInfo(username, password);
     if (result.data.error) {

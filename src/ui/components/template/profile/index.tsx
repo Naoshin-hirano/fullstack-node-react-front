@@ -1,10 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { AuthState } from "../../../../App";
-import { POST } from "../../../../types";
+import { AUTH_STATE, POST } from "../../../../types";
 import { Profile } from "../../organism/profile";
 
 export interface mainProps {
-    authState: AuthState;
+    authState: AUTH_STATE;
     username: string;
     userImage: string;
     listOfPosts: POST[];

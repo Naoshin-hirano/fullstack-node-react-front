@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import PostAddIcon from "@material-ui/icons/PostAdd";
+import { AUTH_STATE } from "../../../types";
 
-export const GlobalHeader = ({ authState, logout }: any) => {
+interface GLOBAL_HEADER {
+    authState: AUTH_STATE;
+    logout: () => void;
+}
+
+export const GlobalHeader = ({ authState, logout }: GLOBAL_HEADER) => {
     return (
         <div className="navbar">
             {!authState.status ? (

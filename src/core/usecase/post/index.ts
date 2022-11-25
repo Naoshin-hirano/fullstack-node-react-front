@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+import { COMMENT, POST } from "../../../types";
 import {
     deleteComment,
     deletePost,
@@ -28,12 +30,18 @@ export const putEditPostInfo = async (editType: string, id: string) => {
     putEditPost(editType, id);
 };
 
-export const getCommentsInfo = async (id: string, setComments: any) => {
+export const getCommentsInfo = async (
+    id: string,
+    setComments: Dispatch<SetStateAction<COMMENT[]>>
+) => {
     const result = await getComments(id);
     setComments(result.data);
 };
 
-export const getPostInfo = async (id: string, setPost: any) => {
+export const getPostInfo = async (
+    id: string,
+    setPost: Dispatch<SetStateAction<POST | undefined>>
+) => {
     const result = await getPost(id);
     setPost(result.data);
 };

@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { AuthState } from "../../../../App";
+import { AUTH_STATE } from "../../../../types";
 import { Login } from "../../organism/login";
 
 export interface mainProps {
-    setAuthState: Dispatch<SetStateAction<AuthState>>;
+    setAuthState: Dispatch<SetStateAction<AUTH_STATE>>;
 }
 
 export const Template: React.FC<mainProps> = (props: mainProps) => {
