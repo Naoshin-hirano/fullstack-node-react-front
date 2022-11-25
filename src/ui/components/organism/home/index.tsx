@@ -4,8 +4,9 @@ import { Pagination } from "./Pagination";
 import { Search } from "./Search";
 import { CurrentPosts } from "./CurrentPosts";
 import * as Usecase from "../../../../core/usecase/home";
+import { mainProps } from "../../template/home";
 
-export const Home = (props: any) => {
+export const Home = (props: mainProps) => {
     const {
         listOfPosts,
         setListOfPosts,
@@ -26,7 +27,7 @@ export const Home = (props: any) => {
     // 1ページにいくつのリストを表示するか
     const [postsPerPage] = useState<number>(3);
 
-    const likeAPost = (postId: number) => {
+    const likeAPost = (postId: number): void => {
         // bodyはオブジェクトなのでPostIdもオブジェクトにする
         Usecase.postLikeInfo(
             postId,

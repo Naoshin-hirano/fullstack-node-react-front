@@ -1,12 +1,12 @@
 import { COMMENT, AUTH_STATE } from "../../../../types";
 
 interface POST_COMMENTS_PROPS {
-    comment: string;
+    comment: COMMENT;
     setComment: any;
     authState: AUTH_STATE;
-    comments: any;
-    addComment: any;
-    deleteComment: any;
+    comments: COMMENT[];
+    addComment: () => void;
+    deleteComment: (commentId: string, index: number) => void;
 }
 
 export const PostComments = ({
@@ -24,8 +24,8 @@ export const PostComments = ({
                     type="text"
                     placeholder="コメント..."
                     autoComplete="off"
-                    value={comment}
-                    onChange={(e) => {
+                    value={comment as any}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setComment(e.target.value);
                     }}
                 />

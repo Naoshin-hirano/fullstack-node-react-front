@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ImageSrc } from "../common/ImageSrc";
 import * as Usecase from "../../../../core/usecase/change-profile";
+import { mainProps } from "../../template/change-profile";
 
-export const ChangeProfile = (props: any) => {
+export const ChangeProfile = ({ authState, setAuthState }: mainProps) => {
     const [oldpassword, setOldpassword] = useState("");
     const [newpassword, setNewpassword] = useState("");
     const [image, setImage] = useState<null | File>(null);
-    const { authState, setAuthState } = props;
     let history = useHistory();
 
     const changePassword = () => {
@@ -30,14 +30,14 @@ export const ChangeProfile = (props: any) => {
     return (
         <div>
             <div>
-                <h1>Change Your Password</h1>
+                <h1>パスワードの変更</h1>
                 <input
                     onChange={(e) => {
                         setOldpassword(e.target.value);
                     }}
                     value={oldpassword}
                     type="text"
-                    placeholder="Old Password..."
+                    placeholder="現在のパスワード..."
                 />
                 <input
                     onChange={(e) => {
@@ -45,12 +45,12 @@ export const ChangeProfile = (props: any) => {
                     }}
                     value={newpassword}
                     type="text"
-                    placeholder="New Password..."
+                    placeholder="新しいパスワード..."
                 />
-                <button onClick={changePassword}>Save Changes</button>
+                <button onClick={changePassword}>変更を保存</button>
             </div>
             <div>
-                <h1>Change Avatar</h1>
+                <h1>アバターの変更</h1>
                 <input
                     type="file"
                     accept="image/*,.png,.jpg,.jpeg,.gif"
@@ -58,7 +58,7 @@ export const ChangeProfile = (props: any) => {
                         handleOnAddImage(e)
                     }
                 />
-                <button onClick={changeAvatar}>Save Changes</button>
+                <button onClick={changeAvatar}>変更を保存</button>
             </div>
             <ImageSrc file={image} />
         </div>

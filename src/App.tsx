@@ -16,6 +16,13 @@ import { DirectMessagePage } from "./ui/pages/direct-message";
 import { GlobalHeader } from "./ui/pages/common/GlobalHeader";
 import * as Usecase from "./core/usecase/common/global-header";
 
+export interface AuthState {
+    username: string;
+    id: number;
+    status: boolean;
+    imageName: string;
+}
+
 const App: FC = () => {
     const [authState, setAuthState] = useState({
         username: "",

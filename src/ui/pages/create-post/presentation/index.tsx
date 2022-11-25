@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as Usecase from "../../../../core/usecase/create-post";
+import { TAG } from "../../../../types";
 
 export const useCreateProps = () => {
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState<TAG[]>([]);
     let history = useHistory();
 
     useEffect(() => {

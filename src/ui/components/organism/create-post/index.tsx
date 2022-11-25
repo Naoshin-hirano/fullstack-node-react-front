@@ -4,8 +4,17 @@ import { ImageSrc } from "../common/ImageSrc";
 import { TAG } from "../../../../types";
 import * as Usecase from "../../../../core/usecase/create-post";
 import { useHistory } from "react-router-dom";
+import { mainProps } from "../../template/create-post";
 
-export const CreatePost = (props: any) => {
+export interface SUBMIT_DATA {
+    title: string;
+    postText: string;
+    tagName: string;
+    checked: never[];
+    file: null;
+}
+
+export const CreatePost = (props: mainProps) => {
     let history = useHistory();
     const { tags } = props;
     // fieldの初期値
@@ -24,7 +33,7 @@ export const CreatePost = (props: any) => {
         tagName: Yup.string().required("新しいタグ名を入力してください!"),
     });
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: SUBMIT_DATA) => {
         const result = await Usecase.postCreatePostInfo(data);
         if (result) {
             history.push("/");

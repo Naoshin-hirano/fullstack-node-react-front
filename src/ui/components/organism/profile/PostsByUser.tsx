@@ -1,11 +1,11 @@
 import { useHistory } from "react-router-dom";
 import { POST, TAG } from "../../../../types";
 
-export const PostsByUser = ({ listOfPosts }: any) => {
+export const PostsByUser = (props: { listOfPosts: POST[] }) => {
     let history = useHistory();
     return (
         <div className="listOfPosts">
-            {listOfPosts.map((value: POST, key: number) => {
+            {props.listOfPosts.map((value: POST, key: number) => {
                 return (
                     <div key={key} className="post">
                         <div className="title">{value.title}</div>

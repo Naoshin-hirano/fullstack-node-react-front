@@ -1,10 +1,10 @@
-import { TAG, AUTH_STATE } from "../../../../types";
+import { TAG, AUTH_STATE, POST } from "../../../../types";
 
 interface POST_DETAIL_PROPS {
-    post: any;
+    post: POST | undefined;
     authState: AUTH_STATE;
-    deletePost: any;
-    editPost: any;
+    deletePost: () => void;
+    editPost: (editType: string) => void;
 }
 
 export const PostDetail = ({
@@ -57,7 +57,8 @@ export const PostDetail = ({
                                 )}
                             </div>
                             <div className="tags">
-                                {post.Tags.length > 0 &&
+                                {post &&
+                                    post.Tags.length > 0 &&
                                     post.Tags.map((tag: TAG, key: number) => {
                                         return (
                                             <div key={key}>#{tag.tag_name}</div>

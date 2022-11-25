@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as Usecase from "../../../../core/usecase/login";
+import { mainProps } from "../../template/login";
 
-export const Login = (props: any) => {
+export const Login = (props: mainProps) => {
     const { setAuthState } = props;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

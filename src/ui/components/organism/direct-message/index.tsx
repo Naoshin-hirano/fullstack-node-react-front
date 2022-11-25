@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import * as Usecase from "../../../../core/usecase/direct-message";
+import { mainProps } from "../../template/direct-message";
 import { MessageList } from "./MessageList";
 import { SendMessage } from "./SendMessage";
 
-export const DirectMessage = (props: any) => {
+export const DirectMessage = (props: mainProps) => {
     const {
         authState,
         dmUser,
@@ -11,8 +12,8 @@ export const DirectMessage = (props: any) => {
         directMessages,
         messagesError,
     } = props;
-    const [messageText, setMessageText] = useState("");
-    const scroll = useRef<any>(null);
+    const [messageText, setMessageText] = useState<string>("");
+    const scroll = useRef<HTMLDivElement>(null);
 
     // 初期画面またはDM更新時に最下部にスクロール
     const scrollToBottomOfList = useCallback(() => {

@@ -1,5 +1,16 @@
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { useHistory } from "react-router-dom";
+import { AuthState } from "../../../../App";
+
+interface USER_INFO_PROPS {
+    authState: AuthState;
+    username: string;
+    userImage: string;
+    follower: number[];
+    following: number[];
+    id: string;
+    onFollow: () => void;
+}
 
 export const UserInfo = ({
     authState,
@@ -9,7 +20,7 @@ export const UserInfo = ({
     following,
     id,
     onFollow,
-}: any) => {
+}: USER_INFO_PROPS) => {
     let history = useHistory();
     return (
         <div className="basicInfo">

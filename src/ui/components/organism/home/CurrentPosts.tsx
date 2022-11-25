@@ -3,7 +3,17 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { POST, TAG } from "../../../../types";
 
-export const CurrentPosts = ({ currentPosts, likeAPost, likedPosts }: any) => {
+interface CURRENT_POSTS_PROPS {
+    currentPosts: POST[];
+    likeAPost: (postId: number) => void;
+    likedPosts: number[];
+}
+
+export const CurrentPosts = ({
+    currentPosts,
+    likeAPost,
+    likedPosts,
+}: CURRENT_POSTS_PROPS) => {
     let history = useHistory();
     return (
         <div>

@@ -1,11 +1,18 @@
 import SendIcon from "@material-ui/icons/Send";
 import { Input } from "@material-ui/core";
+import { Dispatch, FormEventHandler, SetStateAction } from "react";
+
+interface SEND_MESSAGE_PROPS {
+    sendMessage: FormEventHandler<HTMLFormElement>;
+    messageText: string;
+    setMessageText: Dispatch<SetStateAction<string>>;
+}
 
 export const SendMessage = ({
     sendMessage,
     messageText,
     setMessageText,
-}: any) => {
+}: SEND_MESSAGE_PROPS) => {
     return (
         <div>
             <form onSubmit={sendMessage}>

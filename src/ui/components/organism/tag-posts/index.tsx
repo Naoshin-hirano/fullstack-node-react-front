@@ -1,8 +1,8 @@
 import { useHistory } from "react-router-dom";
 import { TAG, POST } from "../../../../types";
+import { mainProps } from "../../template/tag-posts";
 
-export const TagPosts = (props: any) => {
-    const { listOfPosts, id } = props;
+export const TagPosts = ({ listOfPosts, id }: mainProps) => {
     let history = useHistory();
 
     return (

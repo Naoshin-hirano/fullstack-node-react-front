@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import * as Usecase from "../../../../core/usecase/registration";
 
-interface SUBMIT_USER {
+export interface SUBMIT_USER {
     username: string;
     password: string;
 }
