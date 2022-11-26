@@ -1,3 +1,5 @@
+// 汎用的な型の定義
+
 export interface COMMENT {
     id: string;
     commentBody: string;
@@ -59,6 +61,7 @@ export interface USER {
     id: string;
     username: string;
     password: string;
+    imageName: string;
     createAt: string;
     updatedAt: string;
 }

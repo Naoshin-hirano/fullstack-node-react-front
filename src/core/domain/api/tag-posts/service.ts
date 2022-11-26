@@ -1,10 +1,9 @@
 import axios from "axios";
+import { apiConfig } from "../../../../config";
+import { headers } from "../common/global-header/service";
 
 export const tagPostGet = (id: string) => {
-    const response = axios.get(`http://localhost:3001/posts/byhashtag/${id}`, {
-        headers: {
-            accessToken: localStorage.getItem("accessToken") as string,
-        },
-    });
+    const url = `${apiConfig.hashTagPosts.url}/${id}`;
+    const response = axios.get(url, headers);
     return response;
 };

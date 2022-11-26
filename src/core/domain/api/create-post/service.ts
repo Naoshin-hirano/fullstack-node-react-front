@@ -1,8 +1,11 @@
 import axios from "axios";
+import { apiConfig } from "../../../../config";
 import { SUBMIT_DATA } from "../../../../ui/components/organism/create-post";
+import { headers } from "../common/global-header/service";
 
 // パスワードの変更
 export const postCreatePost = async (data: SUBMIT_DATA) => {
+    const url = apiConfig.posts.url;
     // formikのvaluesをアップロード画像が送信できるようにnew FormData()のデータにする
     // Tagsの配列をパタメータにすると中身が展開され送信されるので、配列をstringifyで文字列化して送信→Node側で文字列化解除する
     const formData = new FormData();
@@ -13,16 +16,13 @@ export const postCreatePost = async (data: SUBMIT_DATA) => {
             formData.append(key, data[key] as any);
         }
     });
-    const response = await axios.post("http://localhost:3001/posts", formData, {
-        headers: {
-            accessToken: localStorage.getItem("accessToken") as string,
-        },
-    });
+    const response = await axios.post(url, formData, headers);
     return response;
 };
 
 // タグの取得
 export const getTags = async () => {
-    const response = await axios.get("http://localhost:3001/tags");
+    const url = apiConfig.tags.url;
+    const response = await axios.get(url);
     return response;
 };

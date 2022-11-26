@@ -1,9 +1,9 @@
-import { AUTH_STATE, DM_OBJ } from "../../../../types";
+import { AUTH_STATE, DM_OBJ, USER } from "../../../../types";
 
 interface MESSAGE_LIST_PROPS {
-    directMessages: DM_OBJ[];
+    directMessages: DM_OBJ[] | undefined;
     authState: AUTH_STATE;
-    dmUser: any;
+    dmUser: USER | undefined;
     dmUserError: any;
     messagesError: any;
 }
@@ -22,7 +22,7 @@ export const MessageList = ({
                       ({ id, text, UserId }: DM_OBJ, key: number) => (
                           <div key={key}>
                               {Number(UserId) === authState.id ||
-                              UserId === dmUser.id ? (
+                              UserId === dmUser?.id ? (
                                   <div
                                       key={id}
                                       className={`msg ${
@@ -36,7 +36,7 @@ export const MessageList = ({
                                           src={
                                               Number(UserId) === authState.id
                                                   ? `http://localhost:3000/${authState.imageName}`
-                                                  : `http://localhost:3000/${dmUser.imageName}`
+                                                  : `http://localhost:3000/${dmUser?.imageName}`
                                           }
                                           alt=""
                                       />
