@@ -1,4 +1,3 @@
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { useHistory } from "react-router-dom";
 import { AUTH_STATE } from "../../../../types";
 
@@ -27,12 +26,13 @@ export const UserInfo = ({
             <h1>
                 {username}
                 {String(authState.id) !== id && (
-                    <MailOutlineIcon
-                        style={{ marginLeft: "25px", fontSize: "30px" }}
+                    <button
                         onClick={() => {
                             history.push(`/directmessage/${id}`);
                         }}
-                    />
+                    >
+                        ユーザーにDMを送る
+                    </button>
                 )}
             </h1>
             {userImage ? (
