@@ -1,3 +1,4 @@
+import { AUTH_STATE } from "../../../types";
 import {
     postDM,
     useGetDMList,
@@ -5,9 +6,12 @@ import {
 } from "../../domain/api/direct-message/service";
 
 // DMの送信
-export const postDMInfo = async (messageText: string) => {
-    const result = await postDM(messageText);
-    console.log(result.data);
+export const postDMInfo = async (
+    messageText: string,
+    id: number,
+    authState: AUTH_STATE
+) => {
+    postDM(messageText, id, authState);
 };
 
 // チャットルームのユーザー情報フェッチ

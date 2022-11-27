@@ -66,8 +66,20 @@ export interface USER {
     updatedAt: string;
 }
 
-export interface DM_OBJ {
-    id: string;
+export interface DIRECT_MESSAGE {
+    UserId: number;
+    createdAt: string;
+    id: number;
     text: string;
-    UserId: string;
+    toUserId: number;
+    updatedAt: string;
+}
+
+export interface DM_USER {
+    createdAt: string;
+    id: number;
+    imageName: string;
+    password: string;
+    updatedAt: string;
+    username: string;
 }

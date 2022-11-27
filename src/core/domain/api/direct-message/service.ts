@@ -1,13 +1,17 @@
 import axios from "axios";
 import useSWR from "swr";
 import { apiConfig } from "../../../../config";
-import { DM_OBJ, USER } from "../../../../types";
+import { AUTH_STATE, DIRECT_MESSAGE, DM_USER } from "../../../../types";
 import { headers } from "../common/global-header/service";
 
 // DMの送信
-export const postDM = async (messageText: string) => {
+export const postDM = async (
+    messageText: string,
+    id: number,
+    authState: AUTH_STATE
+) => {
     const url = apiConfig.dm.url;
-    const body = { text: messageText };
+    const body = { text: messageText, toUserId: id, UserId: authState.id };
     const response = await axios.post(url, body, headers);
     return response;
 };
@@ -15,7 +19,7 @@ export const postDM = async (messageText: string) => {
 // チャットルームのユーザー情報フェッチ
 export const useGetDMUser = (id: string) => {
     const url = `${apiConfig.dmUser.url}/${id}`;
-    const { data: dmUser, error: dmUserError } = useSWR<USER, Error>(url, {
+    const { data: dmUser, error: dmUserError } = useSWR<DM_USER, Error>(url, {
         refreshInterval: 500,
     });
     return {
@@ -29,7 +33,7 @@ export const useGetDMUser = (id: string) => {
 export const useGetDMList = () => {
     const url = apiConfig.dm.url;
     const { data: directMessages, error: messagesError } = useSWR<
-        DM_OBJ[],
+        DIRECT_MESSAGE[],
         Error
     >(url, {
         refreshInterval: 500,

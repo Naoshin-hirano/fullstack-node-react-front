@@ -11,7 +11,10 @@ export const DirectMessage = (props: mainProps) => {
         dmUserError,
         directMessages,
         messagesError,
+        isLoading,
+        id,
     } = props;
+    const paramsId = Number(id);
     const [messageText, setMessageText] = useState<string>("");
     const scroll = useRef<HTMLDivElement>(null);
 
@@ -24,7 +27,7 @@ export const DirectMessage = (props: mainProps) => {
 
     const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        Usecase.postDMInfo(messageText);
+        Usecase.postDMInfo(messageText, paramsId, authState);
         setMessageText("");
     };
 
@@ -40,6 +43,8 @@ export const DirectMessage = (props: mainProps) => {
                 dmUser={dmUser}
                 dmUserError={dmUserError}
                 messagesError={messagesError}
+                isLoading={isLoading}
+                paramsId={paramsId}
             />
             <SendMessage
                 sendMessage={sendMessage}

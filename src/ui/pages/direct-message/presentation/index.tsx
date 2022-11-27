@@ -8,7 +8,7 @@ export const useCreateProps = () => {
     // チャットルームのユーザー情報フェッチ
     const { dmUser, dmUserError } = GetDMUser(id);
     // DM一覧のフェッチ
-    const { directMessages, messagesError } = GetDMList();
+    const { directMessages, messagesError, isLoading } = GetDMList();
     // ログインユーザーの情報
     const { authState } = useContext(AuthContext);
     return {
@@ -17,5 +17,7 @@ export const useCreateProps = () => {
         dmUserError,
         directMessages,
         messagesError,
+        isLoading,
+        id,
     };
 };
