@@ -23,7 +23,6 @@ const App: FC = () => {
         status: false,
         imageName: "",
     });
-    console.log("authState", authState);
     const logout = () => {
         localStorage.removeItem("accessToken");
         setAuthState({

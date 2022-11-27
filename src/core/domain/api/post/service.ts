@@ -5,7 +5,6 @@ import { headers } from "../common/global-header/service";
 const commentsUrl = apiConfig.comments.url;
 
 export const postAddComment = async (id: string, comment: string) => {
-    console.log("comment", comment);
     const body = {
         PostId: id,
         commentBody: comment,
@@ -53,7 +52,6 @@ export const getComments = async (id: string) => {
 
 export const getPost = async (id: string) => {
     const url = `${apiConfig.postsById.url}/${id}`;
-    console.log("url", url);
     const response = await axios.get(url);
     return response;
 };
