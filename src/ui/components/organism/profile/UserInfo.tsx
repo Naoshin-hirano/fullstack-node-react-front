@@ -37,7 +37,7 @@ export const UserInfo = ({
             </h1>
             {userImage ? (
                 <img
-                    src={`http://localhost:3000/${userImage}`}
+                    src={userImage}
                     alt="profileImage"
                     style={{ width: 211 }}
                     className="profileImage"

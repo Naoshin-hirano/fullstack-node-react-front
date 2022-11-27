@@ -17,7 +17,7 @@ export const PostsByUser = (props: { listOfPosts: POST[] }) => {
                         >
                             <p>{value.postText}</p>
                             <img
-                                src={`http://localhost:3000/${value.imageName}`}
+                                src={value.imageName}
                                 alt="imageName"
                                 style={{ width: 211, height: 141 }}
                             />

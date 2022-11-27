@@ -38,7 +38,7 @@ export const PostDetail = ({
                         >
                             {post.postText}
                             <img
-                                src={`http://localhost:3000/${post.imageName}`}
+                                src={post.imageName}
                                 alt=""
                                 style={{
                                     width: 336,

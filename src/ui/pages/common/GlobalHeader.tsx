@@ -32,7 +32,7 @@ export const GlobalHeader = ({ authState, logout }: GLOBAL_HEADER) => {
                         {authState.imageName ? (
                             <Link to={`/profile/${authState.id}`}>
                                 <img
-                                    src={`http://localhost:3000/${authState.imageName}`}
+                                    src={authState.imageName}
                                     alt="Avatar"
                                     className="avatar"
                                 />
