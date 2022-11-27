@@ -9,12 +9,13 @@ export const Login = (props: mainProps) => {
     const [password, setPassword] = useState("");
     const history = useHistory();
 
-    const login = () => {
-        Usecase.postLogin(username, password, setAuthState);
+    const login = async () => {
+        await Usecase.postLogin(username, password, setAuthState);
         history.push("/");
     };
     return (
         <div className="loginContainer">
+            <label>ユーザー名 </label>
             <input
                 type="text"
                 value={username}
@@ -23,6 +24,7 @@ export const Login = (props: mainProps) => {
                     setUsername(e.target.value);
                 }}
             />
+            <label>パスワード </label>
             <input
                 type="password"
                 value={password}
@@ -31,7 +33,6 @@ export const Login = (props: mainProps) => {
                     setPassword(e.target.value);
                 }}
             />
-
             <button onClick={login}> ログイン</button>
         </div>
     );

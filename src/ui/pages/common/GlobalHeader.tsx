@@ -38,13 +38,15 @@ export const GlobalHeader = ({ authState, logout }: GLOBAL_HEADER) => {
                                 />
                             </Link>
                         ) : (
-                            <img
-                                src={
-                                    "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
-                                }
-                                alt="Avatar"
-                                className="avatar"
-                            />
+                            <Link to={`/profile/${authState.id}`}>
+                                <img
+                                    src={
+                                        "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
+                                    }
+                                    alt="Avatar"
+                                    className="avatar"
+                                />
+                            </Link>
                         )}
                         <Link to="/login">
                             <button onClick={logout}>ログアウト</button>
