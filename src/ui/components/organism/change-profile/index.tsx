@@ -10,8 +10,15 @@ export const ChangeProfile = ({ authState, setAuthState }: mainProps) => {
     const [image, setImage] = useState<null | File>(null);
     let history = useHistory();
 
-    const changePassword = () => {
-        Usecase.putChangePasswordInfo(oldpassword, newpassword);
+    const changePassword = async () => {
+        const result = await Usecase.putChangePasswordInfo(
+            oldpassword,
+            newpassword
+        );
+        if (result === "error") {
+            return;
+        }
+        history.push(`/profile/${authState.id}`);
     };
 
     const handleOnAddImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,11 +26,25 @@ export const ChangeProfile = ({ authState, setAuthState }: mainProps) => {
         setImage(e.target.files[0]);
     };
 
-    const changeAvatar = () => {
+    const changeAvatar = async () => {
         if (!window.confirm("あなたのアイコンをこの画像に変更しますか？")) {
             return;
         }
-        Usecase.putChangeAvatarInfo(image, authState, setAuthState);
+        const result = await Usecase.putChangeAvatarInfo(
+            image,
+            authState,
+            setAuthState
+        );
+        if (result === "error") {
+            return;
+        }
+        if (result.status === "success") {
+            setAuthState({
+                ...authState,
+                imageName: result.imageName,
+            });
+            alert("アバターの変更が完了しました");
+        }
         history.push(`/profile/${authState.id}`);
     };
 

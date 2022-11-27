@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { isJSDocAugmentsTag } from "typescript";
 import { AUTH_STATE } from "../../../types";
 import {
     putChangeAvatar,
@@ -11,10 +12,15 @@ export const putChangePasswordInfo = async (
     newpassword: string
 ) => {
     const result = await putChangePassword(oldpassword, newpassword);
+    if (!oldpassword || !newpassword) {
+        alert("パスワードを入力してください");
+        return "error";
+    }
     if (result.data.error) {
         alert(result.data.error);
+        return "error";
     }
-    console.log("パスワードの変更が完了しました");
+    alert("パスワードの変更が完了しました");
 };
 
 // アバターの変更
@@ -24,12 +30,17 @@ export const putChangeAvatarInfo = async (
     setAuthState: Dispatch<SetStateAction<AUTH_STATE>>
 ) => {
     const result = await putChangeAvatar(image);
-    if (result?.data.error) {
-        return alert(result.data.error);
+    if (!image) {
+        alert("アバター画像をアップロードしてください");
+        return "error";
+    }
+    if (result.data.error) {
+        alert(result.data.error);
+        return "error";
     }
     setAuthState({
         ...authState,
-        imageName: result?.data.imageName,
+        imageName: result.data.imageName,
     });
-    console.log("アバターの変更が完了しました");
+    return { imageName: result.data.imageName, status: "success" };
 };
