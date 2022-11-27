@@ -28,10 +28,10 @@ export const MessageList = ({
                 ? directMessages
                       .filter(
                           (m: DIRECT_MESSAGE) =>
-                              (m.UserId == paramsId &&
-                                  m.toUserId == authState.id) ||
-                              (m.toUserId == paramsId &&
-                                  m.UserId == authState.id)
+                              (m.UserId === paramsId &&
+                                  m.toUserId === authState.id) ||
+                              (m.toUserId === paramsId &&
+                                  m.UserId === authState.id)
                       )
                       .map(({ id, text, UserId }, key: number) => (
                           <div key={key}>

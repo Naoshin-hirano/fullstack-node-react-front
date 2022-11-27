@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import { isJSDocAugmentsTag } from "typescript";
 import { AUTH_STATE } from "../../../types";
 import {
     putChangeAvatar,
