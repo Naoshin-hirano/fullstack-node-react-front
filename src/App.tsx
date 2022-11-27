@@ -17,7 +17,6 @@ import { GlobalHeader } from "./ui/pages/common/GlobalHeader";
 import * as Usecase from "./core/usecase/common/global-header";
 
 const App: FC = () => {
-    console.log("appレンダー");
     const [authState, setAuthState] = useState({
         username: "",
         id: 0,

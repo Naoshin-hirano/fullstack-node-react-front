@@ -23,7 +23,7 @@ export const TagPosts = ({ listOfPosts, id }: mainProps) => {
                                         history.push(`/post/${value.id}`);
                                     }}
                                 >
-                                    {value.postText}
+                                    <p>{value.postText}</p>
                                     <img
                                         src={`http://localhost:3000/${value.imageName}`}
                                         alt="imageName"
