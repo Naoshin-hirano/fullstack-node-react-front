@@ -1,5 +1,5 @@
-import axios from "axios";
 import { apiConfig } from "../../../../config";
+import axios from "../../../../config/setting";
 
 export const postLoginInfo = (username: string, password: string) => {
     const url = apiConfig.login.url;
