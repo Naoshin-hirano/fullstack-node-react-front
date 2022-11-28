@@ -9,6 +9,14 @@ export const postCreatePost = async (data: SUBMIT_DATA) => {
     // formikのvaluesをアップロード画像が送信できるようにnew FormData()のデータにする
     // Tagsの配列をパタメータにすると中身が展開され送信されるので、配列をstringifyで文字列化して送信→Node側で文字列化解除する
     const formData = new FormData();
+    // const object1 = {
+    //     a: "somestring",
+    //     b: 42,
+    //     c: false,
+    // };
+    // console.log(Object.keys(object1));
+    // expected output: Array ["a", "b", "c"]
+    // Object.keysの配列がSUBMIT_DATAのキーであることを証明できればOK
     (Object.keys(data) as (keyof SUBMIT_DATA)[]).forEach((key) => {
         if (Array.isArray(data[key])) {
             formData.append(key, JSON.stringify(data[key]));
