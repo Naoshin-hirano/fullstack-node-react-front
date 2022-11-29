@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+<h1>1.ポートフォリオ紹介</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://freetalk1.web.app/<br>
+FREETALKは、普段から外国語でコミュニケーションする機会がない人たち同士が集まって外国語で会話をすることで、外国語でのコミュニケーション力を"無料"で養おうというサービスです。
+語学教室を投稿でき、生徒を募集し、SNSな機能でユーザー同士が交流し合うことで　”みんなでより良い語学教室を構築していこう”　をコンセプトにしております。
+モデルにした既存アプリはMeetupと言われるイベント投稿のアプリで、それにSNS機能を加えてユーザー同士の交流を発生させたら面白くなるのではと思い作成しました。
 
-## Available Scripts
 
-In the project directory, you can run:
+<h4>◆トップページ</h4>
 
-### `npm start`
+![0DBE3FD0-2F87-42A5-B0DF-A505D59F78FB](https://user-images.githubusercontent.com/59371503/122067489-95160d80-ce2e-11eb-918b-b11748bbe2e5.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+<h4>◆レスポンシブデザイン</h4>
+スマホにも対応したUI設計です。<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Videotogif (12).gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/906732/99e8748f-c393-b02b-36c0-af9ff277a192.gif)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h1>2.　機能一覧</h1>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h2>■語学教室を投稿してみよう！</h2>
+メニューの「投稿する」にてお好みの語学教室の情報をフォームに入力し、投稿できます。投稿した時点でメンバー募集が行われております。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![4CD6DF78-A8DD-44D7-8558-D05C56926294](https://user-images.githubusercontent.com/59371503/121939164-a5bf7880-cd87-11eb-85ab-306837cba57d.gif)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<h2>■語学教室に参加してみよう！</h2>
+詳細画面下部の「参加する」ボタンからその英会話教室へ参加登録ができます。左側の「出席者PickUp」に参加予定者一覧が表示されています。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![8AA1245F-9E68-4E4B-BFEE-7937552E18D9](https://user-images.githubusercontent.com/59371503/121939189-ace68680-cd87-11eb-8619-c55523fa9fbe.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<h2>■SNS機能を使ってユーザーと交流しよう！</h2>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+お気に入りな語学研修にいいねができます。<br>
+![580BFDB5-5D80-44DB-8B93-F66C747EBCD3](https://user-images.githubusercontent.com/59371503/121946119-8f1d1f80-cd8f-11eb-92de-a7d2d9288ae5.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+好きな語学研修を投稿するユーザーをフォローできます。<br>
+![DA94A3ED-BFB4-4D0F-8C9D-AED8D40EBB6F](https://user-images.githubusercontent.com/59371503/121946156-9b08e180-cd8f-11eb-9f6c-416fd3f963ef.gif)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+ユーザーへ掲示板形式のメッセージを投稿できます。<br>
+![28E964FC-AA70-4EB4-AF9A-7759A39D9ADB](https://user-images.githubusercontent.com/59371503/121946166-9e9c6880-cd8f-11eb-81dc-78cabf7bf8eb.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<h1>4.使用技術</h1>
 
-### Deployment
+| 使用箇所 | 使用技術名 |
+|:---|:---|
+|フロント|React|
+|バックエンド|Node.js(Express)|
+|データベース|MySQL|
+|アップロードした画像の格納先|Cloudinary|
+|デプロイ先・独自ドメインの接続|Netlify(フロント), Heroku(バックエンド)|
+|ソース管理|Git／GitHub|
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<h1>5.全体構成図</h1>
+システム全体の構成は以下の通り、Firebaseによるサーバレスアーキテクチャとなっております。
+
+![全体構成.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/906732/cd21ea1d-a7e2-c7a9-b8e5-55c950a5bd60.png)
+
+
+
+<h1>6.ER図</h1>
+![95638CC6-658A-46F5-89E0-4A0A1524878E](https://user-images.githubusercontent.com/59371503/204472063-0ac3fa9c-2da3-4e42-acef-0855ef24101b.png)
+
+
+
+<h1>7.工夫点</h1>
+
+●　隙間時間にどんな語学教室があるか頻繁にチェックするという "ユーザーの滞在時間が長い" サービスになる想定だったので、ユーザーをロードする時間などで待機させないSPAで作成することを考えました。
+
+●　アプリの多言語化する際に、不自然な翻訳になるGoogle翻訳でなく、外国の方でもわかりやすいように意訳を自由にJSONファイルへ設定できるプラグインvuei18nを使用しました。
+
+●　以下のように様々なカテゴリーから投稿を絞り込めるようにして高いユーザービリティを心がけました。
+
+
+【例１】「いいねの投稿・参加登録した投稿・自分の投稿」に絞り込みできます。<br>
+![5C0E6F8D-AA83-471E-BF91-FB6069048504](https://user-images.githubusercontent.com/59371503/121949399-6008ad00-cd93-11eb-95d5-8d6610ef5f82.gif)
+
+
+【例2】自分がフォローしたユーザーの投稿のみに絞り込みできます。<br>
+![89D4D026-E7AB-4BE8-B9C7-01000E77FC28](https://user-images.githubusercontent.com/59371503/121949425-65fe8e00-cd93-11eb-8d8b-154654457f3d.gif)
+
+
+
+
+
+<h1>8.難しかったところ</h1>
+
+<h2>●Realtime Database(NoSQL)でのデータベース設計</h2>
+データの重複を抑えて（正規化）テーブル同士を結合させることで一貫性を持たせるRDBの設計と違い、データをあえて重複させる（非正規化）ことでデータのネストを浅くすることが求められるので、「どのデータを重複させれば効率的な設計になるか」ということを自身で考えなければいけないところに難しさがありました。NoSQLによるデータベース設計特有の「自由度の高さ」があるからこそ生じる難しさだと実感しました。
+
+
+<h2>●コンポーネント間のデータのやりとり</h2>
+Vue.jsの$emitとpropsを使用した親コンポーネントと子コンポーネント間でのデータやりとり方法について理解するのに苦労しました。
+簡単なカウンターアプリを作成していく過程で徐々に理解度を深めていきました。
+
+
+<h2>●VuetifyでのUI作成</h2>
+Vuetify公式サイトでのサンプルコードを理解して自身のコードに当てはめていく要領を掴むことに時間を要しました。
+
+
+
+
+
+<h1>９.実装機能</h1>
+
+| 実装機能 | 説明 |
+|:---|:---|
+|CRUD機能|基本機能である　Create（生成）、Read（読み取り）、Update（更新）、Delete（削除）|
+|ユーザー登録|メールアドレスとパスワードをFirebase Authenticationsにユーザーアカウントとして登録できます。|
+|多言語機能|プラグインvuei18nにより日本語と英語の切替を行えます。|
+|ログインログアウト|Firebase Authenticationsに登録されているメールアドレスとパスワードで認証を行いログイン処理をします。|
+|ゲストログイン|メールアドレスやパスワードを登録したりSNSアカウントを使用しなくても気軽にログインできます。|
+|SNSログイン|Googleアカウントを使ってログインできます。|
+|出席者登録／出席者一覧表示|参加したい英会話教室へ出席登録ができ、出席登録した英会話教室一覧をプロフィールで表示できます。|
+|プロフィール画像のデフォルト設定／変更|新規でログインしたユーザー向けでデフォルトアイコンが設定されております。編集画面にて変更ができます。|
+|メアド・パスワード変更|Firebase Authenticationsに登録されているメールアドレスやパスワードを変更できます。|
+|バリデーション|新規登録・ログイン・登録情報変更のときにパリデーションが表示されます。|
+|画像アップロード|英会話教室のイメージやユーザーアイコンの設定のときに画像をアップロードしてFirebase Strageへ格納できます。|
+|いいね／いいね一覧表示|英会話教室へお気に入り登録できます。登録した英会話教室一覧をプロフィール画面で表示できます。|
+|投稿一覧表示|ユーザーが投稿した英会話教室一覧をプロフィール画面で表示できます。|
+|ユーザーフォロー／フォロワー|ユーザーをフォローしたり自分のフォロワーを確認できます。|
+|絞り込み検索|自分がフォローしたユーザーのみの投稿へ絞り込みできます。|
+|ページネーション|投稿された英会話教室一覧がページネーションで表示されます。|
+|リアルタイム検索|検索したいキーワードに引っかかった英会話教室のみがリアルタイムで表示されます。|
+|コメント投稿／返信投稿|各ユーザーの評判やリクエストを投稿したり返信できます。|
+
+
+
+
+
+
