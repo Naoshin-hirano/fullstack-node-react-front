@@ -14,10 +14,10 @@ SNSで頻繁に使用される機能を詰め込んだアプリ<br/>
 
 | 使用箇所 | 使用技術名 |
 |:---|:---|
-|フロント|React|
-|バックエンド|Node.js(Express)|
-|データベース|MySQL|
-|アップロードした画像の格納先|Cloudinary|
+|フロント|React18.2.0|
+|バックエンド|Node.js(Express4.18.1)|
+|データベース|MySQL2.3.3|
+|アップロードした画像の格納先|Cloudinary1.32.0|
 |デプロイ先・独自ドメインの接続|Netlify(フロント), Heroku(バックエンド)|
 |ソース管理|Git／GitHub|
 
@@ -30,7 +30,8 @@ SNSで頻繁に使用される機能を詰め込んだアプリ<br/>
 
 
 <h1>4.ER図</h1>
-<img src="![95638CC6-658A-46F5-89E0-4A0A1524878E](https://user-images.githubusercontent.com/59371503/204472063-0ac3fa9c-2da3-4e42-acef-0855ef24101b.png)" />
+
+![95638CC6-658A-46F5-89E0-4A0A1524878E](https://user-images.githubusercontent.com/59371503/204472063-0ac3fa9c-2da3-4e42-acef-0855ef24101b.png)
 
 
 
