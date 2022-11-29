@@ -30,7 +30,7 @@ SNSで頻繁に使用される機能を詰め込んだアプリ<br/>
 
 
 <h1>4.ER図</h1>
-![95638CC6-658A-46F5-89E0-4A0A1524878E](https://user-images.githubusercontent.com/59371503/204472063-0ac3fa9c-2da3-4e42-acef-0855ef24101b.png)
+<img src="![95638CC6-658A-46F5-89E0-4A0A1524878E](https://user-images.githubusercontent.com/59371503/204472063-0ac3fa9c-2da3-4e42-acef-0855ef24101b.png)" />
 
 
 
