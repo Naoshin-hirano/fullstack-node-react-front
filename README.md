@@ -76,6 +76,10 @@ SNSで頻繁に使用される機能を詰め込んだアプリ<br/>
 <h2>■いいね！</h2>
 お気に入りの投稿にいいね登録と解除ができる。
 
+![BE8CE9EC-A3AE-4F75-BB07-CA95D3FE9CA9_4_5005_c](https://user-images.githubusercontent.com/59371503/204677015-e9930c3d-368a-4c35-b511-8bccea34d81a.jpeg)
+
+
+
 
 
 <h2>■コメント</h2>
