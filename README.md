@@ -83,36 +83,50 @@ SNSで頻繁に使用される機能を詰め込んだアプリ<br/>
 <h2>■コメント</h2>
 詳細画面下部の「参加する」ボタンからその英会話教室へ参加登録ができます。左側の「出席者PickUp」に参加予定者一覧が表示されています。
 
+![コメント](https://user-images.githubusercontent.com/59371503/205067278-52522455-ded0-44b8-9a99-859acbbe978b.gif)
+
 
 
 <h2>■タグ</h2>
 投稿時にタグの新規作成と既存タグつけが可能。また、投稿のタグクリックでそのタグに紐づく投稿一覧表示
 
+![タグポスト](https://user-images.githubusercontent.com/59371503/205067525-cbd7c848-c6c7-4617-810a-b95a2ac898cf.gif)
 
 
 <h2>■ページネーション</h2>
 1ページ3投稿表示のページネーション
 
+![ページネーション](https://user-images.githubusercontent.com/59371503/205067543-c99f7b84-d32a-42dd-8c6c-9c5e7ff093a5.gif)
 
 
 <h2>■オートサジェスチョン</h2>
 検索欄での文字入力からオートで検索候補が表示。またその検索候補クリックでヒットする投稿一覧表示
 
+![オートサジェスチョン](https://user-images.githubusercontent.com/59371503/205067557-227db58f-baef-418c-a75e-06ce4622c9fc.gif)
+
+
+<h2>■ダイレクトメッセージ</h2>
+2者間のダイレクトメッセージをリアルタイムで送信と反映します
+
+![ダイレクトメッセージ](https://user-images.githubusercontent.com/59371503/205067585-52cf75a3-906a-4933-bb12-d1b080bfc7e4.gif)
 
 
 <h2>■フォローフォロワー</h2>
 ユーザーをフォローしたり解除ができる
 
+![フォローフォロワー](https://user-images.githubusercontent.com/59371503/205067603-18ea2b3b-e789-4a77-b76a-44d473eba335.gif)
 
 
 <h2>■画像アップロード</h2>
 投稿時やユーザーアカウントのアバターに画像アップロードできる
+
+![画像アップロード](https://user-images.githubusercontent.com/59371503/205068753-933473ff-05e2-47d3-9293-d30bf742c4a4.gif)
 
 
 
 <h2>■プロフィール</h2>
 投稿のユーザー名クリックにてユーザープロフィール表示。ログインパスワードやアバター変更も可能
 
-
+![プロフィール編集](https://user-images.githubusercontent.com/59371503/205067667-c8cb6af9-0521-45ed-91e5-702daa78bd5a.gif)
 
 
