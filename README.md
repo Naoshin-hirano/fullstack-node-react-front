@@ -93,28 +93,33 @@ SNSで頻繁に使用される機能を詰め込んだアプリ<br/>
 ![タグポスト](https://user-images.githubusercontent.com/59371503/205067525-cbd7c848-c6c7-4617-810a-b95a2ac898cf.gif)
 
 
+
 <h2>■ページネーション</h2>
 1ページ3投稿表示のページネーション
 
 ![ページネーション](https://user-images.githubusercontent.com/59371503/205067543-c99f7b84-d32a-42dd-8c6c-9c5e7ff093a5.gif)
 
 
+
 <h2>■オートサジェスチョン</h2>
 検索欄での文字入力からオートで検索候補が表示。またその検索候補クリックでヒットする投稿一覧表示
 
-![オートサジェスチョン](https://user-images.githubusercontent.com/59371503/205067557-227db58f-baef-418c-a75e-06ce4622c9fc.gif)
+![オートサジェスチョン](https://user-images.githubusercontent.com/59371503/205169358-e7108f96-8674-49f9-a20b-5e09dcc46c9d.gif)
+
 
 
 <h2>■ダイレクトメッセージ</h2>
 2者間のダイレクトメッセージをリアルタイムで送信と反映します
 
-![ダイレクトメッセージ](https://user-images.githubusercontent.com/59371503/205067585-52cf75a3-906a-4933-bb12-d1b080bfc7e4.gif)
+![ダイレクトメッセージ](https://user-images.githubusercontent.com/59371503/205169329-0f0e54f6-b14b-4d00-b580-84763b1fcaee.gif)
+
 
 
 <h2>■フォローフォロワー</h2>
 ユーザーをフォローしたり解除ができる
 
 ![フォローフォロワー](https://user-images.githubusercontent.com/59371503/205067603-18ea2b3b-e789-4a77-b76a-44d473eba335.gif)
+
 
 
 <h2>■画像アップロード</h2>
