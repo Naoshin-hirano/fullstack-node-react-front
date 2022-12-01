@@ -2,7 +2,7 @@
 
 
 SNSで頻繁に使用される機能を詰め込んだ投稿アプリ<br/>
-バックエンド：　https://github.com/Naoshin-hirano/fullstack-node-react-api
+REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 
 
