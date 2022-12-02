@@ -48,8 +48,8 @@ export const MessageList = ({
                                       <img
                                           src={
                                               UserId === authState.id
-                                                  ? `http://localhost:3000/${authState.imageName}`
-                                                  : `http://localhost:3000/${dmUser?.imageName}`
+                                                  ? authState.imageName
+                                                  : dmUser?.imageName
                                           }
                                           alt=""
                                       />

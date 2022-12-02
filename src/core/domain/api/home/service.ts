@@ -19,7 +19,7 @@ export const getSuggestion = async () => {
 
 // 検索候補で選んだ投稿を取得
 export const getSearchedPosts = async (keyword: string) => {
-    const url = `${apiConfig.search.url}${keyword}`;
+    const url = `${apiConfig.search.url}/${keyword}`;
     const response = await axios.get(url, headers);
     return response;
 };
