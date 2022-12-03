@@ -17,8 +17,9 @@ import { GlobalHeader } from "./ui/pages/common/GlobalHeader";
 import * as Usecase from "./core/usecase/common/global-header";
 import axios from "axios";
 
-axios.defaults.headers.common["content-type"] =
-    "application/x-www-form-urlencoded";
+// axios.defaults.headers.common["content-type"] =
+//     "application/x-www-form-urlencoded";
+axios.defaults.withCredentials = true;
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
