@@ -19,7 +19,7 @@ import axios from "axios";
 
 // axios.defaults.headers.common["content-type"] =
 //     "application/x-www-form-urlencoded";
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 const App: FC = () => {
     const [authState, setAuthState] = useState({
