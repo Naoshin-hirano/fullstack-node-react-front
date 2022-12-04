@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -13,14 +13,14 @@ function CreatePost() {
         postText: "",
         tagName: "",
         checked: [],
-        file: null
+        file: null,
     };
 
     // バリデーション管理
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("You must input a Title!"),
         postText: Yup.string().required(),
-        tagName: Yup.string().required("You must input a TagName!")
+        tagName: Yup.string().required("You must input a TagName!"),
     });
 
     const onSubmit = (data: any) => {
@@ -35,11 +35,12 @@ function CreatePost() {
             }
         });
 
-        axios.post("http://localhost:3001/posts", formData, {
-            headers: {
-                "accessToken": localStorage.getItem("accessToken") as string
-            }
-        })
+        axios
+            .post("https://fullstack-api-node.herokuapp.com/posts", formData, {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken") as string,
+                },
+            })
             .then((response) => {
                 if (response.data.error) {
                     console.log(response.data.error);
@@ -55,7 +56,8 @@ function CreatePost() {
         if (!localStorage.getItem("accessToken")) {
             history.push("/login");
         }
-        axios.get("http://localhost:3001/tags")
+        axios
+            .get("https://fullstack-api-node.herokuapp.com/tags")
             .then((response) => {
                 setTags(response.data);
             });
@@ -102,11 +104,16 @@ function CreatePost() {
                                     return (
                                         <div key={key}>
                                             <label>
-                                                <Field type="checkbox" name="checked" value={tag.tag_name} id={tag.id} />
+                                                <Field
+                                                    type="checkbox"
+                                                    name="checked"
+                                                    value={tag.tag_name}
+                                                    id={tag.id}
+                                                />
                                                 {tag.tag_name}
                                             </label>
                                         </div>
-                                    )
+                                    );
                                 })}
                             </div>
                             <div>
@@ -120,7 +127,7 @@ function CreatePost() {
                                             e.currentTarget.files !== null
                                                 ? e.currentTarget.files[0]
                                                 : null
-                                        )
+                                        );
                                     }}
                                 />
                                 <ImageSrc file={values.file} />
@@ -131,7 +138,7 @@ function CreatePost() {
                 }}
             </Formik>
         </div>
-    )
+    );
 }
 
-export default CreatePost
+export default CreatePost;

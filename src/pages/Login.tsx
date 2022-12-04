@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
@@ -10,10 +10,11 @@ function Login() {
     const { setAuthState } = useContext<any>(AuthContext);
 
     const login = () => {
-        axios.post("http://localhost:3001/auth/login", {
-            username: username,
-            password: password
-        })
+        axios
+            .post("https://fullstack-api-node.herokuapp.com/auth/login", {
+                username: username,
+                password: password,
+            })
             .then((response) => {
                 if (response.data.error) {
                     alert(response.data.error);
@@ -22,20 +23,32 @@ function Login() {
                     setAuthState({
                         username: response.data.username,
                         id: response.data.id,
-                        status: true
+                        status: true,
                     });
                     history.push("/");
                 }
-            })
+            });
     };
     return (
         <div className="loginContainer">
-            <input type="text" value={username} onChange={(e) => { setUsername(e.target.value) }} />
-            <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+            <input
+                type="text"
+                value={username}
+                onChange={(e) => {
+                    setUsername(e.target.value);
+                }}
+            />
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => {
+                    setPassword(e.target.value);
+                }}
+            />
 
             <button onClick={login}> Login</button>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;
