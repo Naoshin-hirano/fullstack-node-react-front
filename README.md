@@ -2,6 +2,7 @@
 
 
 SNSで頻繁に使用される機能を詰め込んだ投稿アプリ<br/>
+URL: https://iridescent-pasca-92f793.netlify.app/
 REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 
@@ -37,9 +38,12 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 <h1>5.工夫点</h1>
 
-●　
-●　
-●　
+①<h2>グローバルな状態管理をstoreでなくuseContextを使用</h2>
+　・小規模でglobal stateに持たせたい値が少ないため</br>
+　・コード量が少なかったりやライブラリ導入の必要がないので工数がかからない
+ 
+②<h2>ダイレクトメッセージにswrを使用</h2>
+③<h2>Atomic Designでのコンポーネント設計</h2>
 
 
 
