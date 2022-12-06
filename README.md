@@ -88,7 +88,7 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 
 <h2>■コメント</h2>
-詳細画面下部の「参加する」ボタンからその英会話教室へ参加登録ができます。左側の「出席者PickUp」に参加予定者一覧が表示されています。
+投稿詳細画面にてその投稿に対してコメントの追加と削除ができます
 
 ![コメント](https://user-images.githubusercontent.com/59371503/205067278-52522455-ded0-44b8-9a99-859acbbe978b.gif)
 
@@ -109,7 +109,8 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 
 <h2>■オートサジェスチョン</h2>
-検索欄での文字入力からオートで検索候補が表示。またその検索候補クリックでヒットする投稿一覧表示
+検索欄での文字入力にてリアルタイムで検索候補が表示。またその検索候補クリックで「タイトル」「投稿内容」「投稿ユーザー名」にヒットする投稿一覧表示。</br>
+
 
 ![オートサジェスチョン](https://user-images.githubusercontent.com/59371503/205169358-e7108f96-8674-49f9-a20b-5e09dcc46c9d.gif)
 
