@@ -38,9 +38,9 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 <h1>5.工夫点</h1>
 
-<h2>■グローバルな状態管理をstoreでなくuseContextを使用</h2>
-　・小規模でGlobal Stateに持たせたい値が少ないため</br>
-　・コード量が少なかったりライブラリ導入の必要がない、仕組みがシンプルなので工数を抑えれる
+<h2>■グローバルな状態管理をReduxでなくuseContextを使用</h2>
+　・アプリが小規模でGlobal Stateに持たせたい値が少ないため</br>
+　・Reduxと比較して書くべきコード量が少なかったりライブラリ導入の必要がない、仕組みがシンプルなので工数を抑えれる
  
 <h2>■ダイレクトメッセージにswrを使用</h2>
 　・リアルタイム性の高いデータをポーリングして再取得できるため
