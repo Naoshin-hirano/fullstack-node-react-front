@@ -38,13 +38,16 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 <h1>5.工夫点</h1>
 
-①<h2>グローバルな状態管理をstoreでなくuseContextを使用</h2>
-　・小規模でglobal stateに持たせたい値が少ないため</br>
-　・コード量が少なかったりやライブラリ導入の必要がないので工数がかからない
+<h2>■グローバルな状態管理をstoreでなくuseContextを使用</h2>
+　・小規模でGlobal Stateに持たせたい値が少ないため</br>
+　・コード量が少なかったりライブラリ導入の必要がない、仕組みがシンプルなので工数を抑えれる
  
-②<h2>ダイレクトメッセージにswrを使用</h2>
-③<h2>Atomic Designでのコンポーネント設計</h2>
-
+<h2>■ダイレクトメッセージにswrを使用</h2>
+　・リアルタイム性の高いデータをポーリングして再取得できるため
+ 
+<h2>■Atomic Designでのコンポーネント設計</h2>
+ ・UIコンポーネントの粒度をカテゴリーに明確に分けることで可読性を上げる</br>
+ ・ComponentsをuseContextやAPIに依存しないようにしているので、汎用性や再利用性を高める
 
 
 <h1>6.難しかったところ</h1>
