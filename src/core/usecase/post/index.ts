@@ -22,7 +22,7 @@ export const deleteCommentInfo = async (commentId: string) => {
     return result;
 };
 
-export const postPostInfo = async (id: string) => {
+export const deletePostInfo = async (id: string) => {
     deletePost(id);
 };
 

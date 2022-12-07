@@ -17,14 +17,14 @@ export const Post = (props: mainProps) => {
     };
 
     const deleteComment = async (commentId: string, index: number) => {
-        Usecase.deleteCommentInfo(commentId);
+        await Usecase.deleteCommentInfo(commentId);
         const newComments = [...comments];
         newComments.splice(index, 1);
         setComments(newComments);
     };
 
     const deletePost = async () => {
-        await Usecase.postPostInfo;
+        await Usecase.deletePostInfo(id);
         history.push("/");
     };
 
