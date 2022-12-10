@@ -9,7 +9,7 @@ export const Login = (props: mainProps) => {
     const [password, setPassword] = useState("");
     const history = useHistory();
 
-    const login = async () => {
+    const login = async (username: string, password: string) => {
         await Usecase.postLogin(username, password, setAuthState);
         history.push("/");
     };
@@ -33,7 +33,11 @@ export const Login = (props: mainProps) => {
                     setPassword(e.target.value);
                 }}
             />
-            <button onClick={login}> ログイン</button>
+            <button onClick={() => login(username, password)}> ログイン</button>
+            <h4>下記からパスワードなしでログインできます</h4>
+            <button onClick={() => login("Guest", "Guest1234")}>
+                ゲストログイン
+            </button>
         </div>
     );
 };
