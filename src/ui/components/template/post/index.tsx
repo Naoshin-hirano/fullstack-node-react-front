@@ -8,6 +8,7 @@ export interface mainProps {
     comments: COMMENT[];
     post: POST | undefined;
     setComments: Dispatch<SetStateAction<COMMENT[]>>;
+    loading: boolean;
 }
 
 export const Template: React.FC<mainProps> = (props: mainProps) => {

@@ -4,11 +4,12 @@ import { PostComments } from "./PostComments";
 import { PostDetail } from "./PostDetail";
 import * as Usecase from "../../../../core/usecase/post";
 import { mainProps } from "../../template/post";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export const Post = (props: mainProps) => {
     const [comment, setComment] = useState<string>("");
     let history = useHistory();
-    const { id, authState, comments, post, setComments } = props;
+    const { id, authState, comments, post, setComments, loading } = props;
 
     const addComment = async () => {
         const result = await Usecase.postAddCommentInfo(id, comment);
@@ -33,21 +34,27 @@ export const Post = (props: mainProps) => {
     };
 
     return (
-        <div className="postPage">
-            <PostDetail
-                post={post}
-                authState={authState}
-                deletePost={deletePost}
-                editPost={editPost}
-            />
-            <PostComments
-                comment={comment}
-                setComment={setComment}
-                authState={authState}
-                comments={comments}
-                addComment={addComment}
-                deleteComment={deleteComment}
-            />
+        <div>
+            {loading ? (
+                <BeatLoader color="#36d7b7" />
+            ) : (
+                <div className="postPage">
+                    <PostDetail
+                        post={post}
+                        authState={authState}
+                        deletePost={deletePost}
+                        editPost={editPost}
+                    />
+                    <PostComments
+                        comment={comment}
+                        setComment={setComment}
+                        authState={authState}
+                        comments={comments}
+                        addComment={addComment}
+                        deleteComment={deleteComment}
+                    />
+                </div>
+            )}
         </div>
     );
 };

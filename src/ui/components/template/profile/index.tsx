@@ -11,6 +11,7 @@ export interface mainProps {
     follower: number[];
     setFollower: Dispatch<SetStateAction<number[]>>;
     id: string;
+    loading: boolean;
 }
 export const Template: React.FC<mainProps> = (props: mainProps) => {
     return (

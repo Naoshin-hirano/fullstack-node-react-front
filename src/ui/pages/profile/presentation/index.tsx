@@ -11,9 +11,11 @@ export const useCreateProps = () => {
     const [listOfPosts, setListOfPosts] = useState<POST[]>([]);
     const [following, setFollowing] = useState<number[]>([]);
     const [follower, setFollower] = useState<number[]>([]);
+    const [loading, setLoading] = useState(false);
     let { id } = useParams<{ id: string }>();
 
     useEffect(() => {
+        setLoading(true);
         Usecase.getUserInfo(
             id,
             setFollowing,
@@ -22,6 +24,9 @@ export const useCreateProps = () => {
             setUserImage
         );
         Usecase.getUserPostsInfo(id, setListOfPosts);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, [id]);
 
     return {
@@ -33,5 +38,6 @@ export const useCreateProps = () => {
         follower,
         setFollower,
         id,
+        loading,
     };
 };

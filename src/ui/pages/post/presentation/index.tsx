@@ -12,13 +12,18 @@ export const useCreateProps = () => {
             username: "",
         },
     ]);
+    const [loading, setLoading] = useState(false);
     const [post, setPost] = useState<POST | undefined>();
     let { id } = useParams<{ id: string }>();
     const { authState } = useContext(AuthContext);
 
     useEffect(() => {
+        setLoading(true);
         Usecase.getCommentsInfo(id, setComments);
         Usecase.getPostInfo(id, setPost);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, [id]);
 
     return {
@@ -27,5 +32,6 @@ export const useCreateProps = () => {
         comments,
         post,
         setComments,
+        loading,
     };
 };
