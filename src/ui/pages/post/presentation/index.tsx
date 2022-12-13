@@ -31,6 +31,7 @@ export const useCreateProps = () => {
         authState,
         comments,
         post,
+        setPost,
         setComments,
         loading,
     };

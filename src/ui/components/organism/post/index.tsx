@@ -5,11 +5,21 @@ import { PostDetail } from "./PostDetail";
 import * as Usecase from "../../../../core/usecase/post";
 import { mainProps } from "../../template/post";
 import BeatLoader from "react-spinners/BeatLoader";
+import { EditModal } from "./EditModal";
 
 export const Post = (props: mainProps) => {
     const [comment, setComment] = useState<string>("");
+    const [isOpen, setOpenModal] = useState(false);
     let history = useHistory();
-    const { id, authState, comments, post, setComments, loading } = props;
+    const {
+        id,
+        authState,
+        comments,
+        post,
+        setPost,
+        setComments,
+        loading,
+    } = props;
 
     const addComment = async () => {
         const result = await Usecase.postAddCommentInfo(id, comment);
@@ -29,8 +39,16 @@ export const Post = (props: mainProps) => {
         history.push("/");
     };
 
-    const editPost = (editType: string) => {
-        Usecase.putEditPostInfo(editType, id);
+    const onSubmit = async (data: any) => {
+        const result = await Usecase.putEditPostInfo(data, id);
+        if (post) {
+            setPost({
+                ...post,
+                title: result.data.title,
+                postText: result.data.postText,
+            });
+        }
+        setOpenModal(false);
     };
 
     return (
@@ -43,7 +61,7 @@ export const Post = (props: mainProps) => {
                         post={post}
                         authState={authState}
                         deletePost={deletePost}
-                        editPost={editPost}
+                        setOpenModal={setOpenModal}
                     />
                     <PostComments
                         comment={comment}
@@ -54,6 +72,12 @@ export const Post = (props: mainProps) => {
                         deleteComment={deleteComment}
                     />
                 </div>
+            )}
+            {isOpen && (
+                <>
+                    <div id="overlay" onClick={() => setOpenModal(false)}></div>
+                    <EditModal onSubmit={onSubmit} post={post} />
+                </>
             )}
         </div>
     );

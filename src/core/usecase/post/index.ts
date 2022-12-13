@@ -26,8 +26,9 @@ export const deletePostInfo = async (id: string) => {
     deletePost(id);
 };
 
-export const putEditPostInfo = async (editType: string, id: string) => {
-    putEditPost(editType, id);
+export const putEditPostInfo = async (data: any, id: string) => {
+    const result = await putEditPost(data, id);
+    return result;
 };
 
 export const getCommentsInfo = async (

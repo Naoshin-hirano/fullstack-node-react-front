@@ -7,6 +7,7 @@ export interface mainProps {
     authState: AUTH_STATE;
     comments: COMMENT[];
     post: POST | undefined;
+    setPost: Dispatch<SetStateAction<POST | undefined>>;
     setComments: Dispatch<SetStateAction<COMMENT[]>>;
     loading: boolean;
 }

@@ -33,11 +33,8 @@ export const Config = {
         search: {
             url: String(process.env.REACT_APP_POSTS_SEARCH),
         },
-        title: {
-            url: String(process.env.REACT_APP_POSTS_TITLE),
-        },
-        postText: {
-            url: String(process.env.REACT_APP_POSTS_TEXT),
+        edit: {
+            url: String(process.env.REACT_APP_POSTS_EDIT),
         },
         userPosts: {
             url: String(process.env.REACT_APP_POSTS_USERID),

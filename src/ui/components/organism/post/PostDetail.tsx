@@ -1,41 +1,26 @@
+import { Dispatch, SetStateAction } from "react";
 import { TAG, AUTH_STATE, POST } from "../../../../types";
 
 interface POST_DETAIL_PROPS {
     post: POST | undefined;
     authState: AUTH_STATE;
     deletePost: () => void;
-    editPost: (editType: string) => void;
+    setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export const PostDetail = ({
     post,
     authState,
     deletePost,
-    editPost,
+    setOpenModal,
 }: POST_DETAIL_PROPS) => {
     return (
         <div>
             {post && (
                 <div className="leftSide">
                     <div className="post" id="individual">
-                        <div
-                            className="title"
-                            onClick={() => {
-                                if (authState.username === post.username) {
-                                    editPost("title");
-                                }
-                            }}
-                        >
-                            {post.title}
-                        </div>
-                        <div
-                            className="body"
-                            onClick={() => {
-                                if (authState.username === post.username) {
-                                    editPost("body");
-                                }
-                            }}
-                        >
+                        <div className="title">{post.title}</div>
+                        <div className="body">
                             {post.postText}
                             <img
                                 src={post.imageName}
@@ -51,9 +36,18 @@ export const PostDetail = ({
                             <div className="footerContent">
                                 {post.username}
                                 {authState.username === post.username && (
-                                    <button onClick={deletePost}>
-                                        Delete Post
-                                    </button>
+                                    <>
+                                        <button onClick={deletePost}>
+                                            削除
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                setOpenModal(true);
+                                            }}
+                                        >
+                                            編集
+                                        </button>
+                                    </>
                                 )}
                             </div>
                             <div className="tags">

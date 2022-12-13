@@ -134,7 +134,6 @@ export const CreatePost = (props: mainProps) => {
                                         <ImageSrc file={values.file} />
                                     </div>
                                     <button type="submit">
-                                        {" "}
                                         上記の内容で投稿
                                     </button>
                                 </Form>

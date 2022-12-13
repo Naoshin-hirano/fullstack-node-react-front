@@ -24,24 +24,15 @@ export const deletePost = async (id: string) => {
     axios.delete(url, headers);
 };
 
-export const putEditPost = async (editType: string, id: string) => {
-    if (editType === "title") {
-        let newTitle = prompt("タイトルを入力してください");
-        const url = apiConfig.title.url;
-        const body = {
-            newTitle: newTitle,
-            id: id,
-        };
-        axios.put(url, body, headers);
-    } else {
-        let newPostText = prompt("テキストを入力してください");
-        const url = apiConfig.postText.url;
-        const body = {
-            newPostText: newPostText,
-            id: id,
-        };
-        axios.put(url, body, headers);
-    }
+export const putEditPost = async (data: any, id: string) => {
+    const url = apiConfig.edit.url;
+    const body = {
+        newTitle: data.title,
+        newPostText: data.postText,
+        id: id,
+    };
+    const response = await axios.put(url, body, headers);
+    return response;
 };
 
 export const getComments = async (id: string) => {
