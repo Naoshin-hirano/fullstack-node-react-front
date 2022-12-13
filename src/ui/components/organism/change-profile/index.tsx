@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { ImageSrc } from "../common/ImageSrc";
 import * as Usecase from "../../../../core/usecase/change-profile";
 import { mainProps } from "../../template/change-profile";
-import BeatLoader from "react-spinners/BeatLoader";
+import { Loading } from "../common/Loading";
 
 export const ChangeProfile = ({ authState, setAuthState }: mainProps) => {
     const [oldpassword, setOldpassword] = useState("");
@@ -60,7 +60,7 @@ export const ChangeProfile = ({ authState, setAuthState }: mainProps) => {
     return (
         <div>
             {loading ? (
-                <BeatLoader color="#36d7b7" />
+                <Loading />
             ) : (
                 <>
                     <div>

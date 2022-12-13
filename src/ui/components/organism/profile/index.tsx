@@ -2,7 +2,7 @@ import * as Usecase from "../../../../core/usecase/profile";
 import { UserInfo } from "./UserInfo";
 import { PostsByUser } from "./PostsByUser";
 import { mainProps } from "../../template/profile";
-import BeatLoader from "react-spinners/BeatLoader";
+import { Loading } from "../common/Loading";
 
 export const Profile = (props: mainProps) => {
     const {
@@ -23,7 +23,7 @@ export const Profile = (props: mainProps) => {
     return (
         <div>
             {loading ? (
-                <BeatLoader color="#36d7b7" />
+                <Loading />
             ) : (
                 <div className="profilePageContainer">
                     <UserInfo
