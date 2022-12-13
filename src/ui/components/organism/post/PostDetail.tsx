@@ -4,15 +4,15 @@ import { TAG, AUTH_STATE, POST } from "../../../../types";
 interface POST_DETAIL_PROPS {
     post: POST | undefined;
     authState: AUTH_STATE;
-    deletePost: () => void;
-    setOpenModal: Dispatch<SetStateAction<boolean>>;
+    setEditOpenModal: Dispatch<SetStateAction<boolean>>;
+    setDeleteOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export const PostDetail = ({
     post,
     authState,
-    deletePost,
-    setOpenModal,
+    setEditOpenModal,
+    setDeleteOpenModal,
 }: POST_DETAIL_PROPS) => {
     return (
         <div>
@@ -37,12 +37,16 @@ export const PostDetail = ({
                                 {post.username}
                                 {authState.username === post.username && (
                                     <>
-                                        <button onClick={deletePost}>
+                                        <button
+                                            onClick={() =>
+                                                setDeleteOpenModal(true)
+                                            }
+                                        >
                                             削除
                                         </button>
                                         <button
                                             onClick={() => {
-                                                setOpenModal(true);
+                                                setEditOpenModal(true);
                                             }}
                                         >
                                             編集

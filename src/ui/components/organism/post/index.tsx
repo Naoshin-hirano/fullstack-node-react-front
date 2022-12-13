@@ -4,12 +4,14 @@ import { PostComments } from "./PostComments";
 import { PostDetail } from "./PostDetail";
 import * as Usecase from "../../../../core/usecase/post";
 import { mainProps } from "../../template/post";
-import BeatLoader from "react-spinners/BeatLoader";
 import { EditModal } from "./EditModal";
+import { DeleteModal } from "./DeleteModal";
+import { Loading } from "../common/Loading";
 
 export const Post = (props: mainProps) => {
     const [comment, setComment] = useState<string>("");
-    const [isOpen, setOpenModal] = useState(false);
+    const [isEditOpen, setEditOpenModal] = useState(false);
+    const [isDeleteOpen, setDeleteOpenModal] = useState(false);
     let history = useHistory();
     const {
         id,
@@ -48,20 +50,20 @@ export const Post = (props: mainProps) => {
                 postText: result.data.postText,
             });
         }
-        setOpenModal(false);
+        setEditOpenModal(false);
     };
 
     return (
         <div>
             {loading ? (
-                <BeatLoader color="#36d7b7" />
+                <Loading />
             ) : (
                 <div className="postPage">
                     <PostDetail
                         post={post}
                         authState={authState}
-                        deletePost={deletePost}
-                        setOpenModal={setOpenModal}
+                        setEditOpenModal={setEditOpenModal}
+                        setDeleteOpenModal={setDeleteOpenModal}
                     />
                     <PostComments
                         comment={comment}
@@ -73,10 +75,25 @@ export const Post = (props: mainProps) => {
                     />
                 </div>
             )}
-            {isOpen && (
+            {isEditOpen && (
                 <>
-                    <div id="overlay" onClick={() => setOpenModal(false)}></div>
+                    <div
+                        id="overlay"
+                        onClick={() => setEditOpenModal(false)}
+                    ></div>
                     <EditModal onSubmit={onSubmit} post={post} />
+                </>
+            )}
+            {isDeleteOpen && (
+                <>
+                    <div
+                        id="overlay"
+                        onClick={() => setDeleteOpenModal(false)}
+                    ></div>
+                    <DeleteModal
+                        setDeleteOpenModal={setDeleteOpenModal}
+                        deletePost={deletePost}
+                    />
                 </>
             )}
         </div>

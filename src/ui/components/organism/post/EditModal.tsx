@@ -26,6 +26,7 @@ export const EditModal = ({ onSubmit, post }: any) => {
                 >
                     <Form className="editContainer">
                         <ErrorMessage name="title" component="span" />
+                        タイトル
                         <Field
                             autoComplete="off"
                             id="inputCreatePost"
@@ -33,6 +34,7 @@ export const EditModal = ({ onSubmit, post }: any) => {
                             placeholder="(Ex. タイトル...)"
                         />
                         <ErrorMessage name="postText" component="span" />
+                        メッセージ
                         <Field
                             autoComplete="off"
                             id="inputCreatePost"
