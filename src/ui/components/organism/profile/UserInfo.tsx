@@ -39,7 +39,6 @@ export const UserInfo = ({
                 <img
                     src={userImage}
                     alt="profileImage"
-                    style={{ width: 211 }}
                     className="profileImage"
                 />
             ) : (

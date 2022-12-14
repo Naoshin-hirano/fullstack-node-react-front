@@ -32,7 +32,7 @@ export const Registration = () => {
                 onSubmit={onSubmit}
                 validationSchema={validationSchema}
             >
-                <Form className="formContainer">
+                <Form className="registerContainer">
                     <label>ユーザー名: </label>
                     <ErrorMessage name="username" component="span" />
                     <Field

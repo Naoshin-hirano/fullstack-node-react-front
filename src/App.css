@@ -1,3 +1,20 @@
+.App {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    flex-direction: column;
+    padding-top: 0px;
+    padding-bottom: 50px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* モーダルコンポーネント */
 #overlay {
     /*　画面全体を覆う設定　*/
     position: fixed;
@@ -68,21 +85,8 @@
     cursor: pointer;
     background-color: rgb(16, 173, 87);
 }
-.App {
-    width: 100vw;
-    height: auto;
-    display: flex;
-    align-items: center;
-    padding-top: 40px;
-    flex-direction: column;
-    padding-top: 0px;
-}
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
+/* 1投稿 */
 .post {
     width: 400px;
     height: 322px;
@@ -123,6 +127,9 @@ body {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+.footer {
+    height: 50px;
+}
 .footer .postInfo {
     display: flex;
     margin-top: 10px;
@@ -161,11 +168,9 @@ body {
 }
 
 /* CREATE POST PAGE CSS */
-
 .createPostPage {
     font-family: Arial, Helvetica, sans-serif;
     width: 100vw;
-    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,7 +186,26 @@ body {
     border-radius: 5px;
 }
 
+.registerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    height: auto;
+    padding: 20px;
+    padding-top: 100px;
+}
+
 .formContainer #inputCreatePost {
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+.registerContainer #inputCreatePost {
     height: 40px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -192,6 +216,15 @@ body {
 }
 
 .formContainer button {
+    margin-top: 15px;
+    height: 40px;
+    border: none;
+    background-color: rgb(143, 235, 184);
+    border-radius: 5px;
+    color: white;
+}
+
+.registerContainer button {
     margin-top: 15px;
     height: 40px;
     border: none;
@@ -215,8 +248,8 @@ body {
 span {
     color: red;
 }
-/* NAVBAR */
 
+/* NAVBAR */
 .navbar {
     width: 100%;
     height: 70px;
@@ -258,6 +291,14 @@ span {
     color: white;
     font-weight: lighter;
 }
+
+.leftSide {
+    flex: 50%;
+    /* height: calc(100vh - 70px); */
+    display: grid;
+    place-items: center;
+}
+
 /* INDIVIDUAL POST */
 .postPage {
     display: flex;
@@ -265,13 +306,6 @@ span {
     width: 100%;
     height: 100%;
     position: relative;
-}
-
-.leftSide {
-    flex: 50%;
-    height: calc(100vh - 70px);
-    display: grid;
-    place-items: center;
 }
 
 .rightSide {
@@ -360,8 +394,8 @@ button {
 #individual .body {
     font-size: 25px;
 }
-/* LOGIN */
 
+/* LOGIN */
 .loginContainer {
     display: flex;
     align-items: center;
@@ -373,7 +407,7 @@ button {
 
 .loginContainer input,
 button {
-    width: 200px;
+    width: 202px;
     height: 50px;
     border-radius: 8px;
     border: none;
@@ -388,6 +422,7 @@ button {
 .loginContainer input {
     border: 2px solid dodgerblue;
 }
+
 /* 検索バー */
 .search {
     display: flex;
@@ -437,10 +472,12 @@ button {
 .suggestions li:not(:last-of-type) {
     border-bottom: 1px solid #999;
 }
+
 /* ページネーション */
 .pagination {
     margin: 50px 0px 80px 0px;
     padding-left: 0;
+    text-align: center;
 }
 .pagination li {
     display: inline-block;
@@ -470,7 +507,6 @@ button {
 }
 
 /* ダイレクトメッセージ */
-
 .header {
     background-color: #222a41;
     color: white;
@@ -548,9 +584,21 @@ button {
     display: flex;
     flex-direction: column;
 }
+.basicInfo {
+    text-align: center;
+}
+.basicInfo button {
+    width: 216px;
+}
+.profileImage {
+    width: 211px;
+}
 
-/* ダイレクトメッセージ  レスポンシブ*/
-@media (max-width: 775px) {
+/* レスポンシブ 画面広さ501~900px */
+@media (max-width: 900px) {
+    .postPage {
+        display: inline;
+    }
     p {
         font-size: 20px;
     }
@@ -564,11 +612,25 @@ button {
         height: 35px;
         margin-top: -10px;
     }
+    button {
+        width: 150px;
+        height: 50px;
+        border-radius: 8px;
+        border: none;
+        margin: 10px;
+    }
+    .search__bar {
+        width: 300px;
+    }
 }
 
+/* レスポンシブ 画面広さ~500px */
 @media (max-width: 500px) {
     p {
         font-size: 15px;
+    }
+    .registerContainer {
+        width: 250px;
     }
     .sent {
         padding: 7px 7px 0 7px;
@@ -579,5 +641,35 @@ button {
     img {
         height: 30px;
         margin-top: -7px;
+    }
+    .post {
+        width: 328px;
+    }
+    #individual {
+        width: 95%;
+    }
+    #individual .title,
+    #individual .footer,
+    #individual .body {
+        font-size: 18px;
+    }
+    #individual .tags {
+        font-size: 8px;
+    }
+    .post .title {
+        flex: 14% 1;
+    }
+    .footerContent button {
+        width: 100px;
+    }
+    .basicInfo .profileImage {
+        width: 100px;
+        height: 100px;
+    }
+    .basicInfo h1 {
+        font-size: 23px;
+    }
+    .basicInfo h2 {
+        font-size: 15px;
     }
 }
