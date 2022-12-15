@@ -215,7 +215,8 @@ body {
     padding-left: 10px;
     font-size: 20px;
 }
-.registerContainer #inputCreatePost {
+.registerContainer #inputUsername,
+.registerContainer #inputPassword {
     height: 40px;
     margin-top: 10px;
     margin-bottom: 10px;
