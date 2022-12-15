@@ -127,6 +127,16 @@ body {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+.individualPostImage {
+    width: 336px;
+    height: 224px;
+    margin-top: 10px;
+}
+.postImage {
+    width: 211px;
+    height: 141px;
+}
+
 .footer {
     height: 50px;
 }
@@ -578,6 +588,10 @@ button {
     padding-bottom: 20px;
     background-color: #fafafa;
 }
+.sendIcon {
+    color: "#7AC2FF";
+    margin-left: "20px";
+}
 
 .msgs {
     margin: 110px 0;
@@ -638,6 +652,11 @@ button {
     .received {
         padding: 7px 7px 0 7px;
     }
+    .individualPostImage {
+        width: 267px;
+        height: 169px;
+        margin-top: 10px;
+    }
     img {
         height: 30px;
         margin-top: -7px;
@@ -646,7 +665,7 @@ button {
         width: 328px;
     }
     #individual {
-        width: 95%;
+        width: 320px;
     }
     #individual .title,
     #individual .footer,

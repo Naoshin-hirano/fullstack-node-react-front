@@ -19,7 +19,7 @@ export const PostsByUser = (props: { listOfPosts: POST[] }) => {
                             <img
                                 src={value.imageName}
                                 alt="imageName"
-                                style={{ width: 211, height: 141 }}
+                                className="postImage"
                             />
                         </div>
                         <div className="footer">

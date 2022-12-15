@@ -23,13 +23,9 @@ export const PostDetail = ({
                         <div className="body">
                             {post.postText}
                             <img
+                                className="individualPostImage"
                                 src={post.imageName}
                                 alt=""
-                                style={{
-                                    width: 336,
-                                    height: 224,
-                                    marginTop: 10,
-                                }}
                             />
                         </div>
                         <div className="footer">

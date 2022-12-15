@@ -47,7 +47,6 @@ export const UserInfo = ({
                         "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
                     }
                     alt="profileImage"
-                    style={{ width: 211 }}
                     className="profileImage"
                 />
             )}

@@ -27,7 +27,7 @@ export const TagPosts = ({ listOfPosts, id }: mainProps) => {
                                     <img
                                         src={value.imageName}
                                         alt="imageName"
-                                        style={{ width: 211, height: 141 }}
+                                        className="postImage"
                                     />
                                 </div>
                                 <div className="footer">
