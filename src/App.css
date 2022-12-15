@@ -89,7 +89,7 @@ body {
 /* 1投稿 */
 .post {
     width: 400px;
-    height: 322px;
+    height: 376px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -153,7 +153,7 @@ body {
 }
 .footer .tags {
     display: flex;
-    font-size: 15px;
+    font-size: 12px;
     color: dodgerblue;
     flex-wrap: wrap;
     gap: 0px 10px;
@@ -633,9 +633,6 @@ button {
         border: none;
         margin: 10px;
     }
-    .search__bar {
-        width: 300px;
-    }
 }
 
 /* レスポンシブ 画面広さ~500px */
@@ -673,10 +670,13 @@ button {
         font-size: 18px;
     }
     #individual .tags {
-        font-size: 8px;
+        font-size: 12px;
     }
     .post .title {
         flex: 14% 1;
+    }
+    .search__bar {
+        width: 300px;
     }
     .footerContent button {
         width: 100px;
