@@ -8,6 +8,7 @@ export interface mainProps {
     likedPosts: number[];
     setLikedPosts: Dispatch<SetStateAction<number[]>>;
     suggestions: string[];
+    loading: boolean;
 }
 
 export const Template: React.FC<mainProps> = (props: mainProps) => {

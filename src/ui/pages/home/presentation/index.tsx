@@ -10,9 +10,11 @@ export const useCreateProps = () => {
     const [likedPosts, setLikedPosts] = useState<number[]>([]);
     // 検索窓でのサジェスチョン一覧
     const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [loading, setLoading] = useState(false);
     let history = useHistory();
 
     useEffect(() => {
+        setLoading(true);
         if (!localStorage.getItem("accessToken")) {
             history.push("/login");
         } else {
@@ -29,9 +31,15 @@ export const useCreateProps = () => {
                     setListOfPosts,
                     setLikedPosts
                 );
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
             } else {
                 // 絞り込みなしでの投稿一覧
                 Usecase.getAllPostsInfo(setListOfPosts, setLikedPosts);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
             }
         }
     }, [history]);
@@ -43,5 +51,6 @@ export const useCreateProps = () => {
         setLikedPosts,
         suggestions,
         setSuggestions,
+        loading,
     };
 };

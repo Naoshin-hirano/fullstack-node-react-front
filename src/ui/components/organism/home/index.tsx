@@ -5,6 +5,7 @@ import { Search } from "./Search";
 import { CurrentPosts } from "./CurrentPosts";
 import * as Usecase from "../../../../core/usecase/home";
 import { mainProps } from "../../template/home";
+import { Loading } from "../common/Loading";
 
 export const Home = (props: mainProps) => {
     const {
@@ -13,6 +14,7 @@ export const Home = (props: mainProps) => {
         likedPosts,
         setLikedPosts,
         suggestions,
+        loading,
     } = props;
 
     const [inputText, setInputText] = useState<string>("");
@@ -88,29 +90,35 @@ export const Home = (props: mainProps) => {
         setCurrentPage(pageNum);
     };
     return (
-        <div>
-            <Search
-                onChange={onChange}
-                inputText={inputText}
-                searchByEnter={searchByEnter}
-            />
-            {showSuggestions && inputText && (
-                <SuggestionsListComponent
-                    onClick={onClick}
-                    filteredSuggestions={filteredSuggestions}
-                />
+        <>
+            {loading ? (
+                <Loading />
+            ) : (
+                <div>
+                    <Search
+                        onChange={onChange}
+                        inputText={inputText}
+                        searchByEnter={searchByEnter}
+                    />
+                    {showSuggestions && inputText && (
+                        <SuggestionsListComponent
+                            onClick={onClick}
+                            filteredSuggestions={filteredSuggestions}
+                        />
+                    )}
+                    <CurrentPosts
+                        currentPosts={currentPosts}
+                        likeAPost={likeAPost}
+                        likedPosts={likedPosts}
+                    />
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={listOfPosts.length}
+                        paginate={paginate}
+                        currentPage={currentPage}
+                    />
+                </div>
             )}
-            <CurrentPosts
-                currentPosts={currentPosts}
-                likeAPost={likeAPost}
-                likedPosts={likedPosts}
-            />
-            <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={listOfPosts.length}
-                paginate={paginate}
-                currentPage={currentPage}
-            />
-        </div>
+        </>
     );
 };
