@@ -16,8 +16,14 @@ export const Registration = () => {
     };
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string().min(3).max(15).required(),
-        password: Yup.string().min(4).max(20).required(),
+        username: Yup.string()
+            .min(3)
+            .max(15)
+            .required("ユーザー名を入力してください"),
+        password: Yup.string()
+            .min(4)
+            .max(20)
+            .required("パスワードを入力してください"),
     });
 
     const onSubmit = async (data: SUBMIT_USER) => {
@@ -33,6 +39,7 @@ export const Registration = () => {
                 validationSchema={validationSchema}
             >
                 <Form className="registerContainer">
+                    <h2>新規登録</h2>
                     <label>ユーザー名: </label>
                     <ErrorMessage name="username" component="span" />
                     <Field

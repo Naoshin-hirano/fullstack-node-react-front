@@ -15,6 +15,7 @@ export const Login = (props: mainProps) => {
     };
     return (
         <div className="loginContainer">
+            <h2>ログイン</h2>
             <label>ユーザー名 </label>
             <input
                 type="text"
