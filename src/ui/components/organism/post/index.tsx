@@ -25,8 +25,10 @@ export const Post = (props: mainProps) => {
 
     const addComment = async () => {
         const result = await Usecase.postAddCommentInfo(id, comment);
-        setComments([...comments, result.data]);
-        setComment("");
+        if (result) {
+            setComments([...comments, result.data]);
+            setComment("");
+        }
     };
 
     const deleteComment = async (commentId: string, index: number) => {
