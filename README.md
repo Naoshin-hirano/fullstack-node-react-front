@@ -86,16 +86,6 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 <h1>8.　機能一覧</h1>
 
-<h2>■投稿のCRUD</h2>
-基本機能である　Create（生成）、Read（読み取り）、Update（更新）、Delete（削除）
-
-
-
-<h2>■認証機能</h2>
-bcryptとJWTを使用したサインアップ/ログイン/ログアウト機能です
-
-
-
 <h2>■いいね！</h2>
 お気に入りの投稿にいいね登録と解除ができる。
 
