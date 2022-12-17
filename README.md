@@ -25,7 +25,7 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 | 使用箇所 | 使用技術名 |
 |:---|:---|
-|フロント|React18.2.0|
+|フロント|React18.2.0, Typescript4.8.2|
 |REST API|Node.js(Express4.18.1)|
 |データベース|MySQL2.3.3|
 |アップロードした画像の格納先|Cloudinary1.32.0|
