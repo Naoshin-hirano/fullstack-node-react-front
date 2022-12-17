@@ -9,7 +9,12 @@ REST API：　https://github.com/Naoshin-hirano/fullstack-node-react-api
 
 <h4>◆トップページ</h4>
 
-<h1>1.レスポンシブデザイン</h1>
+<img width="1025" alt="スクリーンショット 2022-12-17 16 14 54" src="https://user-images.githubusercontent.com/59371503/208230488-ce52b11e-a0bb-4c9e-a96a-8da75bf02be5.png">
+
+
+
+
+<h4>レスポンシブデザイン</h1>
 
 ![レスポンシブ](https://user-images.githubusercontent.com/59371503/208230029-db056d1d-808f-4bbe-9eff-132a4f616efb.gif)
 
