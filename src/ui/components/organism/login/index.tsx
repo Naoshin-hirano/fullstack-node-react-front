@@ -36,7 +36,7 @@ export const Login = (props: mainProps) => {
             />
             <button onClick={() => login(username, password)}> ログイン</button>
             <h4>下記からパスワードなしでログインできます</h4>
-            <button onClick={() => login("Guest", "Guest1234")}>
+            <button onClick={() => login("GuestUser", "Guest1120!")}>
                 ゲストログイン
             </button>
         </div>
