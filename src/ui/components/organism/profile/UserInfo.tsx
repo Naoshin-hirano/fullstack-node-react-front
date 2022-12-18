@@ -35,21 +35,7 @@ export const UserInfo = ({
                     </button>
                 )}
             </h1>
-            {userImage ? (
-                <img
-                    src={userImage}
-                    alt="profileImage"
-                    className="profileImage"
-                />
-            ) : (
-                <img
-                    src={
-                        "https://png.pngtree.com/png-vector/20191110/ourlarge/pngtree-avatar-vector-icon-white-transparent-background-png-image_1978010.jpg"
-                    }
-                    alt="profileImage"
-                    className="profileImage"
-                />
-            )}
+            <img src={userImage} alt="profileImage" className="profileImage" />
             <p>フォロワー: {follower.length}</p>
             <p>フォロー中: {following.length}</p>
             {authState.username === username ? (

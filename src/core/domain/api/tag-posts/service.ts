@@ -1,9 +1,13 @@
 import axios from "axios";
 import { apiConfig } from "../../../../config";
-import { headers } from "../common/global-header/service";
 
 export const tagPostGet = (id: string) => {
     const url = `${apiConfig.hashTagPosts.url}/${id}`;
-    const response = axios.get(url, headers);
+    // todo: importしたheadersを使用すると時折undefinedになりエラーが出るので直書きにしている
+    const response = axios.get(url, {
+        headers: {
+            accessToken: localStorage.getItem("accessToken") as string,
+        },
+    });
     return response;
 };

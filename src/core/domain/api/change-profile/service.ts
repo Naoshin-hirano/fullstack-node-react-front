@@ -21,6 +21,11 @@ export const putChangeAvatar = async (image: File | null) => {
     const url = apiConfig.changeAvatar.url;
     const formData = new FormData();
     formData.append("file", image as string | Blob);
-    const response = await axios.put(url, formData, headers);
+    // todo: importしたheadersを使用すると時折undefinedになりエラーが出るので直書きにしている
+    const response = await axios.put(url, formData, {
+        headers: {
+            accessToken: localStorage.getItem("accessToken") as string,
+        },
+    });
     return response;
 };

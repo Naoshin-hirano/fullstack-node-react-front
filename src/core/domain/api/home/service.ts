@@ -27,7 +27,7 @@ export const getSearchedPosts = async (keyword: string) => {
 // 全ての投稿を取得
 export const getAllPosts = async () => {
     const url = apiConfig.posts.url;
-    // importしたheadersを使用するとログイン後にエラーが出るので直書きにしている
+    // todo: importしたheadersを使用するとログイン後にエラーが出るので直書きにしている
     const response = await axios.get(url, {
         headers: {
             accessToken: localStorage.getItem("accessToken") as string,
