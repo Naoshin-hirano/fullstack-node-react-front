@@ -12,7 +12,7 @@ export const postDM = async (
 ) => {
     const url = apiConfig.dm.url;
     const body = { text: messageText, toUserId: id, UserId: authState.id };
-    const response = await axios.post(url, body, headers);
+    const response = await axios.post(url, body, headers());
     return response;
 };
 

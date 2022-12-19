@@ -8,7 +8,7 @@ export const postFollowAndUnfollow = async (id: string) => {
     const body = {
         followedId: id,
     };
-    const response = await axios.post(url, body, headers);
+    const response = await axios.post(url, body, headers());
     return response;
 };
 

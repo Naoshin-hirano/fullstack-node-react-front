@@ -9,19 +9,19 @@ export const postAddComment = async (id: string, comment: string) => {
         PostId: id,
         commentBody: comment,
     };
-    const response = await axios.post(commentsUrl, body, headers);
+    const response = await axios.post(commentsUrl, body, headers());
     return response;
 };
 
 export const deleteComment = async (commentId: string) => {
     const url = `${commentsUrl}/${commentId}`;
-    const response = await axios.delete(url, headers);
+    const response = await axios.delete(url, headers());
     return response;
 };
 
 export const deletePost = async (id: string) => {
     const url = `${apiConfig.posts.url}/${id}`;
-    axios.delete(url, headers);
+    axios.delete(url, headers());
 };
 
 export const putEditPost = async (data: any, id: string) => {
@@ -31,7 +31,7 @@ export const putEditPost = async (data: any, id: string) => {
         newPostText: data.postText,
         id: id,
     };
-    const response = await axios.put(url, body, headers);
+    const response = await axios.put(url, body, headers());
     return response;
 };
 

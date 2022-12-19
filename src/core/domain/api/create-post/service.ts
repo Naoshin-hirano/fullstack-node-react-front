@@ -17,6 +17,7 @@ export const postCreatePost = async (data: SUBMIT_DATA) => {
     // console.log(Object.keys(object1));
     // expected output: Array ["a", "b", "c"]
     // Object.keysの配列がSUBMIT_DATAのキーであることを証明できればOK
+    // data[key] はオブジェクトのキーに対する値。そいつが配列かどうかをチェックしてる
     (Object.keys(data) as (keyof SUBMIT_DATA)[]).forEach((key) => {
         if (Array.isArray(data[key])) {
             formData.append(key, JSON.stringify(data[key]));
@@ -24,7 +25,7 @@ export const postCreatePost = async (data: SUBMIT_DATA) => {
             formData.append(key, data[key] as any);
         }
     });
-    const response = await axios.post(url, formData, headers);
+    const response = await axios.post(url, formData, headers());
     return response;
 };
 
