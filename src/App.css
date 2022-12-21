@@ -599,10 +599,10 @@ button {
     display: flex;
     flex-direction: column;
 }
-.basicInfo {
+.userBasicInfo {
     text-align: center;
 }
-.basicInfo button {
+.userBasicInfo button {
     width: 216px;
 }
 .profileImage {
@@ -682,14 +682,14 @@ button {
     .footerContent button {
         width: 100px;
     }
-    .basicInfo .profileImage {
+    .userBasicInfo .profileImage {
         width: 100px;
         height: 100px;
     }
-    .basicInfo h1 {
+    .userBasicInfo h1 {
         font-size: 23px;
     }
-    .basicInfo h2 {
+    .userBasicInfo h2 {
         font-size: 15px;
     }
 }

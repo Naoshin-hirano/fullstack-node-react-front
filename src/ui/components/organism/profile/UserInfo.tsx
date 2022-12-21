@@ -22,7 +22,7 @@ export const UserInfo = ({
 }: USER_INFO_PROPS) => {
     let history = useHistory();
     return (
-        <div className="basicInfo">
+        <div className="userBasicInfo">
             <h1>
                 {username}
                 {String(authState.id) !== id && (

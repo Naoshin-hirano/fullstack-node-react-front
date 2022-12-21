@@ -12,7 +12,7 @@ export const TagPosts = ({ listOfPosts, id, loading }: mainProps) => {
                 <Loading />
             ) : (
                 <div className="profilePageContainer">
-                    <div className="basicInfo">
+                    <div className="userBasicInfo">
                         <h1>#{id}</h1>
                         <h2>投稿：{listOfPosts?.length}件</h2>
                     </div>

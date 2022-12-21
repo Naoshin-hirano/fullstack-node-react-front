@@ -35,8 +35,8 @@ export const getUserInfo = async (
 ) => {
     const result = await getUser(id);
     setFollowing(
-        result.data.basicInfo.Relationships.map((relation: RELATIONSHIP) => {
-            return relation.followed;
+        result.data.followed.map((user: USER) => {
+            return user.id;
         })
     );
     setFollower(
@@ -44,8 +44,8 @@ export const getUserInfo = async (
             return user.id;
         })
     );
-    setUsername(result.data.basicInfo.username);
-    setUserImage(result.data.basicInfo.imageName);
+    setUsername(result.data.userBasicInfo.username);
+    setUserImage(result.data.userBasicInfo.imageName);
 };
 
 //　ユーザーによる投稿一覧取得

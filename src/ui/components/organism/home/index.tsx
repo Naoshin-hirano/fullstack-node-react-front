@@ -50,6 +50,7 @@ export const Home = (props: mainProps) => {
         window.location.href = "/?" + urlSearchParam;
     };
 
+    // オートサジェスチョンをクリックにて検索
     const searchBySuggest = (e: React.MouseEvent<HTMLInputElement>) => {
         const input = e.target as HTMLElement;
         const params = {
