@@ -80,8 +80,7 @@ REST APIレポジトリ：　https://github.com/Naoshin-hirano/fullstack-node-re
 |フォローフォロワー|ユーザーをフォローしたり解除ができる|
 |画像アップロード|投稿時にCloudinaryを使用して画像アップロードができる|
 |プロフィール|投稿のユーザークリックにてユーザープロフィール表示。ログインパスワードやアバター変更も可能|
-<p>※機能ロジック詳細表：　　　　https://docs.google.com/spreadsheets/d/1wj0_xWsnIVNB5oixF4e3sRZD5npnnelTATrJVFkqPNc/edit#gid=0
-</p>
+<p>※機能ロジック詳細表：　https://docs.google.com/spreadsheets/d/1wj0_xWsnIVNB5oixF4e3sRZD5npnnelTATrJVFkqPNc/edit#gid=0</p>
 
 
 
