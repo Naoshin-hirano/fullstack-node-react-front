@@ -60,12 +60,9 @@ REST APIレポジトリ：　https://github.com/Naoshin-hirano/fullstack-node-re
  ・ComponentsをuseContextやAPIに依存しないようにしているので、汎用性や再利用性を高める
 
 
-<h1>6.難しかったところ</h1>
 
 
-
-
-<h1>7.実装機能まとめ</h1>
+<h1>6.実装機能まとめ</h1>
 
 | 実装機能 | 説明 |
 |:---|:---|
@@ -84,7 +81,7 @@ REST APIレポジトリ：　https://github.com/Naoshin-hirano/fullstack-node-re
 
 
 
-<h1>8.　機能一覧</h1>
+<h1>7.　機能一覧</h1>
 
 <h2>■いいね！</h2>
 お気に入りの投稿にいいね登録と解除ができる。
