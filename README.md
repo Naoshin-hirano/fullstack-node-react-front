@@ -34,19 +34,16 @@ REST APIレポジトリ：　https://github.com/Naoshin-hirano/fullstack-node-re
 
 
 
-<h1>3.全体構成図</h1>
-（説明）
 
 
 
-
-<h1>4.ER図</h1>
+<h1>3.ER図</h1>
 
 ![95638CC6-658A-46F5-89E0-4A0A1524878E](https://user-images.githubusercontent.com/59371503/204472063-0ac3fa9c-2da3-4e42-acef-0855ef24101b.png)
 
 
 
-<h1>5.工夫点</h1>
+<h1>4.工夫点</h1>
 
 <h2>■グローバルな状態管理をReduxでなくuseContextを使用</h2>
 　・アプリが小規模でGlobal Stateに持たせたい値が少ないため</br>
@@ -62,7 +59,7 @@ REST APIレポジトリ：　https://github.com/Naoshin-hirano/fullstack-node-re
 
 
 
-<h1>6.実装機能まとめ</h1>
+<h1>5.実装機能まとめ</h1>
 
 | 実装機能 | 説明 |
 |:---|:---|
@@ -81,7 +78,7 @@ REST APIレポジトリ：　https://github.com/Naoshin-hirano/fullstack-node-re
 
 
 
-<h1>7.　機能一覧</h1>
+<h1>6.　機能一覧</h1>
 
 <h2>■いいね！</h2>
 お気に入りの投稿にいいね登録と解除ができる。
